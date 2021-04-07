@@ -7,7 +7,7 @@ End Time: 22:00
 Meeting Location: Google Meet
 Moderator: Armela Ligori           
 Recorder: Devid Duma
-Other Members Present:    Armela Ligori, Denado Rabeli, Denisa Bicaku, Devid Duma, Julian Lila, Aniledio Lami
+Other Members Present: Armela Ligori, Denado Rabeli, Denisa Bicaku, Devid Duma, Julian Lila, Aniledio Lami
 Members Absent: none
 
 **Topics Discussed:**
@@ -38,12 +38,15 @@ Armela would organize the work, check the team’s execution of tasks, the quali
 Denisa and Aniledio, as Researcher and Tester respectively, had the duty to research the possible frameworks that we would use during development. Their pros, cons and best ways in which to utilize them. 
 Julian would come in contact with some clients in order to build a general idea of what features our software could possibly include.
 Denado and Devid had the duty of writing the meeting report and helping out Armela in carrying her duties. 
+
 Time, Place, and Agenda for Next Meeting: 
 Time: 20:00
 Place: Google Meet
 Date: Would be decided in the Whatsapp group alongside the agenda of the next meeting. 
 Mostly a briefing of the current progress.
+
 **Some Guidelines that we decided :** 
+
 The mission of this team is the design and creation of a fully functioning software.
 Main Objectives: 
 Designing a functional and well made software.
@@ -51,7 +54,8 @@ Use of new technologies with which we have not previously worked.
 Communicating with the other team members and sharing experiences.
 Creation of a Whatsapp group to communicate with each other.
 In the case of conflict the rest of the team members will help with the resolving of the problem
- 
+
+
 **MEETING REPORT**
 Team Name: DevsCreed
 Date of Meeting:        03.04.2021
@@ -60,8 +64,8 @@ End Time: 21:30
 Meeting Location: Google Meet
 Moderator: Armela Ligori
 Recorder:  Devid Duma
-Other Members Present:    Armela Ligori, Denado Rabeli, Denisa Bicaku, Devid Duma,     Julian Lila, Aniledio Lami
-Members Absent:     none
+Other Members Present: Armela Ligori, Denado Rabeli, Denisa Bicaku, Devid Duma, Julian Lila, Aniledio Lami
+Members Absent: none
 
 **Topics Discussed:**
 
@@ -81,6 +85,7 @@ We avoided frameworks like Java Enterprise, .NET or PHP/Symphony because they ar
 
 Each one of us was assigned the task of learning through different resources online about the Laravel framework until our next meeting.
 We assigned the task of meeting and asking some eye clinics about potential features that our management system will have that would be useful to the eye clinics. This would include features related to the day to day work of assistants or secretaries but also about their clients usual wishes. The clinic’s client wishes are important to consider since they would allow eye clinics to better serve their clients, which in turn could maximise their revenues.
-Time, Place, and Agenda for Next Meeting: 
+
+Time, Place, and Agenda for Next Meeting:
 19:30 10.04.2021, Google Meet, Step 4 and 5
 
