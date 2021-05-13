@@ -1,10 +1,10 @@
 <!------ Create project -------->
 
 Create laravel project:
-composer create-project laravel/laravel example-app 7.28.0
+composer create-project laravel/laravel src 7.28.0
 OR
 composer global require laravel/installer
-laravel new example-app
+laravel new src
 
 
 <!------ Start project -------->
