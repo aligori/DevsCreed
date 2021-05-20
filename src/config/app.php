@@ -1,5 +1,7 @@
 <?php
 
+use Reliese\Coders\CodersServiceProvider;
+
 return [
 
     /*
@@ -139,6 +141,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Reliese\Coders\CodersServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,

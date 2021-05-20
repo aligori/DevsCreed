@@ -40,6 +40,9 @@ npm install --save @fortawesome/fontawesome-free
 
 <!-------- Database ------->
 
+Connect Laravel project to MySQL:
+https://programmerlib.com/connecting-your-laravel-project-to-mysql-database/
+
 Generate a migration, seeder, factory, and resource controller for the model:
 php artisan make:model <model_name> --all
 
