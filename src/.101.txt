@@ -46,7 +46,7 @@ https://programmerlib.com/connecting-your-laravel-project-to-mysql-database/
 Generate a migration, seeder, factory, and resource controller for the model:
 php artisan make:model <model_name> --all
 
-Generate migrations for the given models:
+Migrate the given models to database:
 php artisan migrate
 
 Get default/initial/dummy table values:
