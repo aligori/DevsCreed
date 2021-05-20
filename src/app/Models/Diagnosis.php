@@ -10,16 +10,16 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Diagnosi
- * 
+ * Class Diagnosis
+ *
  * @property int $diagnosis_id
  * @property string $name
- * 
+ *
  * @property Collection|Patient[] $patients
  *
  * @package App\Models
  */
-class Diagnosi extends Model
+class Diagnosis extends Model
 {
 	protected $table = 'diagnosis';
 	protected $primaryKey = 'diagnosis_id';

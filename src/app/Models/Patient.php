@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Patient
- * 
+ *
  * @property int $patient_id
  * @property string $full name
  * @property string $email
@@ -20,10 +20,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $phone
  * @property Carbon|null $birthday
  * @property string|null $uuid
- * 
+ *
  * @property Collection|Appointment[] $appointments
  * @property Collection|HealthRecord[] $health_records
- * @property Collection|Diagnosi[] $diagnosis
+ * @property Collection|Diagnosis[] $diagnosis
  *
  * @package App\Models
  */
@@ -58,7 +58,7 @@ class Patient extends Model
 
 	public function diagnosis()
 	{
-		return $this->belongsToMany(Diagnosi::class, 'patient diagnosis', 'patient_id', 'diagnosis_id')
+		return $this->belongsToMany(Diagnosis::class, 'patient diagnosis', 'patient_id', 'diagnosis_id')
 					->withPivot('details', 'isCurrent', 'patient_diagnosis_id');
 	}
 }

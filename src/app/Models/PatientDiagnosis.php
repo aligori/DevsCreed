@@ -9,20 +9,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class PatientDiagnosi
- * 
+ * Class PatientDiagnosis
+ *
  * @property string $details
  * @property bool $isCurrent
  * @property int $patient_id
  * @property int $patient_diagnosis_id
  * @property int $diagnosis_id
- * 
+ *
  * @property Patient $patient
- * @property Diagnosi $diagnosi
+ * @property Diagnosis $diagnosi
  *
  * @package App\Models
  */
-class PatientDiagnosi extends Model
+class PatientDiagnosis extends Model
 {
 	protected $table = 'patient diagnosis';
 	protected $primaryKey = 'patient_diagnosis_id';
@@ -48,6 +48,6 @@ class PatientDiagnosi extends Model
 
 	public function diagnosi()
 	{
-		return $this->belongsTo(Diagnosi::class, 'diagnosis_id');
+		return $this->belongsTo(Diagnosis::class, 'diagnosis_id');
 	}
 }
