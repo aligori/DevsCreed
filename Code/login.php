@@ -16,18 +16,19 @@
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
     <title>Log in</title>
 </head>
-<body >
+<body style="background: url('./assets/images/image1.jpg') no-repeat;">
 
-<?php include('./common-components/header.php') ?>
+<?php include('./shared-components/header.php') ?>
 
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh">
         <form class="border shadow p-3 rounded"
-              action="controllers/check-login.php"
+              action="controller/check-login.php"
               method="post"
               style="width: 35%">
             <h1 class="text-center p-3" style="letter-spacing: 3px; font-weight: bolder">Log in</h1>
@@ -64,6 +65,8 @@
             </p>
         </form>
     </div>
+
+<?php include('./shared-components/footer.php') ?>
 
 <div id="preloader"></div>
 

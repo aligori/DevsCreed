@@ -30,6 +30,5 @@
         </nav><!-- .navbar -->
 
         <a href="login.php" class="login-btn scrollto"><span class="d-none d-md-inline">Log</span> in</a>
-
     </div>
 </header>
