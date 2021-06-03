@@ -1,5 +1,5 @@
 <?php
-include "../db_conn.php";
+require_once("../model/user.class.php");
 
 
 function test_input($data) {
@@ -10,20 +10,14 @@ function test_input($data) {
 
 $username = test_input($_POST['username']);
 $password = test_input($_POST['password']);
+$user = Users::verifyLogin($username, $password);
 
-//Hash the password
-//$password = md5($password); //Use different hashing algorithm
-
-$sql="SELECT * FROM `user_account` WHERE username='$username' AND password='$password'";
-$result=mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) === 1) {
+if ($user) {
     session_start();
-    $record = mysqli_fetch_assoc($result);
 
-    $_SESSION['user_id'] = $record['user_id'];
-    $_SESSION['username'] = $record['username'];
-    $_SESSION['role'] = $record['role'];
+    $_SESSION['user_id'] = $user['user_id'];
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['role'] = $user['role'];
 
     if($_SESSION['role'] == 'admin')
         header("Location: ../admin-dashboard.php");

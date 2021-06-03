@@ -18,7 +18,7 @@
         <title>Admin Dashboard</title>
     </head>
     <body>
-        <a href="logout.php" class="btn btn-primary">Submit</a>
+        <a href="logout.php" class="btn btn-primary">Log Out</a>
     </body>
 
 <?php } else{
