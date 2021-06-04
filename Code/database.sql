@@ -78,7 +78,7 @@ CREATE TABLE `transaction` (
 
 CREATE TABLE `patient` (
                            `patient_id` bigint unsigned NOT NULL AUTO_INCREMENT,
-                           `full name` varchar(100) NOT NULL,
+                           `full_name` varchar(100) NOT NULL,
                            `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
                            `address` varchar(100) DEFAULT NULL,
                            `phone` varchar(100) DEFAULT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE `patient` (
 
 -- ecms.`patient diagnosis` definition
 
-CREATE TABLE `patient diagnosis` (
+CREATE TABLE `patient_diagnosis` (
                                      `details` text NOT NULL,
                                      `isCurrent` bit(1) NOT NULL,
                                      `patient_id` bigint unsigned NOT NULL,
@@ -108,7 +108,7 @@ CREATE TABLE `patient diagnosis` (
 
 -- ecms.`product instance` definition
 
-CREATE TABLE `product instance` (
+CREATE TABLE `product_instance` (
                                     `product_id` bigint unsigned NOT NULL,
                                     `transaction_id` bigint unsigned NOT NULL,
                                     PRIMARY KEY (`product_id`,`transaction_id`),
@@ -122,7 +122,7 @@ CREATE TABLE `product instance` (
 
 CREATE TABLE `staff` (
                          `employee_id` bigint unsigned NOT NULL AUTO_INCREMENT,
-                         `full name` varchar(100) NOT NULL,
+                         `full_name` varchar(100) NOT NULL,
                          `email` varchar(100) NOT NULL,
                          `phone` bigint unsigned NOT NULL,
                          `photo` blob,
@@ -160,7 +160,7 @@ CREATE TABLE `appointment` (
 
 -- ecms.`health records` definition
 
-CREATE TABLE `health records` (
+CREATE TABLE `health_records` (
                                   `record_id` bigint unsigned NOT NULL AUTO_INCREMENT,
                                   `prescription` varchar(100) NOT NULL,
                                   `description` text,
