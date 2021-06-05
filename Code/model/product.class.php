@@ -8,7 +8,8 @@
         public static function getProduct($product_id) {
             
             //Prepare query and fetch result
-            $stmt = $this->$dbh->prepare("SELECT * FROM `product` WHERE product_id = ?");
+            $dbh = (new Database())->get_connection();
+            $stmt = $dbh->prepare("SELECT * FROM `product` WHERE product_id = ?");
             $stmt->execute([$product_id]);
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!$arr) exit('No rows');

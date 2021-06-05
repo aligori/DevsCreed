@@ -1,6 +1,6 @@
-CREATE SCHEMA `eye_clinic`;
+CREATE SCHEMA IF NOT EXISTS `eye_clinic`;
 
-CREATE TABLE `user_account`(
+CREATE TABLE IF NOT EXISTS `user_account`(
                                `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
                                `password` VARCHAR(100) NOT NULL,
                                `username` VARCHAR(40) NOT NULL,
@@ -14,39 +14,36 @@ CREATE TABLE `user_account`(
                                PRIMARY KEY(`user_id`)
 );
 
-insert into `user_account` (username, password, role) values ("admin", "admin", "admin");
-
-
-CREATE TABLE `diagnosis` (
+CREATE TABLE IF NOT EXISTS `diagnosis` (
                              `diagnosis_id` bigint unsigned NOT NULL AUTO_INCREMENT,
                              `name` varchar(100) NOT NULL,
                              PRIMARY KEY (`diagnosis_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 
 -- ecms.`product category` definition
 
-CREATE TABLE `product category` (
+CREATE TABLE IF NOT EXISTS `product_category` (
                                     `category_id` bigint unsigned NOT NULL AUTO_INCREMENT,
                                     `name` varchar(40) NOT NULL,
                                     PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 
 -- ecms.service definition
 
-CREATE TABLE `service` (
+CREATE TABLE IF NOT EXISTS `service` (
                            `name` varchar(40) NOT NULL,
                            `description` varchar(100) DEFAULT NULL,
                            `price` int unsigned NOT NULL,
                            `service_id` bigint unsigned NOT NULL AUTO_INCREMENT,
                            PRIMARY KEY (`service_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 
 -- ecms.product definition
 
-CREATE TABLE `product` (
+CREATE TABLE IF NOT EXISTS `product` (
                            `price` bigint unsigned NOT NULL,
                            `sell_price` bigint unsigned NOT NULL,
                            `quantity` int unsigned NOT NULL,
@@ -56,13 +53,13 @@ CREATE TABLE `product` (
                            `category_id` bigint unsigned NOT NULL,
                            PRIMARY KEY (`product_id`),
                            KEY `product_FK` (`category_id`),
-                           CONSTRAINT `product_FK` FOREIGN KEY (`category_id`) REFERENCES `product category` (`category_id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+                           CONSTRAINT `product_FK` FOREIGN KEY (`category_id`) REFERENCES `product_category` (`category_id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ;
 
 
 -- ecms.`transaction` definition
 
-CREATE TABLE `transaction` (
+CREATE TABLE IF NOT EXISTS `transaction` (
                                `date` datetime NOT NULL,
                                `client` varchar(100) NOT NULL,
                                `total` int unsigned NOT NULL,
@@ -71,28 +68,28 @@ CREATE TABLE `transaction` (
                                PRIMARY KEY (`transaction_id`),
                                KEY `transaction_FK` (`service_id`),
                                CONSTRAINT `transaction_FK` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 
 -- ecms.patient definition
 
-CREATE TABLE `patient` (
+CREATE TABLE IF NOT EXISTS `patient` (
                            `patient_id` bigint unsigned NOT NULL AUTO_INCREMENT,
                            `full_name` varchar(100) NOT NULL,
-                           `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+                           `email` varchar(100)  NOT NULL,
                            `address` varchar(100) DEFAULT NULL,
                            `phone` varchar(100) DEFAULT NULL,
                            `birthday` date DEFAULT NULL,
-                           `uuid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+                           `user_id` INT UNSIGNED DEFAULT NULL,
                            PRIMARY KEY (`patient_id`),
-                           KEY `patient_FK` (`uuid`),
-                           CONSTRAINT `patient_FK` FOREIGN KEY (`uuid`) REFERENCES `user account` (`uuid`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+                           KEY `patient_FK` (`user_id`),
+                           CONSTRAINT `patient_FK` FOREIGN KEY (`user_id`) REFERENCES `user_account` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ;
 
 
 -- ecms.`patient diagnosis` definition
 
-CREATE TABLE `patient_diagnosis` (
+CREATE TABLE IF NOT EXISTS `patient_diagnosis` (
                                      `details` text NOT NULL,
                                      `isCurrent` bit(1) NOT NULL,
                                      `patient_id` bigint unsigned NOT NULL,
@@ -103,24 +100,24 @@ CREATE TABLE `patient_diagnosis` (
                                      KEY `patient_diagnosis_FK_1` (`diagnosis_id`),
                                      CONSTRAINT `Patient_Diagnosis_FK` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`) ON DELETE CASCADE ON UPDATE CASCADE,
                                      CONSTRAINT `patient_diagnosis_FK_1` FOREIGN KEY (`diagnosis_id`) REFERENCES `diagnosis` (`diagnosis_id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 
 -- ecms.`product instance` definition
 
-CREATE TABLE `product_instance` (
+CREATE TABLE IF NOT EXISTS `product_instance` (
                                     `product_id` bigint unsigned NOT NULL,
                                     `transaction_id` bigint unsigned NOT NULL,
                                     PRIMARY KEY (`product_id`,`transaction_id`),
                                     KEY `product_instance_FK_1` (`transaction_id`),
                                     CONSTRAINT `product_instance_FK` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
                                     CONSTRAINT `product_instance_FK_1` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`transaction_id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 
 -- ecms.staff definition
 
-CREATE TABLE `staff` (
+CREATE TABLE IF NOT EXISTS `staff` (
                          `employee_id` bigint unsigned NOT NULL AUTO_INCREMENT,
                          `full_name` varchar(100) NOT NULL,
                          `email` varchar(100) NOT NULL,
@@ -129,16 +126,16 @@ CREATE TABLE `staff` (
                          `birthday` date NOT NULL,
                          `salary` int unsigned NOT NULL,
                          `status` bit(1) NOT NULL,
-                         `uuid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+                         `user_id` INT UNSIGNED DEFAULT NULL,
                          PRIMARY KEY (`employee_id`),
-                         KEY `staff_FK` (`uuid`),
-                         CONSTRAINT `staff_FK` FOREIGN KEY (`uuid`) REFERENCES `user account` (`uuid`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+                         KEY `staff_FK` (`user_id`),
+                         CONSTRAINT `staff_FK` FOREIGN KEY (`user_id`) REFERENCES `user_account` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ;
 
 
 -- ecms.appointment definition
 
-CREATE TABLE `appointment` (
+CREATE TABLE IF NOT EXISTS `appointment` (
                                `a_id` bigint unsigned NOT NULL AUTO_INCREMENT,
                                `status` bit(1) NOT NULL,
                                `time` datetime NOT NULL,
@@ -155,12 +152,12 @@ CREATE TABLE `appointment` (
                                CONSTRAINT `appointment_FK_1` FOREIGN KEY (`booked_by`) REFERENCES `patient` (`patient_id`) ON DELETE SET NULL ON UPDATE CASCADE,
                                CONSTRAINT `appointment_FK_2` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`transaction_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
                                CONSTRAINT `appointment_FK_3` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 
 -- ecms.`health records` definition
 
-CREATE TABLE `health_records` (
+CREATE TABLE IF NOT EXISTS `health_records` (
                                   `record_id` bigint unsigned NOT NULL AUTO_INCREMENT,
                                   `prescription` varchar(100) NOT NULL,
                                   `description` text,
@@ -174,5 +171,12 @@ CREATE TABLE `health_records` (
                                   KEY `health_records_FK_2` (`patient_diagnosis_id`),
                                   CONSTRAINT `health_records_FK` FOREIGN KEY (`written_by`) REFERENCES `staff` (`employee_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
                                   CONSTRAINT `health_records_FK_1` FOREIGN KEY (`for_patient`) REFERENCES `patient` (`patient_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                                  CONSTRAINT `health_records_FK_2` FOREIGN KEY (`patient_diagnosis_id`) REFERENCES `patient diagnosis` (`patient_diagnosis_id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+                                  CONSTRAINT `health_records_FK_2` FOREIGN KEY (`patient_diagnosis_id`) REFERENCES `patient_diagnosis` (`patient_diagnosis_id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ;
+
+-- Inserting values for testing purposes
+
+
+insert into `user_account` (username, password, role) values ("admin", "admin", "admin");
+
+insert into `staff` (full_name, email, phone, birthday, salary, status, user_id) values ("Denado Rabeli", "drabeli18@epoka.edu.al", "0692862999", "2000-06-29", 40000, 1, 1);

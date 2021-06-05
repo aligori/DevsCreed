@@ -3,12 +3,13 @@
 
     class Employee {
 
-        private $dbh = (new Database())->get_connection();
+        //private static $dbh = (new Database())->get_connection();
 
         public static function getEmployee($employee_id) {
             
             //Prepare query and fetch result
-            $stmt = $this->$dbh->prepare("SELECT * FROM `staff` WHERE employee_id = ?");
+            $dbh = (new Database())->get_connection();
+            $stmt = dbh->prepare("SELECT * FROM `staff` WHERE employee_id = ?");
             $stmt->execute([$employee_id]);
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!$arr) exit('No rows');
