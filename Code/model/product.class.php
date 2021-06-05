@@ -3,8 +3,6 @@
 
     class Product {
 
-        private $dbh = (new Database())->get_connection();
-
         public static function getProduct($product_id) {
             
             //Prepare query and fetch result
@@ -32,22 +30,22 @@
 
         public static function modifyProducts($product_id, $field, $change) {
             /*modify -> specify which field to modify, specify new value to be entered and then executing*/ 
-           
-            $query = "UPDATE `product` SET ? = ? WHERE id = ?";
+            $dbh = (new Database())->get_connection()
+            $query = "UPDATE `product` SET ? = ? WHERE product_id = ?";
             
-            $stmt = $this->$dbh->prepare($query);
-            $stmt->execute([$field, $change, $employee_id]);
+            $stmt = $dbh->prepare($query);
+            $stmt->execute([$field, $change, $product_id]);
             $stmt = null;
 
         }
 
         public static function addToQuantity($product_id, $quantity) {
             /*modify -> specify which field to modify, specify new value to be entered and then executing*/ 
-           
-            $query = "UPDATE `staff` SET `quantity` = `quantity` + ? WHERE id = ?";
+            $dbh = (new Database())->get_connection()
+            $query = "UPDATE `staff` SET `quantity` = `quantity` + ? WHERE product_id = ?";
             
-            $stmt = $this->$dbh->prepare($query);
-            $stmt->execute([$quantity, $employee_id]);
+            $stmt = $dbh->prepare($query);
+            $stmt->execute([$quantity, $product_id]);
             $stmt = null;
 
         }

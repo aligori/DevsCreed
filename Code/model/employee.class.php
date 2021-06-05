@@ -3,13 +3,11 @@
 
     class Employee {
 
-        //private static $dbh = (new Database())->get_connection();
-
         public static function getEmployee($employee_id) {
             
             //Prepare query and fetch result
             $dbh = (new Database())->get_connection();
-            $stmt = dbh->prepare("SELECT * FROM `staff` WHERE employee_id = ?");
+            $stmt = $dbh->prepare("SELECT * FROM `staff` WHERE employee_id = ?");
             $stmt->execute([$employee_id]);
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!$arr) exit('No rows');
@@ -34,10 +32,17 @@
 
         public static function modifyEmployeeData($employee_id, $field, $change) {
             /*modify -> specify which field to modify, specify new value to be entered and then executing*/ 
-           
-            $query = "UPDATE `staff` SET ? = ? WHERE id = ?";
-            
-            $stmt = $this->$dbh->prepare($query);
+            $dbh = (new Database())->get_connection();
+
+            $query = "UPDATE `staff` SET ? = ? WHERE `employee_id` = ?;";
+            $stmt = $dbh->prepare($query);
+
+            $field = "`" . $field . "`";
+            $change = "\"" . $change . "\"";
+
+            echo ($change);
+            echo ($field);
+ 
             $stmt->execute([$field, $change, $employee_id]);
             $stmt = null;
 
@@ -45,6 +50,7 @@
 
         public function changeStatus($employee_id) {
             
+            $dbh = (new Database())->get_connection();
             $currentStatus = getCurrentStatus($employee_id);
 
             // if condition, if status = 1 then it is active so make it 0
@@ -52,12 +58,12 @@
             // if 0 reactivate
 
             if ($currentStatus == 1) {
-                $query = "UPDATE `staff` SET `status` = 0 WHERE id = ?";
+                $query = "UPDATE `staff` SET `status` = 0 WHERE employee_id = ?";
               } else {
-                $query = "UPDATE `staff` SET `status` = 1 WHERE id = ?";
+                $query = "UPDATE `staff` SET `status` = 1 WHERE employee_id = ?";
               }
 
-            $stmt = $this->$dbh->prepare($query);
+            $stmt = $dbh->prepare($query);
             $stmt->execute([$employee_id]);
             $stmt = null;
 
@@ -66,11 +72,13 @@
         // This function is used at changeStatus in order to get the current status of user
         private function getCurrentStatus($employee_id){
 
-            $stmt = $this->$dbh->prepare("SELECT `status` FROM `staff` WHERE employee_id = ?");
+            $dbh = (new Database())->get_connection();
+            $stmt = $dbh->prepare("SELECT `status` FROM `staff` WHERE employee_id = ?");
             $stmt->execute([$employee_id]);
             $status = $stmt->fetch(PDO::FETCH_ASSOC);
 
             var_export($status);
             $stmt = null;
         } 
+
     }
