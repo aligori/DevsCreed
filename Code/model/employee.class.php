@@ -24,31 +24,26 @@
                                     `status` 
                                     `uuid`
             */
-            var_export($arr);
+
             //The stmt = null is a good coding practice.
             $stmt = null;
-            
+            var_export($arr);
+
         }
 
         public static function modifyEmployeeData($employee_id, $field, $change) {
             /*modify -> specify which field to modify, specify new value to be entered and then executing*/ 
             $dbh = (new Database())->get_connection();
 
-            $query = "UPDATE `staff` SET ? = ? WHERE `employee_id` = ?;";
+            $query = "UPDATE `staff` SET ? = ? WHERE `employee_id` = ?";
             $stmt = $dbh->prepare($query);
 
-            $field = "`" . $field . "`";
-            $change = "\"" . $change . "\"";
-
-            echo ($change);
-            echo ($field);
- 
             $stmt->execute([$field, $change, $employee_id]);
             $stmt = null;
 
         }
 
-        public function changeStatus($employee_id) {
+        public static function changeStatus($employee_id) {
             
             $dbh = (new Database())->get_connection();
             $currentStatus = getCurrentStatus($employee_id);
@@ -70,15 +65,15 @@
         }
 
         // This function is used at changeStatus in order to get the current status of user
-        private function getCurrentStatus($employee_id){
+        private static function getCurrentStatus($employee_id){
 
             $dbh = (new Database())->get_connection();
             $stmt = $dbh->prepare("SELECT `status` FROM `staff` WHERE employee_id = ?");
             $stmt->execute([$employee_id]);
             $status = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            var_export($status);
             $stmt = null;
-        } 
+
+            return $status['status'];
+        }
 
     }

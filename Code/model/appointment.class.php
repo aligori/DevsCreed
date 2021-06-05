@@ -3,13 +3,11 @@
 
     class Appointment {
 
-        private $dbh = (new Database())->get_connection();
-
         public static function getAllAppointments($a_id) {
             
             //Prepare query and fetch result
             $dbh = (new Database())->get_connection();
-            $stmt = $dbh->prepare("SELECT * FROM `appointment` WHERE a_id = ?");
+            $stmt = ($dbh)->prepare("SELECT * FROM `appointment` WHERE `a_id` = ?");
             $stmt->execute([$a_id]);
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!$arr) exit('No rows');

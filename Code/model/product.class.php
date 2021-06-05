@@ -30,8 +30,8 @@
 
         public static function modifyProducts($product_id, $field, $change) {
             /*modify -> specify which field to modify, specify new value to be entered and then executing*/ 
-            $dbh = (new Database())->get_connection()
-            $query = "UPDATE `product` SET ? = ? WHERE product_id = ?";
+            $dbh = (new Database())->get_connection();
+            $query = "UPDATE `product` SET ? = ? WHERE `product_id` = ?";
             
             $stmt = $dbh->prepare($query);
             $stmt->execute([$field, $change, $product_id]);
@@ -41,8 +41,8 @@
 
         public static function addToQuantity($product_id, $quantity) {
             /*modify -> specify which field to modify, specify new value to be entered and then executing*/ 
-            $dbh = (new Database())->get_connection()
-            $query = "UPDATE `staff` SET `quantity` = `quantity` + ? WHERE product_id = ?";
+            $dbh = (new Database())->get_connection();
+            $query = "UPDATE `staff` SET `quantity` = `quantity` + ? WHERE `product_id` = ?";
             
             $stmt = $dbh->prepare($query);
             $stmt->execute([$quantity, $product_id]);
