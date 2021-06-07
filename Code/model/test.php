@@ -4,7 +4,7 @@
  </head>
  <body>
  <?php
-
+  session_start();
  include 'employee.class.php';
 
  echo (new Employee())->getEmployee(1);

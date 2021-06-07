@@ -15,7 +15,7 @@
 </div>
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
-        <a href="index.php" class="logo me-auto"><img src="assets/images/logo.png" alt="Clinic Logo" class="img-fluid"></a>
+        <a href="index.php" class="logo me-auto"><img src="assets/public/images/logo.png" alt="Clinic Logo" class="img-fluid"></a>
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>

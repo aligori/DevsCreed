@@ -20,13 +20,13 @@
             return $stmt->fetch();
         }
 
-        public function createUser($name, $surname, $role) {
+        public static function createUser($name, $surname, $role) {
             $dbh = (new Database())->get_connection();
             $username = $name.$surname;
             $default_pass = 'clinic123';
             $hashed_default_pass = password_hash($default_pass, PASSWORD_DEFAULT);
 
-            $query = "INSERT INTO `user_account` (username, password, role) VALUES (?, ?, ?)";
+            $query = "INSERT INTO `user_account` (`password`, `username`, `name`, `surname`, `role`) VALUES (?, ?, ?, ?, ?);";
             $stmt = $dbh->prepare($query);
             $stmt->execute([$username, $hashed_default_pass, $role]);
         }

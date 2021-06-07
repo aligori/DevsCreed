@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="958ad4a3-6a2c-4c49-ac0e-6bb24e6a4c6b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/shared-components/admin/sidebar1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Code.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/css/theme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/image1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/images/image1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/images/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/password.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/images/password.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/user.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/images/user.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/animate.css/animate.compat.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/animate.css/animate.compat.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/animate.css/animate.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/animate.css/animate.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/animate.css/animate.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/animate.css/animate.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap-icons/bootstrap-icons.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap-icons/bootstrap-icons.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap-icons/bootstrap-icons.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap-icons/bootstrap-icons.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap-icons/fonts/bootstrap-icons.woff" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap-icons/fonts/bootstrap-icons.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap-icons/fonts/bootstrap-icons.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap-icons/fonts/bootstrap-icons.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap-icons/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap-icons/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-grid.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-grid.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-grid.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-grid.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-grid.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-grid.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-grid.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-grid.min.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-grid.rtl.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-grid.rtl.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-grid.rtl.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-grid.rtl.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-grid.rtl.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-grid.rtl.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-grid.rtl.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-grid.rtl.min.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-reboot.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-reboot.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-reboot.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-reboot.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-reboot.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-reboot.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-reboot.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-reboot.min.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-reboot.rtl.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-reboot.rtl.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-reboot.rtl.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-reboot.rtl.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-reboot.rtl.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-reboot.rtl.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-reboot.rtl.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-reboot.rtl.min.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-utilities.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-utilities.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-utilities.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-utilities.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-utilities.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-utilities.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-utilities.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-utilities.min.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-utilities.rtl.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-utilities.rtl.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-utilities.rtl.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-utilities.rtl.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-utilities.rtl.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-utilities.rtl.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap-utilities.rtl.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap-utilities.rtl.min.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap.min.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap.rtl.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap.rtl.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap.rtl.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap.rtl.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap.rtl.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap.rtl.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/css/bootstrap.rtl.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/css/bootstrap.rtl.min.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/js/bootstrap.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/js/bootstrap.bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/js/bootstrap.bundle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/js/bootstrap.bundle.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/js/bootstrap.bundle.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/js/bootstrap.bundle.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/js/bootstrap.bundle.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/js/bootstrap.bundle.min.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/js/bootstrap.esm.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/js/bootstrap.esm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/js/bootstrap.esm.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/js/bootstrap.esm.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/js/bootstrap.esm.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/js/bootstrap.esm.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/js/bootstrap.esm.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/js/bootstrap.esm.min.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/js/bootstrap.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/js/bootstrap.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/js/bootstrap.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/bootstrap/js/bootstrap.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/bootstrap/js/bootstrap.min.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/boxicons/css/animations.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/boxicons/css/animations.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/boxicons/css/boxicons.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/boxicons/css/boxicons.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/boxicons/css/boxicons.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/boxicons/css/boxicons.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/boxicons/css/transformations.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/boxicons/css/transformations.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/boxicons/fonts/boxicons.eot" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/boxicons/fonts/boxicons.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/boxicons/fonts/boxicons.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/boxicons/fonts/boxicons.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/boxicons/fonts/boxicons.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/boxicons/fonts/boxicons.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/boxicons/fonts/boxicons.woff" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/boxicons/fonts/boxicons.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/boxicons/fonts/boxicons.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/boxicons/fonts/boxicons.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/css/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/css/all.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/css/all.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/css/all.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/css/brands.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/css/brands.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/css/brands.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/css/brands.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/css/fontawesome.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/css/fontawesome.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/css/fontawesome.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/css/fontawesome.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/css/regular.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/css/regular.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/css/regular.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/css/regular.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/css/solid.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/css/solid.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/css/solid.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/css/solid.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/css/svg-with-js.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/css/svg-with-js.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/css/svg-with-js.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/css/svg-with-js.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/css/v4-shims.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/css/v4-shims.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/css/v4-shims.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/css/v4-shims.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-brands-400.eot" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-brands-400.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-brands-400.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-brands-400.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-brands-400.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-brands-400.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-brands-400.woff" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-brands-400.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-brands-400.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-brands-400.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-regular-400.eot" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-regular-400.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-regular-400.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-regular-400.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-regular-400.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-regular-400.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-regular-400.woff" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-regular-400.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-regular-400.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-regular-400.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-solid-900.eot" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-solid-900.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-solid-900.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-solid-900.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-solid-900.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-solid-900.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-solid-900.woff" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-solid-900.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/fontawesome-free/webfonts/fa-solid-900.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/fontawesome-free/webfonts/fa-solid-900.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/glightbox/css/glightbox.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/glightbox/css/glightbox.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/glightbox/css/glightbox.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/glightbox/css/glightbox.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/glightbox/js/glightbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/glightbox/js/glightbox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/glightbox/js/glightbox.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/glightbox/js/glightbox.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/php-email-form/validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/php-email-form/validate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/purecounter/purecounter.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/purecounter/purecounter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/remixicon/remixicon.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/remixicon/remixicon.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/remixicon/remixicon.eot" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/remixicon/remixicon.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/remixicon/remixicon.less" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/remixicon/remixicon.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/remixicon/remixicon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/remixicon/remixicon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/remixicon/remixicon.symbol.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/remixicon/remixicon.symbol.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/remixicon/remixicon.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/remixicon/remixicon.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/remixicon/remixicon.woff" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/remixicon/remixicon.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/remixicon/remixicon.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/remixicon/remixicon.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/swiper/swiper-bundle.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/swiper/swiper-bundle.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vendor/swiper/swiper-bundle.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/public/vendor/swiper/swiper-bundle.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/check-login.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/check-login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/test.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/user.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared-components/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/shared-components/header.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1tRC73t1TizqAlrOlWoyCfxhUFW" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/admin" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\DevsCreed\Code\assets\admin" />
+      <recent name="C:\xampp\htdocs\DevsCreed\Code\assets\vendor\bootstrap\css" />
+      <recent name="C:\xampp\htdocs\DevsCreed\Code\common-components" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\DevsCreed\Code\shared-components\admin" />
+      <recent name="C:\xampp\htdocs\DevsCreed\Code\shared-components" />
+      <recent name="C:\xampp\htdocs\DevsCreed\Code\assets" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="958ad4a3-6a2c-4c49-ac0e-6bb24e6a4c6b" name="Default Changelist" comment="" />
+      <created>1622722347843</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1622722347843</updated>
+      <workItem from="1622722349888" duration="25120000" />
+      <workItem from="1622783022525" duration="723000" />
+      <workItem from="1622995240406" duration="8728000" />
+      <workItem from="1623048450179" duration="5618000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>
