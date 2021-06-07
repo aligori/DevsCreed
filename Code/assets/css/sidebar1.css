@@ -137,29 +137,11 @@ header {
   height: 38px;
 }
 
-.social-icons {
-  display: flex;
-  align-items: center;
-}
-
-.social-icons span,
-.social-icons div {
-  margin-left: 1.2rem;
-}
-
-.social-icons div {
-  height: 38px;
-  width: 38px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url('hi');
-  border-radius: 50%;
-}
 
 main {
   margin-top: 60px;
   background: #f1f5f9;
-  min-height: 90vh;
+  min-height: 93vh;
   padding: 1rem 3rem;
 }
 
@@ -273,35 +255,6 @@ tbody tr:nth-child(even) {
 .badge.warning {
   background: #F0F6B2;
   color: orange;
-}
-
-.td-team {
-  display: flex;
-  align-items: center;
-}
-
-.img-1,
-.img-2,
-.img-3 {
-  height: 38px;
-  width: 38px;
-  border-radius: 50%;
-  margin-left: -15px;
-  border: 3px solid #efefef;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.img-1 {
-  background-image: url(img/1.jpg);
-}
-
-.img-2 {
-  background-image: url(img/2.jpg);
-}
-
-.img-3 {
-  background-image: url(img/3.jpeg);
 }
 
 .text-center {

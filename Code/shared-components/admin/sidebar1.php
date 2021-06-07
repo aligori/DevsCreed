@@ -10,65 +10,64 @@
     <div class="sidebar-menu">
         <ul>
 
-                <a href="">
-                    <li>
+            <a href="admin-dashboard.php">
+                <li>
                     <span class="ti-home"></span>
                     <span>Home</span>
-                    </li>
-                </a>
+                </li>
+            </a>
 
 
-                <a href="">
-                    <li>
+            <a href="">
+                <li>
                     <span class="ti-user"></span>
                     <span>System Users</span>
-                    </li>
-                </a>
+                </li>
+            </a>
 
 
-                <a href="">
-                    <li>
+            <a href="admin-employees.php">
+                <li>
                     <span class="ti-folder"></span>
                     <span>Employees</span>
-                    </li>
-                </a>
+                </li>
+            </a>
 
-                <a href="">
-                    <li>
+            <a href="">
+                <li>
                     <span class="ti-folder"></span>
                     <span>Projects</span>
-                    </li>
-                </a>
+                </li>
+            </a>
 
 
-                <a href="">
-                    <li>
+            <a href="">
+                <li>
                     <span class="ti-time"></span>
                     <span>Timesheet</span>
-                    </li>
-                </a>
+                </li>
+            </a>
 
 
-                <a href="">
-                    <li><span class="ti-book"></span>
+            <a href="">
+                <li><span class="ti-book"></span>
                     <span>Contacts</span></li>
-                </a>
+            </a>
 
-            <hr style="margin-top: 120px; border: 1px #5599ff ">
+            <hr style="border: 1px solid #5599ff ">
 
-                <a href="">
-                    <li style="margin-top: 10px">
+            <a href="">
+                <li style="margin-top: 10px">
                     <span class="ti-settings"></span>
                     <span>Settings</span>
-                    </li>
-                </a>
+                </li>
+            </a>
 
             <a href="logout.php">
                 <li style="margin-top: 10px">
                     <span class="ti-share-alt"></span>
                     <span>Log Out</span>
                 </li></a>
-
         </ul>
     </div>
 </div>

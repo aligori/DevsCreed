@@ -9,14 +9,14 @@
             $this->dbh = (new Database())->get_connection();
         }
 
-        public function getAllEmployees() {
-            
-            //Prepare query and fetch result
-
-            $stmt = $this->dbh->prepare("SELECT * FROM `staff`");
+        public function getAllEmployees($query) {
+            $stmt = $this->dbh->prepare($query);
             $stmt->execute();
-            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $rowCount = $stmt->rowCount();
+            $result = array();
+            array_push($result, $data);
+            array_push($result, $rowCount);
             /*
             What will be returned: 
                                     `employee_id` 
@@ -32,9 +32,16 @@
 
             //The stmt = null is a good coding practice.
             $stmt = null;
-            return $arr;
-
+            return $result;
         }
+
+        function get_total_all_records(){
+            $stmt = $this->dbh->prepare("SELECT * FROM `staff`");
+            $stmt->execute();
+            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->rowCount();
+        }
+
         public function getEmployee($employee_id) {
 
             //Prepare query and fetch result

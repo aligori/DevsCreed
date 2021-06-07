@@ -5,12 +5,12 @@
  <body>
  <?php
   session_start();
- include 'employee.class.php';
+ include '../controller/searchEmployees.php';
 
- $array = (new Employee())->getAllEmployees();
- foreach($array as $row) {
-     echo $row['full_name'];
- }
+// $array = (new Employee())->getAllEmployees();
+// foreach($array as $row) {
+//     echo $row['full_name'];
+// }
 
  ?> 
  </body>
