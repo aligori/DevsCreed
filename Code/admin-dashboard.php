@@ -2,7 +2,7 @@
     session_start();
     if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
         include 'model/user.class.php';
-        $users = Users::getAllUsers();
+        $users = (new Users())->getAllUsers();
 ?>
 
 <html lang="en">

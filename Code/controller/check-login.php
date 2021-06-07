@@ -1,7 +1,6 @@
 <?php
 require_once("../model/user.class.php");
 
-
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -12,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = test_input($_POST['username']);
     $password = test_input($_POST['password']);
-    $user = Users::verifyLogin($username, $password);
+    $user =(new Users())->verifyLogin($username, $password);
 
     if ($user) {
         session_start();
