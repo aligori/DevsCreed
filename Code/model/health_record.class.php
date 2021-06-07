@@ -3,10 +3,15 @@ require_once('db_conn.php');
 
 class Health_Record {
 
-    public static function getLatestPatientHealthRecord($patient_id) {
+    private $dbh = null;
+
+    public function __construct(){
+        $this->dbh = (new Database())->get_connection();
+    }
+
+    public function getLatestPatientHealthRecord($patient_id) {
         //Prepare query and fetch result
-        $dbh = (new Database())->get_connection();
-        $stmt = $dbh->prepare("SELECT * FROM `health_records` WHERE `for_patient` = ? ORDER BY `date` DESC LIMIT 1;");
+        $stmt = $this->dbh->prepare("SELECT * FROM `health_records` WHERE `for_patient` = ? ORDER BY `date` DESC LIMIT 1;");
         $stmt->execute([$patient_id]);
         $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if(!$arr) exit('No rows');
@@ -27,10 +32,9 @@ class Health_Record {
         var_export($arr);
 
     }
-    public static function getAllPatientHealthRecord($patient_id) {
+    public function getAllPatientHealthRecord($patient_id) {
         //Prepare query and fetch result
-        $dbh = (new Database())->get_connection();
-        $stmt = $dbh->prepare("SELECT * FROM `health_records` WHERE `for_patient` = ?");
+        $stmt = $this->dbh->prepare("SELECT * FROM `health_records` WHERE `for_patient` = ?");
         $stmt->execute([$patient_id]);
         $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if(!$arr) exit('No rows');
@@ -50,21 +54,17 @@ class Health_Record {
         var_export($arr);
 
     }
-    public static function modifyHealthRecordPrescription($record_id, $change) {
-        $dbh = (new Database())->get_connection();
-
+    public function modifyHealthRecordPrescription($record_id, $change) {
         $query = "UPDATE `health_records` SET `prescription` = ? WHERE `$record_id` = ?";
-        $stmt = $dbh->prepare($query);
+        $stmt = $this->dbh->prepare($query);
 
         $stmt->execute([$change, $record_id]);
         $stmt = null;
 
     }
-    public static function modifyHealthRecordDescription($record_id, $change) {
-        $dbh = (new Database())->get_connection();
-
+    public function modifyHealthRecordDescription($record_id, $change) {
         $query = "UPDATE `health_records` SET `description` = ? WHERE `$record_id` = ?";
-        $stmt = $dbh->prepare($query);
+        $stmt = $this->dbh->prepare($query);
 
         $stmt->execute([$change, $record_id]);
         $stmt = null;

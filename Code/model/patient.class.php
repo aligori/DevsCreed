@@ -3,11 +3,16 @@
 
     class Patient {
 
-        public static function getPatient($patient_id) {
+        private $dbh = null;
+
+        public function __construct(){
+            $this->dbh = (new Database())->get_connection();
+        }
+
+        public function getPatient($patient_id) {
 
             //Prepare query and fetch result
-            $dbh = (new Database())->get_connection();
-            $stmt = $dbh->prepare("SELECT * FROM `patient` WHERE patient_id = ?");
+            $stmt = $this->dbh->prepare("SELECT * FROM `patient` WHERE patient_id = ?");
             $stmt->execute([$patient_id]);
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!$arr) exit('No rows');
@@ -28,56 +33,46 @@
 
         }
 
-        public static function modifyPatientName($patient_id, $change) {
-            $dbh = (new Database())->get_connection();
-
+        public function modifyPatientName($patient_id, $change) {
             $query = "UPDATE `patient` SET `full_name` = ? WHERE `patient_id` = ?";
-            $stmt = $dbh->prepare($query);
+            $stmt = $this->dbh->prepare($query);
 
             $stmt->execute([$change, $patient_id]);
             $stmt = null;
 
         }
 
-        public static function modifyPatientEmail($patient_id, $change) {
-            $dbh = (new Database())->get_connection();
-
+        public function modifyPatientEmail($patient_id, $change) {
             $query = "UPDATE `patient` SET `email` = ? WHERE `patient_id` = ?";
-            $stmt = $dbh->prepare($query);
+            $stmt = $this->dbh->prepare($query);
 
             $stmt->execute([$change, $patient_id]);
             $stmt = null;
 
         }
 
-        public static function modifyPatientAddress($patient_id, $change) {
-            $dbh = (new Database())->get_connection();
-
+        public function modifyPatientAddress($patient_id, $change) {
             $query = "UPDATE `patient` SET `address` = ? WHERE `patient_id` = ?";
-            $stmt = $dbh->prepare($query);
+            $stmt = $this->dbh->prepare($query);
 
             $stmt->execute([$change, $patient_id]);
             $stmt = null;
 
         }
 
-        public static function modifyPatientPhone($patient_id, $change) {
-            $dbh = (new Database())->get_connection();
-
+        public function modifyPatientPhone($patient_id, $change) {
             $query = "UPDATE `patient` SET `phone` = ? WHERE `patient_id` = ?";
-            $stmt = $dbh->prepare($query);
+            $stmt = $this->dbh->prepare($query);
 
             $stmt->execute([$change, $patient_id]);
             $stmt = null;
 
         }
 
-        public static function modifyPatientBirthday($patient_id, $change)
+        public function modifyPatientBirthday($patient_id, $change)
         {
-            $dbh = (new Database())->get_connection();
-
             $query = "UPDATE `patient` SET `birthday` = ? WHERE `patient_id` = ?";
-            $stmt = $dbh->prepare($query);
+            $stmt = $this->dbh->prepare($query);
 
             $stmt->execute([$change, $patient_id]);
             $stmt = null;

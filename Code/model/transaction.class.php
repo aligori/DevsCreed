@@ -5,9 +5,14 @@
     class Transaction
     {
 
-        public static function getLatestTransactions($date){
-            $dbh = (new Database())->get_connection();
-            $stmt = $dbh->prepare("SELECT * FROM `transaction` WHERE `date` = ?");
+        private $dbh = null;
+
+        public function __construct(){
+            $this->dbh = (new Database())->get_connection();
+        }
+
+        public function getLatestTransactions($date){
+            $stmt = $this->dbh->prepare("SELECT * FROM `transaction` WHERE `date` = ?");
             $stmt->execute([$date]);
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if (!$arr) exit('No rows');
@@ -26,10 +31,8 @@
 
         }
 
-        public static function getTransactionInTimePeriod($date1, $date2){
-            $dbh = (new Database())->get_connection();
-
-            $stmt = $dbh->prepare("SELECT * FROM `transaction` WHERE `date` >= ? AND `date` < ?");
+        public function getTransactionInTimePeriod($date1, $date2){
+            $stmt = $this->dbh->prepare("SELECT * FROM `transaction` WHERE `date` >= ? AND `date` < ?");
             $stmt->execute([$date1, $date2]);
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if (!$arr) exit('No rows');

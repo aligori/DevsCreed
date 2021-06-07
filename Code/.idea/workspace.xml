@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78d0b3d4-21f7-480f-9cbb-199fa696baf3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/appointment.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/appointment.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/employee.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/employee.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/health_record.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/health_record.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/patient.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/patient.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/product.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/product.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/transaction.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/transaction.class.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +30,7 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 8.0" />
   <component name="ProjectId" id="1tRC73t1TizqAlrOlWoyCfxhUFW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -35,6 +43,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/model" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -55,7 +64,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="958ad4a3-6a2c-4c49-ac0e-6bb24e6a4c6b" name="Default Changelist" comment="" />
+      <changelist id="78d0b3d4-21f7-480f-9cbb-199fa696baf3" name="Default Changelist" comment="" />
       <created>1622722347843</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -64,6 +73,7 @@
       <workItem from="1622783022525" duration="723000" />
       <workItem from="1622995240406" duration="8728000" />
       <workItem from="1623048450179" duration="10061000" />
+      <workItem from="1623063543057" duration="3731000" />
     </task>
     <servers />
   </component>

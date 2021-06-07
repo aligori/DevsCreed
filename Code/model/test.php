@@ -7,10 +7,9 @@
   session_start();
  include 'employee.class.php';
 
-
- $array = Employee::getAllEmployees();
+ $array = (new Employee())->getAllEmployees();
  foreach($array as $row) {
-     echo $row['name'];
+     echo $row['full_name'];
  }
 
  ?> 

@@ -3,11 +3,17 @@
 
     class Employee {
 
-        public static function getAllEmployees() {
+        private $dbh = null;
+
+        public function __construct(){
+            $this->dbh = (new Database())->get_connection();
+        }
+
+        public function getAllEmployees() {
             
             //Prepare query and fetch result
-            $dbh = (new Database())->get_connection();
-            $stmt = $dbh->prepare("SELECT * FROM `staff`");
+
+            $stmt = $this->dbh->prepare("SELECT * FROM `staff`");
             $stmt->execute();
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -29,11 +35,11 @@
             return $arr;
 
         }
-        public static function getEmployee($employee_id) {
+        public function getEmployee($employee_id) {
 
             //Prepare query and fetch result
-            $dbh = (new Database())->get_connection();
-            $stmt = $dbh->prepare("SELECT * FROM `staff` WHERE `employee_id` = ?");
+
+            $stmt = $this->dbh->prepare("SELECT * FROM `staff` WHERE `employee_id` = ?");
             $stmt->execute($employee_id);
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -56,65 +62,54 @@
 
         }
 
-        public static function modifyEmployeeName($employee_id, $change) {
-            $dbh = (new Database())->get_connection();
+        public function modifyEmployeeName($employee_id, $change) {
 
             $query = "UPDATE `staff` SET `full_name` = ? WHERE `employee_id` = ?";
-            $stmt = $dbh->prepare($query);
+            $stmt = $this->dbh->prepare($query);
 
             $stmt->execute([$change, $employee_id]);
             $stmt = null;
 
         }
-        public static function modifyEmployeeEmail($employee_id, $change) {
-            $dbh = (new Database())->get_connection();
+        public function modifyEmployeeEmail($employee_id, $change) {
 
             $query = "UPDATE `staff` SET `email` = ? WHERE `employee_id` = ?";
-            $stmt = $dbh->prepare($query);
+            $stmt = $this->dbh->prepare($query);
 
             $stmt->execute([$change, $employee_id]);
             $stmt = null;
 
         }
-        public static function modifyEmployeePhone($employee_id, $change) {
-            $dbh = (new Database())->get_connection();
+        public function modifyEmployeePhone($employee_id, $change) {
 
             $query = "UPDATE `staff` SET `phone` = ? WHERE `employee_id` = ?";
-            $stmt = $dbh->prepare($query);
+            $stmt = $this->dbh->prepare($query);
 
             $stmt->execute([$change, $employee_id]);
             $stmt = null;
 
         }
-        public static function modifyEmployeeBirthday($employee_id, $change) {
-            $dbh = (new Database())->get_connection();
+        public function modifyEmployeeBirthday($employee_id, $change) {
 
             $query = "UPDATE `staff` SET `birthday` = ? WHERE `employee_id` = ?";
-            $stmt = $dbh->prepare($query);
+            $stmt = $this->dbh->prepare($query);
 
             $stmt->execute([$change, $employee_id]);
             $stmt = null;
 
         }
-        public static function modifyEmployeeSalary($employee_id, $change) {
-            $dbh = (new Database())->get_connection();
+        public  function modifyEmployeeSalary($employee_id, $change) {
 
             $query = "UPDATE `staff` SET `salary` = ? WHERE `employee_id` = ?";
-            $stmt = $dbh->prepare($query);
+            $stmt = $this->dbh->prepare($query);
 
             $stmt->execute([$change, $employee_id]);
             $stmt = null;
 
         }
-        public static function changeStatus($employee_id) {
-            $dbh = (new Database())->get_connection();
+        public function changeStatus($employee_id) {
 
-            $stmt1 = $dbh->prepare("SELECT `status` FROM `staff` WHERE employee_id = ?");
-            $stmt1->execute([$employee_id]);
-            $status = $stmt1->fetch(PDO::FETCH_ASSOC);
-            $stmt1 = null;
-
-            $currentStatus = $status['status'];
+            $currentStatus = $this->getCurrentStatus($employee_id);
 
             // if condition, if status = 1 then it is active so make it 0
             // 0 represents an inactive account
@@ -127,8 +122,17 @@
                 $query = "UPDATE `staff` SET `status` = 1 WHERE employee_id = ?";
               }
 
-            $stmt = $dbh->prepare($query);
+            $stmt = $this->dbh->prepare($query);
             $stmt->execute([$employee_id]);
             $stmt = null;
+        }
+
+        public function getCurrentStatus($employee_id){
+            $stmt1 = $this->dbh->prepare("SELECT `status` FROM `staff` WHERE employee_id = ?");
+            $stmt1->execute([$employee_id]);
+            $status = $stmt1->fetch(PDO::FETCH_ASSOC);
+            $stmt1 = null;
+
+            return $status['status'];
         }
     }
