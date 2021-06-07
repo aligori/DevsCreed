@@ -9,6 +9,42 @@
             $this->dbh = (new Database())->get_connection();
         }
 
+        /*
+         *
+         * `a_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                               `status` ENUM(
+                                   'approved',
+                                   'rejected',
+                                   'cancelled',
+                                   'requested',
+                                   'completed'
+                                   ) NOT NULL,
+                               `time` datetime NOT NULL,
+                               `assigned_to` bigint unsigned DEFAULT NULL,
+                               `booked_by` bigint unsigned DEFAULT NULL,
+                               `transaction_id` bigint unsigned NOT NULL,
+                               `service_id` bigint unsigned DEFAULT NULL,
+         *
+         *
+         * */
+        public function addNewAppointment($time, $assigned_to, $booked_by){
+            $query = "INSERT INTO `appointment` (`status`, `time`, `assigned_to`, `booked_by`) VALUES (?, ?, ?, ?);";
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute(["approved", $time, $assigned_to, $booked_by]);
+        }
+
+        public function addTransaction($transaction, $a_id){
+            $query = "UPDATE `appointment` SET `transaction` = ? WHERE `a_id` = ?";
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute([$transaction, $a_id]);
+        }
+
+        public function addService($transaction, $a_id){
+            $query = "UPDATE `appointment` SET `transaction` = ? WHERE `a_id` = ?";
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute([$transaction, $a_id]);
+        }
+
         public  function getAppointmentDetails($a_id) {
             //Prepare query and fetch result
             $stmt = ($this->dbh)->prepare("SELECT * FROM `appointment` WHERE `a_id` = ?");

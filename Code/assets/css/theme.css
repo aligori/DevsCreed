@@ -419,6 +419,82 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+
+#hero2 {
+    width: 100%;
+    height: 90vh;
+    background: url("../images/hero-bg.jpg") top center;
+    background-size: cover;
+    margin-bottom: -200px;
+}
+#hero2 .container {
+    position: relative;
+}
+
+#hero2 h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    text-transform: uppercase;
+    color: #2c4964;
+}
+
+#hero2 h2 {
+    color: #2c4964;
+    margin: 10px 0 0 0;
+    font-size: 24px;
+}
+
+#hero2 .btn-get-started {
+    font-family: "Raleway", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px 35px;
+    margin-top: 30px;
+    border-radius: 50px;
+    transition: 0.5s;
+    color: #fff;
+    background: #1977cc;
+}
+
+#hero2 .btn-get-started:hover {
+    background: #3291e6;
+}
+
+@media (min-width: 1024px) {
+    #hero2 {
+        background-attachment: fixed;
+    }
+}
+
+@media (max-width: 992px) {
+    #hero2 {
+        margin-bottom: 0;
+        height: 100vh;
+    }
+    #hero2 .container {
+        padding-bottom: 63px;
+    }
+    #hero2 h1 {
+        font-size: 28px;
+        line-height: 36px;
+    }
+    #hero2 h2 {
+        font-size: 18px;
+        line-height: 24px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-height: 600px) {
+    #hero2 {
+        height: 110vh;
+    }
+}
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
@@ -664,7 +740,7 @@ section {
 }
 
 .about .video-box {
-    background: url("../img/about.jpg") center center no-repeat;
+    background: url("../images/about.jpg") center center no-repeat;
     background-size: cover;
     min-height: 500px;
 }

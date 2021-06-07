@@ -9,6 +9,12 @@
             $this->dbh = (new Database())->get_connection();
         }
 
+        public function addPatient($full_name, $email, $address, $phone, $birthday, $patient_diagnosis_id){
+            $query = "INSERT INTO `patient` (`full_name`, `email`, `address`, `phone`, `birthday`, `patient_diagnosis_id`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?);";
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute([$full_name, $email, $address, $phone, $birthday, $patient_diagnosis_id, "active"]);
+        }
+
         public function getPatient($patient_id) {
 
             //Prepare query and fetch result
