@@ -2,7 +2,7 @@
     session_start();
     if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
         include 'model/user.class.php';
-        $users = User::getAllUsers();
+        $users = Users::getAllUsers();
 ?>
 
 <html lang="en">
@@ -85,7 +85,7 @@
             <section class="recent">
                 <div class="activity-grid">
                     <div class="activity-card">
-                        <h3>Recent activity</h3>
+                        <h3>System Users</h3>
 
                         <div class="table-responsive">
                             <table>
@@ -106,7 +106,7 @@
                                 foreach($users as $user) {
                                      ?>
                                     <tr>
-                                    <td><?php  echo $user['id']?></td>
+                                    <td><?php  echo $user['user_id']?></td>
                                     <td><?php  echo $user['name']?></td>
                                     <td><?php  echo $user['surname']?></td>
                                     <td><?php  echo $user['username']?></td>

@@ -5,8 +5,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-dashboard.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_conn.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/model/employee.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/employee.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/health_record.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/health_record.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/user.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.class.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,17 +39,20 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/admin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/model" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\DevsCreed\Code\model" />
       <recent name="C:\xampp\htdocs\DevsCreed\Code\assets\admin" />
       <recent name="C:\xampp\htdocs\DevsCreed\Code\assets\vendor\bootstrap\css" />
       <recent name="C:\xampp\htdocs\DevsCreed\Code\common-components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\DevsCreed\Code" />
+      <recent name="C:\xampp\htdocs\DevsCreed\Code\model" />
       <recent name="C:\xampp\htdocs\DevsCreed\Code\assets" />
       <recent name="C:\xampp\htdocs\DevsCreed\Code\shared-components\admin" />
       <recent name="C:\xampp\htdocs\DevsCreed\Code\shared-components" />
@@ -65,7 +69,7 @@
       <workItem from="1622722349888" duration="25120000" />
       <workItem from="1622783022525" duration="723000" />
       <workItem from="1622995240406" duration="8728000" />
-      <workItem from="1623048450179" duration="8564000" />
+      <workItem from="1623048450179" duration="10061000" />
     </task>
     <servers />
   </component>
