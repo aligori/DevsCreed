@@ -1,8 +1,8 @@
 <?php
     session_start();
-    include "db_conn.php";
     if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
-
+        include 'model/user.class.php';
+        $users = User::getAllUsers();
 ?>
 
 <html lang="en">
@@ -92,26 +92,30 @@
                                 <thead>
                                 <tr>
                                     <th>User id</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
                                     <th>Username</th>
                                     <th>Role</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>App Development</td>
-                                    <td>15 Aug, 2020</td>
-                                    <td>22 Aug, 2020</td>
-                                    <td class="td-team">
-                                        <div class="img-1"></div>
-                                        <div class="img-2"></div>
-                                        <div class="img-3"></div>
-                                    </td>
-                                    <td>
-                                        <span class="badge success">Success</span>
-                                    </td>
-                                </tr>
 
+                                <tbody>
+                                <?php
+                                foreach($users as $user) {
+                                     ?>
+                                    <tr>
+                                    <td><?php  echo $user['id']?></td>
+                                    <td><?php  echo $user['name']?></td>
+                                    <td><?php  echo $user['surname']?></td>
+                                    <td><?php  echo $user['username']?></td>
+                                    <td><?php  echo $user['role']?></td>
+
+                                </tr>
+                                    <?php }
+                                ?>
+                                </tbody>
                                 </tbody>
                             </table>
                         </div>

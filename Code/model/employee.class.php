@@ -3,14 +3,13 @@
 
     class Employee {
 
-        public static function getEmployee($employee_id) {
+        public static function getAllEmployees() {
             
             //Prepare query and fetch result
             $dbh = (new Database())->get_connection();
-            $stmt = $dbh->prepare("SELECT * FROM `staff` WHERE employee_id = ?");
-            $stmt->execute([$employee_id]);
+            $stmt = $dbh->prepare("SELECT * FROM `staff`");
+            $stmt->execute();
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if(!$arr) exit('No rows');
 
             /*
             What will be returned: 
@@ -27,7 +26,7 @@
 
             //The stmt = null is a good coding practice.
             $stmt = null;
-            var_export($arr);
+            return $arr;
 
         }
 

@@ -28,6 +28,15 @@
 
             $query = "INSERT INTO `user_account` (`password`, `username`, `name`, `surname`, `role`) VALUES (?, ?, ?, ?, ?);";
             $stmt = $dbh->prepare($query);
-            $stmt->execute([$username, $hashed_default_pass, $role]);
+            $stmt->execute([$username, $hashed_default_pass, $name, $surname, $role]);
+        }
+
+        public static function getAllUsers() {
+
+            //Prepare query and fetch result
+            $dbh = (new Database())->get_connection();
+            $stmt = $dbh->prepare("SELECT * FROM `user_account`");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }

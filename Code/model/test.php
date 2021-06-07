@@ -7,11 +7,11 @@
   session_start();
  include 'employee.class.php';
 
- echo (new Employee())->getEmployee(1);
- echo "<br>";
- echo (new Employee())->changeStatus(1);
- echo "<br>";
- echo (new Employee())->getEmployee(1);
+
+ $array = Employee::getAllEmployees();
+ foreach($array as $row) {
+     echo $row['name'];
+ }
 
  ?> 
  </body>
