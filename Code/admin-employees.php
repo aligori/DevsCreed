@@ -97,8 +97,18 @@
                                     <input type="text" name="surname" id="surname" class="form-control" placeholder="Enter surname"><br/>
                                     <label>Email</label>
                                     <input type="email" name="email" id="email" class="form-control" placeholder="Enter "><br/>
+                                    <label>Phone</label>
+                                    <input type="phone" name="phone" id="phone" class="form-control"><br/>
+<!--                                    <label>Position</label>-->
+<!--                                    <input type="text" name="position" id="position" class="form-control"><br/>-->
                                     <label>Birthdate</label>
                                     <input type="date" name="birthday" id="birthday" class="form-control"><br/>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="create_user">
+                                        <label class="form-check-label" for="flexCheckChecked"">
+                                            Create User Account
+                                        </label>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <input type="hidden" name="employee_id" id="employee_id"/>
@@ -115,15 +125,16 @@
         </div>
 
     <script type="text/javascript">
+
         $(document).ready(function(){
             $('#addEmployee').click(function(){
-                $('#employee_form')[0].reset();
-                $('.modal-title').text("Add Employee Detauls");
+                // $('#employee_form')[0].reset();
+                $('.modal-title').text("Add Employee Details");
                 $('#action').val("Add");
                 $('#operation').val("Add");
             });
 
-            var dataTable = $('#employees_table').DataTable({
+            const dataTable = $('#employees_table').DataTable({
                 "bDeferRender":true,
                 "sPaginationType": "full_numbers",
                 // "serverSide":true,
@@ -144,6 +155,29 @@
                     "sProcessing": "Processing...",
                 }
             })
+
+            $(document).on('submit', '#employee_form', function(event){
+                event.preventDefault();
+                const name = $('#name').val();
+                const surname = $('#surname').val();
+                const email = $('#email').val();
+                const phone = $('#phone').val();
+                const birthday = $('#birthday').val();
+                console.log(new FormData(this))
+                //You can check input
+                $.ajax({
+                    url: "controller/insertEmployee.php",
+                    method: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        $('#employee_form')[0].reset();
+                        $('#addEmployee').modal('hide');
+                        dataTable.ajax.reload();
+                    }
+                })
+            });
         })
     </script>
     </body>
