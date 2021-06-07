@@ -3,6 +3,8 @@
 
     class Product {
 
+
+
         public static function getProduct($product_id) {
             
             //Prepare query and fetch result
@@ -28,17 +30,34 @@
             
         }
 
-        public static function modifyProducts($product_id, $field, $change) {
+        public static function modifyProductPrice($product_id, $change) {
             /*modify -> specify which field to modify, specify new value to be entered and then executing*/ 
             $dbh = (new Database())->get_connection();
-            $query = "UPDATE `product` SET ? = ? WHERE `product_id` = ?";
+            $query = "UPDATE `product` SET `price` = ? WHERE `product_id` = ?";
             
             $stmt = $dbh->prepare($query);
-            $stmt->execute([$field, $change, $product_id]);
+            $stmt->execute([$change, $product_id]);
             $stmt = null;
 
         }
+        public static function modifyProductSell_Price($product_id, $change) {
+            /*modify -> specify which field to modify, specify new value to be entered and then executing*/
+            $dbh = (new Database())->get_connection();
+            $query = "UPDATE `product` SET `sell_price` = ? WHERE `product_id` = ?";
 
+            $stmt = $dbh->prepare($query);
+            $stmt->execute([$change, $product_id]);
+            $stmt = null;
+        }
+        public static function modifyProductName($product_id, $change) {
+            /*modify -> specify which field to modify, specify new value to be entered and then executing*/
+            $dbh = (new Database())->get_connection();
+            $query = "UPDATE `product` SET `name` = ? WHERE `product_id` = ?";
+
+            $stmt = $dbh->prepare($query);
+            $stmt->execute([$change, $product_id]);
+            $stmt = null;
+        }
         public static function addToQuantity($product_id, $quantity) {
             /*modify -> specify which field to modify, specify new value to be entered and then executing*/ 
             $dbh = (new Database())->get_connection();

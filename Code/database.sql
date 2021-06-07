@@ -2,6 +2,8 @@ CREATE SCHEMA IF NOT EXISTS `eye_clinic`;
 
 CREATE TABLE IF NOT EXISTS `user_account`(
                                `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+                               `name` VARCHAR(40) NOT NULL,
+                               `surname` VARCHAR(40) NOT NULL,
                                `password` VARCHAR(100) NOT NULL,
                                `username` VARCHAR(40) NOT NULL,
                                `role` ENUM(
@@ -137,7 +139,13 @@ CREATE TABLE IF NOT EXISTS `staff` (
 
 CREATE TABLE IF NOT EXISTS `appointment` (
                                `a_id` bigint unsigned NOT NULL AUTO_INCREMENT,
-                               `status` bit(1) NOT NULL,
+                               `status` ENUM(
+                                   'approved',
+                                   'rejected',
+                                   'cancelled',
+                                   'requested',
+                                   'completed'
+                                   ) NOT NULL,
                                `time` datetime NOT NULL,
                                `assigned_to` bigint unsigned DEFAULT NULL,
                                `booked_by` bigint unsigned DEFAULT NULL,
@@ -153,7 +161,6 @@ CREATE TABLE IF NOT EXISTS `appointment` (
                                CONSTRAINT `appointment_FK_2` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`transaction_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
                                CONSTRAINT `appointment_FK_3` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ;
-
 
 -- ecms.`health records` definition
 
@@ -177,6 +184,6 @@ CREATE TABLE IF NOT EXISTS `health_records` (
 -- Inserting values for testing purposes
 
 
-insert into `user_account` (username, password, role) values ("admin", "admin", "admin");
+insert into `user_account` (`username`, `password`, `role`) values ("admin", "admin", "admin");
 
-insert into `staff` (full_name, email, phone, birthday, salary, status, user_id) values ("Denado Rabeli", "drabeli18@epoka.edu.al", "0692862999", "2000-06-29", 40000, 1, 1);
+insert into `staff` (`full_name`, `email`, `phone`, `birthday`, `salary`, `status`, `user_id`) values ("Denado Rabeli", "drabeli18@epoka.edu.al", "0692862999", "2000-06-29", 40000, 1, 1);
