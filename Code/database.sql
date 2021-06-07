@@ -186,4 +186,4 @@ CREATE TABLE IF NOT EXISTS `health_records` (
 
 insert into `user_account` (`name`,`surname`,`username`, `password`, `role`) values ("MR.", "Admin","admin", "$2y$10$6Y5yT5HPf3JHwLv3uPobGuFWUBco.VfC.xyw0r94saz2awoIrsZEa", "admin");
 
-insert into `staff` (`full_name`, `email`, `phone`, `birthday`, `salary`, `status`, `user_id`) values ("Denado Rabeli", "drabeli18@epoka.edu.al", "0692862999", "2000-06-29", 40000, 1);
+insert into `staff` (`full_name`, `email`, `phone`, `birthday`, `salary`, `user_id`) values ("Denado Rabeli", "drabeli18@epoka.edu.al", "0692862999", "2000-06-29", 40000, 1);

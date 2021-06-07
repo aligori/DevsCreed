@@ -29,6 +29,32 @@
             return $arr;
 
         }
+        public static function getEmployee($employee_id) {
+
+            //Prepare query and fetch result
+            $dbh = (new Database())->get_connection();
+            $stmt = $dbh->prepare("SELECT * FROM `staff` WHERE `employee_id` = ?");
+            $stmt->execute($employee_id);
+            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            /*
+            What will be returned:
+                                    `employee_id`
+                                    `full_name`
+                                    `email`
+                                    `phone`
+                                    `photo`
+                                    `birthday`
+                                    `salary`
+                                    `status`
+                                    `uuid`
+            */
+
+            //The stmt = null is a good coding practice.
+            $stmt = null;
+            return $arr;
+
+        }
 
         public static function modifyEmployeeName($employee_id, $change) {
             $dbh = (new Database())->get_connection();

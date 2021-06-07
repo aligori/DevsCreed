@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="958ad4a3-6a2c-4c49-ac0e-6bb24e6a4c6b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin-dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_conn.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/employee.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/employee.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/health_record.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/health_record.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.class.php" afterDir="false" />
+    <list default="true" id="78d0b3d4-21f7-480f-9cbb-199fa696baf3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
