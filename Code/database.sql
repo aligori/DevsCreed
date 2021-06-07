@@ -81,6 +81,10 @@ CREATE TABLE IF NOT EXISTS `patient` (
                            `email` varchar(100)  NOT NULL,
                            `address` varchar(100) DEFAULT NULL,
                            `phone` varchar(100) DEFAULT NULL,
+                           `status` ENUM(
+                                           'active',
+                                           'passive'
+                                       ) NOT NULL,
                            `birthday` date DEFAULT NULL,
                            `user_id` INT UNSIGNED DEFAULT NULL,
                            PRIMARY KEY (`patient_id`),
@@ -123,16 +127,33 @@ CREATE TABLE IF NOT EXISTS `staff` (
                          `employee_id` bigint unsigned NOT NULL AUTO_INCREMENT,
                          `full_name` varchar(100) NOT NULL,
                          `email` varchar(100) NOT NULL,
+                         `position` varchar(40) DEFAULT NULL,
                          `phone` bigint unsigned NOT NULL,
                          `photo` blob,
                          `birthday` date NOT NULL,
                          `salary` int unsigned NOT NULL,
-                         `status` bit(1) NOT NULL,
+                         `status` ENUM(
+                                          'active',
+                                          'passive'
+                                      ) NOT NULL,
                          `user_id` INT UNSIGNED DEFAULT NULL,
                          PRIMARY KEY (`employee_id`),
                          KEY `staff_FK` (`user_id`),
                          CONSTRAINT `staff_FK` FOREIGN KEY (`user_id`) REFERENCES `user_account` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ;
+
+DELIMITER $$
+
+CREATE TRIGGER after_employee_insert
+    AFTER INSERT
+    ON `staff` FOR EACH ROW
+BEGIN
+    IF NEW.salary < 300 THEN
+        UPDATE `staff` SET `salary` = 300 WHERE `employee_id` = NEW.employee_id
+END IF;
+END$$
+
+DELIMITER ;
 
 
 -- ecms.appointment definition
@@ -186,4 +207,4 @@ CREATE TABLE IF NOT EXISTS `health_records` (
 
 insert into `user_account` (`name`,`surname`,`username`, `password`, `role`) values ("MR.", "Admin","admin", "$2y$10$6Y5yT5HPf3JHwLv3uPobGuFWUBco.VfC.xyw0r94saz2awoIrsZEa", "admin");
 
-insert into `staff` (`full_name`, `email`, `phone`, `birthday`, `salary`, `user_id`) values ("Denado Rabeli", "drabeli18@epoka.edu.al", "0692862999", "2000-06-29", 40000, 1);
+insert into `staff` (`full_name`, `email`, `position`, `phone`, `birthday`, `salary`, `user_id`) values ("Denado Rabeli", "drabeli18@epoka.edu.al", "Administrator", "0692862999", "2000-06-29", 4000, 1);

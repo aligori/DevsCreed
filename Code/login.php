@@ -1,7 +1,7 @@
 <?php
-//    session_start();
-//    if(!isset($_SESSION['user_id'])) {
-//        ?>
+    session_start();
+    if(!isset($_SESSION['user_id'])) {
+        ?>
 
 <!doctype html>
 <html lang="en">
@@ -78,15 +78,15 @@
 
 </body>
 </html>
-<?php //} else {
-//    if($_SESSION['role'] == 'admin')
-//        header("Location: admin-dashboard.php");
-//    else if ($_SESSION['role'] == 'doctor')
-//        header("Location: doctor-dashboard.php");
-//    else if ($_SESSION['role'] == 'receptionist')
-//        header("Location: receptionist-dashboard.php");
-//    else if ($_SESSION['role'] == 'patient')
-//        header("Location: patient.php");
-//    else if ($_SESSION['role'] == 'economist')
-//        header("Location: economist.php");
-//} ?>
+<?php } else {
+        if ($_SESSION['role'] == 'admin')
+            header("Location: admin-dashboard.php");
+        else if ($_SESSION['role'] == 'doctor')
+            header("Location: doctor-dashboard.php");
+        else if ($_SESSION['role'] == 'receptionist')
+            header("Location: receptionist-dashboard.php");
+        else if ($_SESSION['role'] == 'patient')
+            header("Location: patient.php");
+        else if ($_SESSION['role'] == 'economist')
+            header("Location: economist.php");
+    } ?>

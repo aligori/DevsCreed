@@ -9,6 +9,12 @@ class Health_Record {
         $this->dbh = (new Database())->get_connection();
     }
 
+    public function addHealthRecord($prescription, $description, $written_by, $for_patient, $patient_diagnosis_id){
+        $query = "INSERT INTO `health_records` (`prescription`, `description`, `date`, `written_by`, `for_patient`, `patient_diagnosis_id`) VALUES (?, ?, ?, ?, ?, ?);";
+        $stmt = $this->dbh->prepare($query);
+        $stmt->execute(["approved", $prescription, $description, $written_by, $for_patient, $patient_diagnosis_id]);
+    }
+
     public function getLatestPatientHealthRecord($patient_id) {
         //Prepare query and fetch result
         $stmt = $this->dbh->prepare("SELECT * FROM `health_records` WHERE `for_patient` = ? ORDER BY `date` DESC LIMIT 1;");

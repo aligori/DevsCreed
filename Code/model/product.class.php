@@ -9,6 +9,12 @@
             $this->dbh = (new Database())->get_connection();
         }
 
+        public function addProduct($price, $sell_price, $quantity, $name, $description, $category_id){
+            $query = "INSERT INTO `products` (`price`, `sell_price`, `quantity`, `name`, `description`, `category_id` ) VALUES (?, ?, ?, ?, ?, ?);";
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute([$price, $sell_price, $quantity, $name, $description, $category_id]);
+        }
+
         public function getProduct($product_id) {
             
             //Prepare query and fetch result

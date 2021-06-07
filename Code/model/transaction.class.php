@@ -11,6 +11,12 @@
             $this->dbh = (new Database())->get_connection();
         }
 
+        public function addTransaction($date, $client, $total, $service_id){
+            $query = "INSERT INTO `transaction` (`date`, `client`, `total`, `service_id`) VALUES (?, ?, ?, ?);";
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute([$date, $client, $total, $service_id]);
+        }
+
         public function getLatestTransactions($date){
             $stmt = $this->dbh->prepare("SELECT * FROM `transaction` WHERE `date` = ?");
             $stmt->execute([$date]);

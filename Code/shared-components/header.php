@@ -15,17 +15,16 @@
 </div>
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
-        <a href="index.php" class="logo me-auto"><img src="assets/public/images/logo.png" alt="Clinic Logo" class="img-fluid"></a>
+        <a href="index.php" class="logo me-auto"><img src="assets/images/logo.png" alt="Clinic Logo" class="img-fluid"></a>
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-                <li><a class="nav-link scrollto" href="#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="#about">About</a></li>
-                <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                <li><a class="nav-link scrollto" href="#departments">Our Staff</a></li>
-                <li><a class="nav-link scrollto" href="#doctors">Products</a></li>
-                <li><a class="nav-link scrollto" href="#departments">Book Now</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                <li><a class="nav-link scrollto" href="./main.php#hero">Home</a></li>
+                <li><a class="nav-link scrollto" href="./main.php#about">About</a></li>
+                <li><a class="nav-link scrollto" href="./main.php#services">Services</a></li>
+                <li><a class="nav-link scrollto" href="./main.php#appointment">Book Now</a></li>
+                <li><a class="nav-link scrollto" href="./main.php#doctors">Our Staff</a></li>
+                <li><a class="nav-link scrollto" href="./main.php#contact">Contact</a></li>
             </ul>
         </nav><!-- .navbar -->
 
