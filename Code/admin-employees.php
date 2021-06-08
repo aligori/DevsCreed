@@ -252,6 +252,10 @@
                     }
                 });
             });
+
+            $('#position').on('change', function () {
+                console.log('test')
+            })
         })
     </script>
     </body>

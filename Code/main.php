@@ -370,7 +370,7 @@
 
             </form>
 
-            <div class="text-center"><button type="btn btn-primary">Make an Appointment</button></div>
+            <div class="text-center"><button class="btn btn-primary">Request Appointment</button></div>
 
         </div>
     </section><!-- End Appointment Section -->
