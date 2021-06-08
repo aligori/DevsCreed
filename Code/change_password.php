@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
+if (isset($_SESSION['user_id'])) {
     ?>
     <!DOCTYPE html>
     <html>
@@ -9,8 +9,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
         <link rel="stylesheet" type="text/css" href="./assets/css/changePassword.css">
     </head>
     <body>
-    <form action="change-p.php" method="post">
-        <h2>Change Password</h2>
+    <form action="controller/check-change.php" method="POST">
+        <h3>Change Password</h3>
         <?php if (isset($_GET['error'])) { ?>
             <p class="error"><?php echo $_GET['error']; ?></p>
         <?php } ?>
@@ -21,20 +21,20 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
 
         <label>Old Password</label>
         <input type="password"
-               name="op"
-               placeholder="Old Password">
+               name="old_password"
+               placeholder="Old Password" required>
         <br>
 
         <label>New Password</label>
         <input type="password"
-               name="np"
-               placeholder="New Password">
+               name="new_password"
+               placeholder="New Password" required>
         <br>
 
         <label>Confirm New Password</label>
         <input type="password"
-               name="c_np"
-               placeholder="Confirm New Password">
+               name="confirmed_pass"
+               placeholder="Confirm New Password" required>
         <br>
 
         <button type="submit">CHANGE</button>

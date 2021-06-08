@@ -56,7 +56,7 @@
 
             <hr style="border: 1px solid #5599ff ">
 
-            <a href="">
+            <a href="change_password.php">
                 <li style="margin-top: 10px">
                     <span class="ti-settings"></span>
                     <span>Settings</span>

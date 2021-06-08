@@ -18,7 +18,7 @@
         }
 
         public function getUserbyId($id) {
-            $query = "SELECT * FROM `user_account` WHERE id = ?";
+            $query = "SELECT * FROM `user_account` WHERE user_id = ?";
             $stmt = $this->dbh->prepare($query);
             $stmt->execute([$id]);
             return $stmt->fetch();
@@ -52,21 +52,13 @@
             $result = array();
             array_push($result, $data);
             array_push($result, $rowCount);
-            /*
-            What will be returned:
-                                    `employee_id`
-                                    `full_name`
-                                    `email`
-                                    `phone`
-                                    `photo`
-                                    `birthday`
-                                    `salary`
-                                    `status`
-                                    `uuid`
-            */
-
-            //The stmt = null is a good coding practice.
             $stmt = null;
             return $result;
+        }
+
+        public function changePassword($newPassword, $user_id) {
+            $query = "UPDATE `user_account` SET `password` = ? WHERE `user_id` = ?";
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute([$newPassword, $user_id]);
         }
     }
