@@ -142,20 +142,20 @@ CREATE TABLE IF NOT EXISTS `staff` (
                          KEY `staff_FK` (`user_id`),
                          CONSTRAINT `staff_FK` FOREIGN KEY (`user_id`) REFERENCES `user_account` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE
 );
-
+/*
 DELIMITER $$
 
 CREATE TRIGGER after_employee_insert
-    AFTER INSERT
+    BEFORE INSERT
     ON `staff` FOR EACH ROW
 BEGIN
     IF NEW.salary < 25000 THEN
-        UPDATE `staff` SET `salary` = 25000 WHERE `employee_id` = NEW.employee_id;
+        UPDATE `staff` SET NEW.`salary` = 25000 WHERE `employee_id` = NEW.employee_id;
 END IF;
 END $$
 
 DELIMITER ;
-
+*/
 
 -- ecms.appointment definition
 
@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `appointment` (
                                `time` datetime NOT NULL,
                                `assigned_to` bigint unsigned DEFAULT NULL,
                                `booked_by` bigint unsigned DEFAULT NULL,
-                               `transaction_id` bigint unsigned NOT NULL,
+                               `transaction_id` bigint unsigned DEFAULT NULL,
                                `service_id` bigint unsigned DEFAULT NULL,
                                PRIMARY KEY (`a_id`),
                                KEY `appointment_FK` (`assigned_to`),

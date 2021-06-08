@@ -42,4 +42,31 @@
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+
+        public function getAllUserAccounts($query): array {
+
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute();
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $rowCount = $stmt->rowCount();
+            $result = array();
+            array_push($result, $data);
+            array_push($result, $rowCount);
+            /*
+            What will be returned:
+                                    `employee_id`
+                                    `full_name`
+                                    `email`
+                                    `phone`
+                                    `photo`
+                                    `birthday`
+                                    `salary`
+                                    `status`
+                                    `uuid`
+            */
+
+            //The stmt = null is a good coding practice.
+            $stmt = null;
+            return $result;
+        }
     }
