@@ -27,6 +27,7 @@
          *
          *
          * */
+
         public function addNewAppointment($time, $assigned_to, $booked_by){
             $query = "INSERT INTO `appointment` (`status`, `time`, `assigned_to`, `booked_by`) VALUES (?, ?, ?, ?);";
             $stmt = $this->dbh->prepare($query);
@@ -84,8 +85,6 @@
 
         }
 
-
-
         public function manageAppointmentRequests($a_id, $string, $employee_id) {
             if( strcmp($string, "approved") == 0){
 
@@ -111,8 +110,16 @@
             $stmt = null;
         }
 
-        public function  getNextAppointment($assigned_to, $time){
+        public function  getNextAppointment($time){ //$time should be the current time in format yyyy-mm-dd hh:mm:ss
+            //Prepare query and fetch result
+            $stmt = $this->dbh->prepare("SELECT * FROM `appointment` WHERE time > STR_TO_DATE(?, '%Y-%m-%d %H:%i:%s');");
+            $stmt->execute([$time]);
+            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(!$arr) exit('No rows');
 
+            var_export($arr);
+            //The stmt = null is a good coding practice.
+            $stmt = null;
         }
 
         public function  getNrAppointment($assigned_to, $time){
