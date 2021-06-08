@@ -25,7 +25,7 @@
         }
 
         public function createUser($name, $surname, $role) {
-            $username = $name.$surname;
+            $username =strtolower($name.$surname) ;
             $default_pass = 'clinic123';
             $hashed_default_pass = password_hash($default_pass, PASSWORD_DEFAULT);
 
