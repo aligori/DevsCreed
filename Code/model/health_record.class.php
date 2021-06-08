@@ -5,8 +5,8 @@ class Health_Record {
 
     private $dbh = null;
 
-    public function __construct(){
-        $this->dbh = (new Database())->get_connection();
+    public function __construct($dbh){
+        $this->dbh = $dbh;
     }
 
     public function addHealthRecord($prescription, $description, $written_by, $for_patient, $patient_diagnosis_id){

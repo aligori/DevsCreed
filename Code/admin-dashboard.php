@@ -1,8 +1,6 @@
 <?php
 session_start();
 if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
-    include 'model/user.class.php';
-    $users = (new Users())->getAllUsers();
     ?>
 
     <html lang="en">
@@ -131,46 +129,6 @@ include('shared-components/admin/sidebar1.php');
             </div>
         </div>
         <br/>
-        <div class="dash-cards">
-            <div class="card-single">
-                <div class="card-body">
-                    <span class="ti-briefcase"></span>
-                    <div>
-                        <h5>Active Employees</h5>
-                        <h4>Get from database</h4>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <a href="admin-employees.php">View all</a>
-                </div>
-            </div>
-
-            <div class="card-single">
-                <div class="card-body">
-                    <span class="ti-reload"></span>
-                    <div>
-                        <h5>Patients</h5>
-                        <h4>$19,500.45</h4>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <a href="">View all</a>
-                </div>
-            </div>
-
-            <div class="card-single">
-                <div class="card-body">
-                    <span class="ti-check-box"></span>
-                    <div>
-                        <h5>Income</h5>
-                        <h4>$20,659</h4>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <a href="">View all</a>
-                </div>
-            </div>
-        </div>
     </main>
 </div>
 </body>

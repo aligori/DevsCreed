@@ -1,14 +1,11 @@
 <?php
-    require('db_conn.php');
-
     class Users {
 
-        private $dbh = null;
+        private $dbh;
 
-        public function __construct(){
-            $this->dbh = (new Database())->get_connection();
+        public function __construct($dbh){
+            $this->dbh = $dbh;
         }
-
 
         public function verifyLogin($username, $password) {
 
@@ -32,9 +29,10 @@
             $default_pass = 'clinic123';
             $hashed_default_pass = password_hash($default_pass, PASSWORD_DEFAULT);
 
-            $query = "INSERT INTO `user_account` (`password`, `username`, `name`, `surname`, `role`) VALUES (?, ?, ?, ?, ?);";
+            $query = "INSERT INTO `user_account` (`username`, `password`, `name`, `surname`, `role`) VALUES (?, ?, ?, ?, ?);";
             $stmt = $this->dbh->prepare($query);
             $stmt->execute([$username, $hashed_default_pass, $name, $surname, $role]);
+            return $this->dbh->lastInsertId();
         }
 
         public function getAllUsers() {

@@ -5,8 +5,8 @@
 
         private $dbh = null;
 
-        public function __construct(){
-            $this->dbh = (new Database())->get_connection();
+        public function __construct($dbh){
+            $this->dbh = $dbh;
         }
 
         /*
