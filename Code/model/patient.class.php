@@ -39,6 +39,18 @@
 
         }
 
+        public function  getNrPatients(){
+            //Prepare query and fetch result
+            $stmt = $this->dbh->prepare("SELECT COUNT(`patient_id`) FROM `patient` WHERE `status` = 'active'");
+            $stmt->execute([]);
+            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(!$arr) exit('No rows');
+
+            var_export($arr);
+            //The stmt = null is a good coding practice.
+            $stmt = null;
+        }
+
         public function modifyPatientName($patient_id, $change) {
             $query = "UPDATE `patient` SET `full_name` = ? WHERE `patient_id` = ?";
             $stmt = $this->dbh->prepare($query);

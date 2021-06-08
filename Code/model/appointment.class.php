@@ -34,20 +34,21 @@
         }
 
         public function addTransaction($transaction, $a_id){
-            $query = "UPDATE `appointment` SET `transaction` = ? WHERE `a_id` = ?";
+            $query = "UPDATE `appointment` SET `transaction_id` = ? WHERE `a_id` = ?";
             $stmt = $this->dbh->prepare($query);
             $stmt->execute([$transaction, $a_id]);
         }
 
-        public function addService($transaction, $a_id){
-            $query = "UPDATE `appointment` SET `transaction` = ? WHERE `a_id` = ?";
+        public function addService($service, $a_id){
+
+            $query = "UPDATE `appointment` SET `service_id` = ? WHERE `a_id` = ?";
             $stmt = $this->dbh->prepare($query);
-            $stmt->execute([$transaction, $a_id]);
+            $stmt->execute([$service, $a_id]);
         }
 
         public  function getAppointmentDetails($a_id) {
             //Prepare query and fetch result
-            $stmt = ($this->dbh)->prepare("SELECT * FROM `appointment` WHERE `a_id` = ?");
+            $stmt = $this->dbh->prepare("SELECT * FROM `appointment` WHERE `a_id` = ?");
             $stmt->execute([$a_id]);
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!$arr) exit('No rows');
@@ -72,7 +73,7 @@
         public function getAppointmentRequests() {
 
             //Prepare query and fetch result
-            $stmt = ($this->dbh)->prepare("SELECT * FROM `appointment` WHERE `status` = 'requested'");
+            $stmt = $this->dbh->prepare("SELECT * FROM `appointment` WHERE `status` = 'requested'");
             $stmt->execute();
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!$arr) exit('No rows');
@@ -107,6 +108,22 @@
 
             $stmt = $this->dbh->prepare($query);
             $stmt->execute([$a_id]);
+            $stmt = null;
+        }
+
+        public function  getNextAppointment($assigned_to, $time){
+
+        }
+
+        public function  getNrAppointment($assigned_to, $time){
+            //Prepare query and fetch result
+            $stmt = $this->dbh->prepare("SELECT COUNT(`a_id`) FROM `appointment` WHERE `assigned_to` = ? AND `time` = ?");
+            $stmt->execute([$assigned_to, $time]);
+            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(!$arr) exit('No rows');
+
+            var_export($arr);
+            //The stmt = null is a good coding practice.
             $stmt = null;
         }
 
