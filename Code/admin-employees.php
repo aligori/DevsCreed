@@ -45,7 +45,7 @@
                                         data-toggle="modal"
                                         data-target="#addEmployee"
                                 > <i class="fas fa-plus-circle"></i>
-                                    Add User
+                                    New Employee
                                 </button>
                             </div>
                         </div>
@@ -56,12 +56,14 @@
                            <table id="employees_table" class="display table table-primary" >
                                <thead>
                                <tr>
-                                   <th>Employee id</th>
+                                   <th>ID</th>
                                    <th>Full Name</th>
+                                   <th>Position</th>
                                    <th>Email</th>
                                    <th>Phone</th>
                                    <th>Birthdate</th>
                                    <th>Salary</th>
+                                   <th>Address</th>
                                    <th>Status</th>
                                    <th>Edit</th>
                                </tr>
@@ -93,56 +95,78 @@
                                     <button type="button" class="close" data-dismiss="modal">&times</button>
                                 </div>
                                 <div class="modal-body">
-                                    <label>Name</label>
-                                    <input
-                                            type="text"
-                                            name="name"
-                                            id="name"
-                                            class="form-control"
-                                            placeholder="Enter name"
-                                            required
-                                    /><br/>
-                                    <label>Surname</label>
-                                    <input
-                                            type="text"
-                                            name="surname"
-                                            id="surname"
-                                            class="form-control"
-                                            placeholder="Enter surname"
-                                            required
-                                    /><br/>
-                                    <label>Email</label>
-                                    <input
-                                            type="email"
-                                            name="email"
-                                            id="email"
-                                            class="form-control"
-                                            placeholder="Enter email"
-                                            required
-                                    /><br/>
-                                    <label>Phone</label>
-                                    <input
-                                            type="phone"
-                                            name="phone"
-                                            id="phone"
-                                            class="form-control"
-                                            placeholder="Enter phone number"
-                                            required
-                                    /><br/>
-                                    <label>Birthdate</label>
-                                    <input
-                                            type="date"
-                                            name="birthday"
-                                            id="birthday"
-                                            class="form-control"
-                                            placeholder="Select birthdate"
-                                            required
-                                    /><br/>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="true" id="create_user" name="create_user">
-                                        <label class="form-check-label" for="flexCheckChecked"">
-                                            Create User Account
-                                        </label>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label>Name</label>
+                                            <input
+                                                    type="text"
+                                                    name="name"
+                                                    id="name"
+                                                    class="form-control"
+                                                    placeholder="Enter name"
+                                                    required
+                                            /><br/>
+                                            <label>Surname</label>
+                                            <input
+                                                    type="text"
+                                                    name="surname"
+                                                    id="surname"
+                                                    class="form-control"
+                                                    placeholder="Enter surname"
+                                                    required
+                                            /><br/>
+                                            <label>Email</label>
+                                            <input
+                                                    type="email"
+                                                    name="email"
+                                                    id="email"
+                                                    class="form-control"
+                                                    placeholder="Enter email"
+                                                    required
+                                            /><br/>
+                                            <label>Address</label>
+                                            <input
+                                                    type="text"
+                                                    name="address"
+                                                    id="address"
+                                                    class="form-control"
+                                                    placeholder="Enter address"
+                                                    required
+                                            /><br/>
+                                        </div>
+                                        <div class="col-6">
+                                            <label>Phone</label>
+                                            <input
+                                                    type="phone"
+                                                    name="phone"
+                                                    id="phone"
+                                                    class="form-control"
+                                                    placeholder="Enter phone number"
+                                                    required
+                                            /><br/>
+                                            <label>Birthdate</label>
+                                            <input
+                                                    type="date"
+                                                    name="birthday"
+                                                    id="birthday"
+                                                    class="form-control"
+                                                    placeholder="Select birthdate"
+                                                    required
+                                            /><br/>
+                                            <label>Position</label>
+                                            <select class="form-control form-select form-select-lg mb-3" id="position">
+                                                <option value="1">Doctor</option>
+                                                <option value="2">Receptionist</option>
+                                                <option value="3">Economist</option>
+                                                <option value="3">Janitor</option>
+                                            </select><br/><br/>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="true" id="create_user" name="create_user">
+                                                <label class="form-check-label" for="flexCheckChecked"">
+                                                Create User Account
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -180,10 +204,12 @@
                 "columns": [
                     {"data": "employee_id"},
                     {"data": "full_name"},
+                    {"data": "position"},
                     {"data": "email"},
                     {"data": "phone"},
                     {"data": "birthday"},
                     {"data": "salary"},
+                    {"data": "address"},
                     {"data": "status"},
                     {"data": "edit"}
                 ],
@@ -203,6 +229,8 @@
                     email: $('#email').val(),
                     phone: $('#phone').val(),
                     birthday: $('#birthday').val(),
+                    address: $('#address').val(),
+                    position: $('#position option:selected').text(),
                     createUser: $createUser,
                     operation: $('#action').val()
                 };

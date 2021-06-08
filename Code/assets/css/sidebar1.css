@@ -45,15 +45,22 @@
 
 .sidebar li {
   margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--main-color);
 }
 .sidebar li:hover {
-  background: #3865b8;
-  border-radius: 10px;
+  border-bottom: 2px solid white;
+  border-radius: 5px;
 }
 
 .sidebar a {
   color: #fff;
   font-size: .8rem;
+}
+
+.sidebar a:hover{
+  color: #fff;
+  font-size: .8rem;
+  text-decoration: none;
 }
 
 .sidebar a span:last-child {

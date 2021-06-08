@@ -127,11 +127,12 @@ CREATE TABLE IF NOT EXISTS `staff` (
                          `employee_id` bigint unsigned NOT NULL AUTO_INCREMENT,
                          `full_name` varchar(100) NOT NULL,
                          `email` varchar(100) NOT NULL,
-                         `position` varchar(40) DEFAULT NULL,
+                         `position` varchar(40) NOT NULL,
                          `phone` bigint unsigned NOT NULL,
+                         `address` varchar(100) DEFAULT NULL,
                          `photo` blob,
                          `birthday` date NOT NULL,
-                         `salary` int unsigned NOT NULL,
+                         `salary` int unsigned NOT NULL DEFAULT 25000,
                          `status` ENUM(
                                           'active',
                                           'passive'
@@ -140,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
                          PRIMARY KEY (`employee_id`),
                          KEY `staff_FK` (`user_id`),
                          CONSTRAINT `staff_FK` FOREIGN KEY (`user_id`) REFERENCES `user_account` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ;
+);
 
 DELIMITER $$
 
@@ -148,10 +149,10 @@ CREATE TRIGGER after_employee_insert
     AFTER INSERT
     ON `staff` FOR EACH ROW
 BEGIN
-    IF NEW.salary < 300 THEN
-        UPDATE `staff` SET `salary` = 300 WHERE `employee_id` = NEW.employee_id
+    IF NEW.salary < 25000 THEN
+        UPDATE `staff` SET `salary` = 25000 WHERE `employee_id` = NEW.employee_id;
 END IF;
-END$$
+END $$
 
 DELIMITER ;
 

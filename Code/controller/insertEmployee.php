@@ -9,17 +9,18 @@
     $email = $_POST["email"];
     $phone = $_POST["phone"];
     $birthday = $_POST["birthday"];
+    $address = $_POST["address"];
+    $position = strtolower($_POST["position"]);
 
     if(isset($_POST["operation"])) {
         if($_POST["operation"] == "Add") {
             $salary = 35000;
-            $status = 1; //TODO Change to 'active' later
+            $status = "active";
             $user_id = NULL;
             if ($_POST["createUser"]) {
-                //TODO Change role when db table is refactored
-                $user_id = (new Users($dbh))->createUser($_POST["name"], $_POST["surname"], 'doctor');
+                $user_id = (new Users($dbh))->createUser($_POST["name"], $_POST["surname"], $position);
             }
-            $result = $emp->registerEmployee($full_name, $email, $phone, $birthday, $salary, $status, $user_id);
+            $result = $emp->registerEmployee($full_name, $email, $position, $phone, $birthday, $salary, $address, $status, $user_id);
             if ($result) {
                 echo json_encode(array("statusCode"=>200));
             }

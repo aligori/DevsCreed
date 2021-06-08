@@ -12,6 +12,7 @@
         $query .= 'WHERE full_name LIKE "%'.$_POST["search"]["value"].'%"';
         $query .= 'OR email LIKE "%'.$_POST["search"]["value"].'%"';
         $query .= 'OR email LIKE "%'.$_POST["search"]["value"].'%"';
+        $query .= 'OR position LIKE "%'.$_POST["search"]["value"].'%"';
     }
 
     if(isset($_POST['order'])) {
@@ -30,10 +31,12 @@
         $table.='{
                       "employee_id":"'.$row['employee_id'].'",
                       "full_name":"'.$row['full_name'].'",
+                      "position":"'.$row['position'].'",
                       "email":"'.$row['email'].'",
                       "phone":"'.$row['phone'].'",
                       "birthday":"'.$row['birthday'].'",
                       "salary":"'.$row['salary'].'",
+                      "address":"'.$row['address'].'",
                       "status":"'.$row['status'].'",
                       "edit": "'.$edit.'"
                     },';
