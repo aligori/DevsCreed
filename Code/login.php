@@ -61,7 +61,7 @@
                        required>
             </div>
             <p align="center">
-                <button type="submit" class="btn btn-primary justify-content-left">Submit</button>
+                <button type="submit" class="btn btn-secondary justify-content-left">Submit</button>
             </p>
         </form>
     </div>

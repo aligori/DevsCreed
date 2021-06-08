@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
                            `full_name` varchar(100) NOT NULL,
                            `email` varchar(100)  NOT NULL,
                            `address` varchar(100) DEFAULT NULL,
-                           `phone` varchar(100) DEFAULT NULL,
+                           `phone` varchar(60) NOT NULL,
                            `status` ENUM(
                                            'active',
                                            'passive'
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
                          `full_name` varchar(100) NOT NULL,
                          `email` varchar(100) NOT NULL,
                          `position` varchar(40) NOT NULL,
-                         `phone` bigint unsigned NOT NULL,
+                         `phone` varchar(30) NOT NULL,
                          `address` varchar(100) DEFAULT NULL,
                          `photo` blob,
                          `birthday` date NOT NULL,
@@ -161,6 +161,9 @@ DELIMITER ;
 
 CREATE TABLE IF NOT EXISTS `appointment` (
                                `a_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                               `full_name` varchar(60) NOT NULL,
+                               `email` varchar(60) NOT NULL,
+                               `phone` varchar(30) NOT NULL,
                                `status` ENUM(
                                    'approved',
                                    'rejected',
@@ -170,16 +173,12 @@ CREATE TABLE IF NOT EXISTS `appointment` (
                                    ) NOT NULL,
                                `time` datetime NOT NULL,
                                `assigned_to` bigint unsigned DEFAULT NULL,
-                               `booked_by` bigint unsigned DEFAULT NULL,
+                               `patient_id` bigint unsigned DEFAULT NULL,
                                `transaction_id` bigint unsigned DEFAULT NULL,
                                `service_id` bigint unsigned DEFAULT NULL,
                                PRIMARY KEY (`a_id`),
-                               KEY `appointment_FK` (`assigned_to`),
-                               KEY `appointment_FK_1` (`booked_by`),
-                               KEY `appointment_FK_2` (`transaction_id`),
-                               KEY `appointment_FK_3` (`service_id`),
                                CONSTRAINT `appointment_FK` FOREIGN KEY (`assigned_to`) REFERENCES `staff` (`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                               CONSTRAINT `appointment_FK_1` FOREIGN KEY (`booked_by`) REFERENCES `patient` (`patient_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                               CONSTRAINT `appointment_FK_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`) ON DELETE SET NULL ON UPDATE CASCADE,
                                CONSTRAINT `appointment_FK_2` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`transaction_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
                                CONSTRAINT `appointment_FK_3` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ;
@@ -192,14 +191,11 @@ CREATE TABLE IF NOT EXISTS `health_records` (
                                   `description` text,
                                   `date` datetime NOT NULL,
                                   `written_by` bigint unsigned NOT NULL,
-                                  `for_patient` bigint unsigned NOT NULL,
+                                  `patient_id` bigint unsigned NOT NULL,
                                   `patient_diagnosis_id` bigint unsigned NOT NULL,
                                   PRIMARY KEY (`record_id`),
-                                  KEY `health_records_FK` (`written_by`),
-                                  KEY `health_records_FK_1` (`for_patient`),
-                                  KEY `health_records_FK_2` (`patient_diagnosis_id`),
                                   CONSTRAINT `health_records_FK` FOREIGN KEY (`written_by`) REFERENCES `staff` (`employee_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-                                  CONSTRAINT `health_records_FK_1` FOREIGN KEY (`for_patient`) REFERENCES `patient` (`patient_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                                  CONSTRAINT `health_records_FK_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`) ON DELETE CASCADE ON UPDATE CASCADE,
                                   CONSTRAINT `health_records_FK_2` FOREIGN KEY (`patient_diagnosis_id`) REFERENCES `patient_diagnosis` (`patient_diagnosis_id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ;
 

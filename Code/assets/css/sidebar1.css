@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-
+/*4e8be7*/
 :root {
-  --main-color: #4e8be7;
+  --main-color: #477fd2;
   --color-dark: #1D2231;
   --text-grey: #8390A2;
 }
@@ -29,6 +29,13 @@
   color: #fff;
   overflow-y: auto;
   transition: width 500ms;
+  box-shadow:
+          0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+          0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+          0 12.5px 10px rgba(0, 0, 0, 0.06),
+          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+          0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+          0 100px 80px rgba(0, 0, 0, 0.12)
 }
 
 .sidebar-header {
@@ -176,7 +183,7 @@ main {
 }
 
 .card-body span {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #777;
   padding-right: 1.4rem;
 }
@@ -233,37 +240,6 @@ main {
   text-align: left;
 }
 
-th, td {
-  font-size: .9rem;
-  padding: 1rem 1rem;
-  color: var(--color-dark);
-}
-
-td {
-  font-size: .8rem;
-}
-
-tbody tr:nth-child(even) {
-  background: #f9fafc;
-}
-
-.badge {
-  padding: .2rem 1rem;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: .7rem;
-}
-
-.badge.success {
-  background: #DEF7EC;
-  color: var(--main-color);
-}
-
-.badge.warning {
-  background: #F0F6B2;
-  color: orange;
-}
-
 .text-center {
   text-align: center;
 }
@@ -274,10 +250,6 @@ tbody tr:nth-child(even) {
   border: 1px solid var(--main-color);
   border-radius: 4px;
   padding: .4rem 1rem;
-}
-
-.table-responsive {
-  overflow-x: auto;
 }
 
 @media only screen and (max-width: 1200px) {

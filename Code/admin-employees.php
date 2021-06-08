@@ -57,7 +57,7 @@
                                <thead>
                                <tr>
                                    <th>ID</th>
-                                   <th>Full Name</th>
+                                   <th>Name</th>
                                    <th>Position</th>
                                    <th>Email</th>
                                    <th>Phone</th>
