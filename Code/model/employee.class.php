@@ -1,12 +1,11 @@
 <?php
-    require_once('db_conn.php');
 
     class Employee {
 
-        private $dbh = null;
+        private $dbh;
 
-        public function __construct() {
-            $this->dbh = (new Database())->get_connection();
+        public function __construct($dbh) {
+            $this->dbh = $dbh;
         }
 
         public function getAllEmployees($query): array {
@@ -43,10 +42,10 @@
         }
 
         public function registerEmployee($full_name, $email, $phone, $birthday, $salary, $status, $user_id) {
-            $query = "INSERT INTO `staff` (`full_name`, `email`, `phone`, `birthday`, `photo`, `salary`, `status`, `user_id`)";
-            $query .= " VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+            $query = "INSERT INTO `staff` (`full_name`, `email`, `phone`, `birthday`, `salary`, `status`, `user_id`)";
+            $query .= " VALUES (?, ?, ?, ?, ?, ?, ?);";
             $stmt = $this->dbh->prepare($query);
-            $stmt->execute([$full_name, $email, $phone, $birthday, $salary, $status, $user_id]);
+            return $stmt->execute([$full_name, $email, $phone, $birthday, $salary, $status, $user_id]);
         }
 
         public function getEmployee($employee_id) {

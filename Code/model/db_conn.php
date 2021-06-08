@@ -1,29 +1,20 @@
 <?php
 
 class Database {
-    private $host="localhost";
-    private $user="root";
-    private $password="";
-    private $db_name="eye_clinic";
-    private $pdo = null;
-    private $conn_error;
+    const HOST = "localhost";
+    const USER ="root";
+    const PASSWORD ="";
+    const DB_NAME ="eye_clinic";
 
-    public function __construct() {
-        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
+    public static function get_connection() {
+        $dsn = 'mysql:host=' . Database::HOST . ';dbname=' . Database::DB_NAME;
 
         try {
-            $this->pdo = new PDO($dsn, $this->user, $this->password);
-            $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            $pdo = new PDO($dsn, Database::USER, Database::PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            return $pdo;
         } catch (PDOException $err) {
-            $this->conn_error = $err->getMessage();
-        }
-    }
-
-    public function get_connection() {
-        if ($this->pdo) {
-            return $this->pdo;
-        } else {
-            return $this->conn_error;
+            return $err->getMessage();
         }
     }
 }

@@ -61,6 +61,7 @@
                                    <th>Email</th>
                                    <th>Phone</th>
                                    <th>Birthdate</th>
+                                   <th>Salary</th>
                                    <th>Status</th>
                                    <th>Edit</th>
                                </tr>
@@ -72,6 +73,7 @@
 <!--                                   <th>Email</th>-->
 <!--                                   <th>Phone</th>-->
 <!--                                   <th>Birthdate</th>-->
+<!--                               <th>Salary</th>-->
 <!--                                   <th>Status</th>-->
 <!--                                   <th>Edit</th>-->
 <!--                               </tr>-->
@@ -84,7 +86,7 @@
         <!-- Add Employee Modal-->
                 <div id="addEmployee" class="modal fade">
                     <div class="modal-dialog">
-                        <form method="post" id="employee_form" enctype="multipart/form-data">
+                        <form method="POST" id="employee_form" enctype="multipart/form-data">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title">Add Employee</h4>
@@ -92,19 +94,52 @@
                                 </div>
                                 <div class="modal-body">
                                     <label>Name</label>
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter name"><br/>
+                                    <input
+                                            type="text"
+                                            name="name"
+                                            id="name"
+                                            class="form-control"
+                                            placeholder="Enter name"
+                                            required
+                                    /><br/>
                                     <label>Surname</label>
-                                    <input type="text" name="surname" id="surname" class="form-control" placeholder="Enter surname"><br/>
+                                    <input
+                                            type="text"
+                                            name="surname"
+                                            id="surname"
+                                            class="form-control"
+                                            placeholder="Enter surname"
+                                            required
+                                    /><br/>
                                     <label>Email</label>
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Enter "><br/>
+                                    <input
+                                            type="email"
+                                            name="email"
+                                            id="email"
+                                            class="form-control"
+                                            placeholder="Enter email"
+                                            required
+                                    /><br/>
                                     <label>Phone</label>
-                                    <input type="phone" name="phone" id="phone" class="form-control"><br/>
-<!--                                    <label>Position</label>-->
-<!--                                    <input type="text" name="position" id="position" class="form-control"><br/>-->
+                                    <input
+                                            type="phone"
+                                            name="phone"
+                                            id="phone"
+                                            class="form-control"
+                                            placeholder="Enter phone number"
+                                            required
+                                    /><br/>
                                     <label>Birthdate</label>
-                                    <input type="date" name="birthday" id="birthday" class="form-control"><br/>
+                                    <input
+                                            type="date"
+                                            name="birthday"
+                                            id="birthday"
+                                            class="form-control"
+                                            placeholder="Select birthdate"
+                                            required
+                                    /><br/>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="create_user">
+                                        <input class="form-check-input" type="checkbox" value="true" id="create_user" name="create_user">
                                         <label class="form-check-label" for="flexCheckChecked"">
                                             Create User Account
                                         </label>
@@ -112,7 +147,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <input type="hidden" name="employee_id" id="employee_id"/>
-                                    <input type="hidden" name="operation="operation"/>
+                                    <input type="hidden" name="operation"/>
                                     <input type="submit" name="action" id="action" class="btn btn-primary" value="Add"/>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal"> Close</button>
                                 </div>
@@ -148,6 +183,7 @@
                     {"data": "email"},
                     {"data": "phone"},
                     {"data": "birthday"},
+                    {"data": "salary"},
                     {"data": "status"},
                     {"data": "edit"}
                 ],
@@ -156,27 +192,37 @@
                 }
             })
 
-            $(document).on('submit', '#employee_form', function(event){
+            $('#employee_form').on('submit', function(event) {
                 event.preventDefault();
-                const name = $('#name').val();
-                const surname = $('#surname').val();
-                const email = $('#email').val();
-                const phone = $('#phone').val();
-                const birthday = $('#birthday').val();
-                console.log(new FormData(this))
-                //You can check input
+
+                const $createUser = document.getElementById("create_user").checked;
+
+                const data = {
+                    name: $('#name').val(),
+                    surname: $('#surname').val(),
+                    email: $('#email').val(),
+                    phone: $('#phone').val(),
+                    birthday: $('#birthday').val(),
+                    createUser: $createUser,
+                    operation: $('#action').val()
+                };
+
+                console.log(data);
+
                 $.ajax({
                     url: "controller/insertEmployee.php",
                     method: "POST",
-                    data: new FormData(this),
-                    contentType: false,
-                    processData: false,
+                    dataType: "json",
+                    data: data,
+                    // contentType: false,
+                    // processData: false,
                     success: function(data) {
+                        console.log(data);
                         $('#employee_form')[0].reset();
                         $('#addEmployee').modal('hide');
                         dataTable.ajax.reload();
                     }
-                })
+                });
             });
         })
     </script>

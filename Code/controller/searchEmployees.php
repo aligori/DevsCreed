@@ -1,6 +1,8 @@
 <?php
-    include('../model/employee.class.php');
+    include_once('../model/employee.class.php');
+    include_once('../model/db_conn.php');
 
+    $dbh = Database::get_connection();
     $query = '';
     $output = array();
     $query .= 'SELECT * FROM `staff`';
@@ -18,20 +20,20 @@
         $query .= 'ORDER BY employee_id ASC ';
     }
 
-
-    $emp = new Employee();
+    $emp = new Employee($dbh);
     $result = $emp->getAllEmployees($query);
     $data = $result[0];
     $filtered_rows = $result[1];
     $table = "";
     foreach($data as $row) {
-        $edit = '<a href=\"edicionUsuario.php?a='.$row['employee_id'].'\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\">Edit</a>';
+        $edit = '<a href=\"edit.php?a='.$row['employee_id'].'\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\">Edit</a>';
         $table.='{
                       "employee_id":"'.$row['employee_id'].'",
                       "full_name":"'.$row['full_name'].'",
                       "email":"'.$row['email'].'",
                       "phone":"'.$row['phone'].'",
                       "birthday":"'.$row['birthday'].'",
+                      "salary":"'.$row['salary'].'",
                       "status":"'.$row['status'].'",
                       "edit": "'.$edit.'"
                     },';

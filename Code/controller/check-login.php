@@ -1,4 +1,5 @@
 <?php
+require_once("../model/db_conn.php");
 require_once("../model/user.class.php");
 
 function test_input($data) {
@@ -11,7 +12,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = test_input($_POST['username']);
     $password = test_input($_POST['password']);
-    $user =(new Users())->verifyLogin($username, $password);
+    $dbh = Database::get_connection();
+    $user =(new Users($dbh))->verifyLogin($username, $password);
 
     if ($user) {
         session_start();

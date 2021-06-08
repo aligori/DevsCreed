@@ -1,14 +1,11 @@
 <?php
-    require('db_conn.php');
-
     class Users {
 
-        private $dbh = null;
+        private $dbh;
 
-        public function __construct(){
-            $this->dbh = (new Database())->get_connection();
+        public function __construct($dbh){
+            $this->dbh = $dbh;
         }
-
 
         public function verifyLogin($username, $password) {
 

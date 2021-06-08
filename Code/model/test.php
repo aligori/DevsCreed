@@ -7,10 +7,8 @@
   session_start();
  include 'employee.class.php';
 
- $array = (new Employee())->getAllEmployees();
- foreach($array as $row) {
-     echo $row['full_name'];
- }
+ $array = (new Employee())->registerEmployee('Sam Smith', 'anie@gmail.com','34543334','2000-10-10',300000,1,NULL);
+echo $array
 
  ?> 
  </body>
