@@ -204,6 +204,11 @@ CREATE TABLE IF NOT EXISTS `health_records` (
 
 insert into `user_account` (`name`,`surname`,`username`, `password`, `role`) values ("MR.", "Admin","admin", "$2y$10$6Y5yT5HPf3JHwLv3uPobGuFWUBco.VfC.xyw0r94saz2awoIrsZEa", "admin");
 insert into `user_account` (`name`,`surname`,`username`, `password`, `role`) values ("Doktor.", "Doktor","DocDoc", "$2y$10$6Y5yT5HPf3JHwLv3uPobGuFWUBco.VfC.xyw0r94saz2awoIrsZEa", "doctor");
+insert into `user_account` (`name`,`surname`,`username`, `password`, `role`) values ("Receptionist.", "Receptionist","RecRec", "$2y$10$6Y5yT5HPf3JHwLv3uPobGuFWUBco.VfC.xyw0r94saz2awoIrsZEa", "receptionist");
+insert into `user_account` (`name`,`surname`,`username`, `password`, `role`) values ("Patient.", "Patient","PatPat", "$2y$10$6Y5yT5HPf3JHwLv3uPobGuFWUBco.VfC.xyw0r94saz2awoIrsZEa", "patient");
 
 insert into `staff` (`full_name`, `email`, `position`, `phone`, `birthday`, `salary`, `user_id`) values ("Denado Rabeli", "drabeli18@epoka.edu.al", "Administrator", "0692862999", "2000-06-29", 4000, 1);
 insert into `staff` (`full_name`, `email`, `position`, `phone`, `birthday`, `salary`, `user_id`) values ("Doktor Doktor", "doc@epoka.edu.al", "Cardiologist", "0699999999", "2000-06-29", 3500, 2);
+insert into `staff` (`full_name`, `email`, `position`, `phone`, `birthday`, `salary`, `user_id`) values ("Receptionist Receptionist", "rec@epoka.edu.al", "Head Receptionist", "0698888888", "2000-06-29", 3000, 3);
+
+insert into `patient` (`full_name`, `email`, `address`, `phone`, `status`, `birthday`, `user_id`) values ("Patient Patient", "pat@epoka.edu.al", "Hene", "0697777777", "active",  "2000-06-29", 4);
