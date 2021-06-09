@@ -201,4 +201,3 @@ CREATE TABLE IF NOT EXISTS `health_records` (
 ) ;
 
 -- Inserting values for testing purposes
-

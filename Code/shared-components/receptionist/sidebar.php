@@ -2,7 +2,7 @@
 <div class="sidebar">
     <div class="sidebar-header">
         <h3 class="brand">
-            <span>ADMIN</span>
+            <span>RECEPTION</span>
         </h3>
         <label for="sidebar-toggle" class="ti-menu-alt"></label>
     </div>
@@ -10,7 +10,7 @@
     <div class="sidebar-menu">
         <ul>
 
-            <a href="admin-dashboard.php">
+            <a href="receptionist-dashboard.php">
                 <li>
                     <span class="ti-home"></span>
                     <span>Home</span>
@@ -18,39 +18,39 @@
             </a>
 
 
-            <a href="admin-users.php">
+            <a href="receptionist-appointments.php">
+                <li>
+                    <span class="ti-calendar"></span>
+                    <span>Appointments</span>
+                </li>
+            </a>
+
+
+            <a href="receptionist-doctors.php">
                 <li>
                     <span class="ti-user"></span>
-                    <span>System Users</span>
+                    <span>Doctors</span>
                 </li>
             </a>
 
-
-            <a href="admin-employees.php">
+            <a href="receptionist-patients.php">
                 <li>
-                    <span class="ti-folder"></span>
-                    <span>Employees</span>
+                    <span class="ti-wheelchair"></span>
+                    <span>Patients</span>
                 </li>
             </a>
 
-            <a href="">
+
+            <a href="receptionist-payments.php">
                 <li>
-                    <span class="ti-folder"></span>
-                    <span>Projects</span>
+                    <span class="ti-credit-card"></span>
+                    <span>Payments</span>
                 </li>
             </a>
 
 
-            <a href="">
-                <li>
-                    <span class="ti-time"></span>
-                    <span>Timesheet</span>
-                </li>
-            </a>
-
-
-            <a href="">
-                <li><span class="ti-book"></span>
+            <a href="receptionist-contacts.php">
+                <li><span class="ti-email"></span>
                     <span>Contacts</span></li>
             </a>
 

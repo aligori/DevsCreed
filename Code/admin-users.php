@@ -52,7 +52,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                 <th>Surname</th>
                                 <th>Role</th>
                                 <th>Username</th>
-                                <th>Edit</th>
                             </tr>
                             </thead>
                         </table>
