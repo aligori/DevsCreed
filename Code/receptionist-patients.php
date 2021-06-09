@@ -21,7 +21,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
         <!--    Topbar       -->
         <header>
             <div class="navbar navbar-dark">
-                <a href="admin-dashboard.php" class="logo me-auto"><img src="assets/images/logo.png" alt="Clinic Logo" class="img-fluid"></a>
+                <a href="receptionist-dashboard.php" class="logo me-auto"><img src="assets/images/logo.png" alt="Clinic Logo" class="img-fluid"></a>
                 <a><?php echo $_SESSION['user']['username'] ?></a>
             </div>
         </header>
@@ -30,7 +30,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
             <br/>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="admin-dashboard.php">Home</a></li>
+                    <li class="breadcrumb-item"><a href="receptionist-dashboard.php">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Patients</li>
                 </ol>
             </nav>

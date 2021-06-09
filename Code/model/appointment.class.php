@@ -10,10 +10,10 @@
         }
 
 
-        public function addNewAppointment($full_name, $email, $phone, $date, $time, $doctor_id, $service_id, $patient_id, $status, $description) {
-            $query = "INSERT INTO `appointment` (`name`, `email`, `phone`, `date`, `time`, `doctor_id`, `service_id`, `patient_id`, `status`, `description`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        public function addNewAppointment($full_name, $email, $phone, $time, $doctor_id, $service_id, $patient_id, $status, $description) {
+            $query = "INSERT INTO `appointment` (`name`, `email`, `phone`, `time`, `doctor_id`, `service_id`, `patient_id`, `status`, `description`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             $stmt = $this->dbh->prepare($query);
-            return $stmt->execute([$full_name, $email, $phone, $date, $time, $doctor_id, $service_id, $patient_id, $status, $description]);
+            return $stmt->execute([$full_name, $email, $phone, $time, $doctor_id, $service_id, $patient_id, $status, $description]);
         }
 
         public function  getNextAppointment($doctor_id) {
