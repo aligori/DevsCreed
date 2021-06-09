@@ -131,6 +131,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                                         <option value="3">Economist</option>
                                                         <option value="3">Janitor</option>
                                                     </select><br/><br/>
+
                                                 </div>
                                             </div>
                                         </div>
