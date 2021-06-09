@@ -172,12 +172,13 @@ CREATE TABLE IF NOT EXISTS `appointment` (
                                    'completed'
                                    ) NOT NULL,
                                `time` datetime NOT NULL,
-                               `assigned_to` bigint unsigned DEFAULT NULL,
+                               `doctor_id` bigint unsigned DEFAULT NULL,
                                `patient_id` bigint unsigned DEFAULT NULL,
                                `transaction_id` bigint unsigned DEFAULT NULL,
                                `service_id` bigint unsigned DEFAULT NULL,
+                               `description` varchar(200) DEFAULT NULL,
                                PRIMARY KEY (`a_id`),
-                               CONSTRAINT `appointment_FK` FOREIGN KEY (`assigned_to`) REFERENCES `staff` (`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                               CONSTRAINT `appointment_FK` FOREIGN KEY (`doctor_id`) REFERENCES `staff` (`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE,
                                CONSTRAINT `appointment_FK_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`) ON DELETE SET NULL ON UPDATE CASCADE,
                                CONSTRAINT `appointment_FK_2` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`transaction_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
                                CONSTRAINT `appointment_FK_3` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -200,15 +201,3 @@ CREATE TABLE IF NOT EXISTS `health_records` (
 ) ;
 
 -- Inserting values for testing purposes
-
-
-insert into `user_account` (`name`,`surname`,`username`, `password`, `role`) values ("MR.", "Admin","admin", "$2y$10$6Y5yT5HPf3JHwLv3uPobGuFWUBco.VfC.xyw0r94saz2awoIrsZEa", "admin");
-insert into `user_account` (`name`,`surname`,`username`, `password`, `role`) values ("Doktor.", "Doktor","DocDoc", "$2y$10$6Y5yT5HPf3JHwLv3uPobGuFWUBco.VfC.xyw0r94saz2awoIrsZEa", "doctor");
-insert into `user_account` (`name`,`surname`,`username`, `password`, `role`) values ("Receptionist.", "Receptionist","RecRec", "$2y$10$6Y5yT5HPf3JHwLv3uPobGuFWUBco.VfC.xyw0r94saz2awoIrsZEa", "receptionist");
-insert into `user_account` (`name`,`surname`,`username`, `password`, `role`) values ("Patient.", "Patient","PatPat", "$2y$10$6Y5yT5HPf3JHwLv3uPobGuFWUBco.VfC.xyw0r94saz2awoIrsZEa", "patient");
-
-insert into `staff` (`full_name`, `email`, `position`, `phone`, `birthday`, `salary`, `user_id`) values ("Denado Rabeli", "drabeli18@epoka.edu.al", "Administrator", "0692862999", "2000-06-29", 4000, 1);
-insert into `staff` (`full_name`, `email`, `position`, `phone`, `birthday`, `salary`, `user_id`) values ("Doktor Doktor", "doc@epoka.edu.al", "Cardiologist", "0699999999", "2000-06-29", 3500, 2);
-insert into `staff` (`full_name`, `email`, `position`, `phone`, `birthday`, `salary`, `user_id`) values ("Receptionist Receptionist", "rec@epoka.edu.al", "Head Receptionist", "0698888888", "2000-06-29", 3000, 3);
-
-insert into `patient` (`full_name`, `email`, `address`, `phone`, `status`, `birthday`, `user_id`) values ("Patient Patient", "pat@epoka.edu.al", "Hene", "0697777777", "active",  "2000-06-29", 4);
