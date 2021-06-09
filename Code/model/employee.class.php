@@ -73,7 +73,7 @@
         }
 
         public function getDoctors(){
-            $query = "SELECT * FROM `staff` WHERE `position` = ?"
+            $query = "SELECT * FROM `staff` WHERE `position` = ?";
             $stmt = $this->dbh->prepare($query);
             $stmt->execute(["doctor"]);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

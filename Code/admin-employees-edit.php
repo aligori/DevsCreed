@@ -35,9 +35,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                     <li class="breadcrumb-item active" aria-current="page">Edit employee</li>
                 </ol>
             </nav>
-            <br/>
                 <div class="card-body">
-
                     <!--  Employee Modify-->
                     <div class="container" >
                         <div id="editEmployee">
@@ -94,15 +92,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                                             placeholder=<?php echo($data['email']); ?>
                                                             required
                                                     /><br/>
-                                                    <label>Address</label>
-                                                    <input
-                                                            type="text"
-                                                            name="address"
-                                                            id="address"
-                                                            class="form-control"
-                                                            placeholder=<?php echo($data['address']); ?>
-                                                            required
-                                                    /><br/>
                                                 </div>
                                                 <div class="col-6">
                                                     <label>Phone</label>
@@ -114,13 +103,13 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                                             placeholder=<?php echo("0".$data['phone']); ?>
                                                             required
                                                     /><br/>
-                                                    <label>Birthdate</label>
+                                                    <label>Address</label>
                                                     <input
-                                                            type="date"
-                                                            name="birthday"
-                                                            id="birthday"
+                                                            type="text"
+                                                            name="address"
+                                                            id="address"
                                                             class="form-control"
-                                                            placeholder=<?php echo($birthday);  ?>
+                                                            placeholder=<?php echo($data['address']); ?>
                                                             required
                                                     /><br/>
                                                     <label>Position</label>
@@ -130,7 +119,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                                         <option value="2">Receptionist</option>
                                                         <option value="3">Economist</option>
                                                         <option value="3">Janitor</option>
-                                                    </select><br/><br/>
+                                                    </select>
 
                                                 </div>
                                             </div>
