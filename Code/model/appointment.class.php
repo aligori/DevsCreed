@@ -9,29 +9,35 @@
             $this->dbh = $dbh;
         }
 
-        /*
-         *
-         * `a_id` bigint unsigned NOT NULL AUTO_INCREMENT,
-                               `status` ENUM(
-                                   'approved',
-                                   'rejected',
-                                   'cancelled',
-                                   'requested',
-                                   'completed'
-                                   ) NOT NULL,
-                               `time` datetime NOT NULL,
-                               `assigned_to` bigint unsigned DEFAULT NULL,
-                               `booked_by` bigint unsigned DEFAULT NULL,
-                               `transaction_id` bigint unsigned NOT NULL,
-                               `service_id` bigint unsigned DEFAULT NULL,
-         *
-         *
-         * */
 
-        public function addNewAppointment($time, $assigned_to, $booked_by){
-            $query = "INSERT INTO `appointment` (`status`, `time`, `assigned_to`, `booked_by`) VALUES (?, ?, ?, ?);";
+        public function addNewAppointment($full_name, $email, $phone, $date, $time, $doctor_id, $service_id, $patient_id, $status, $description) {
+            $query = "INSERT INTO `appointment` (`name`, `email`, `phone`, `date`, `time`, `doctor_id`, `service_id`, `patient_id`, `status`, `description`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             $stmt = $this->dbh->prepare($query);
-            $stmt->execute(["approved", $time, $assigned_to, $booked_by]);
+            return $stmt->execute([$full_name, $email, $phone, $date, $time, $doctor_id, $service_id, $patient_id, $status, $description]);
+        }
+
+        public function  getNextAppointment($doctor_id) {
+            //Prepare query and fetch result
+            $stmt = $this->dbh->prepare("SELECT * FROM `appointment` WHERE `time` > NOW() AND `doctor_id` = ? AND status = ? ORDER BY `time` asc LIMIT 1");
+            $stmt->execute([$doctor_id, "approved"]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public function getAvailableTimeSlots($date, $doctor_id): array {
+            $date .= "%";
+            $query = "SELECT HOUR(time) AS hour FROM `appointment` WHERE `time` LIKE ? AND `doctor_id` = ? ORDER BY `time` asc";
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute([$date, $doctor_id]);
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $busy = array();
+            $timeslots = array("09", "10", "11", "12", "13", "14", "15", "16", "17", "18");
+
+            foreach($rows as $time) {
+                array_push($busy, $time['hour']);
+            }
+
+            return array_diff($timeslots, $busy);
         }
 
         public function addTransaction($transaction, $a_id){
@@ -51,24 +57,7 @@
             //Prepare query and fetch result
             $stmt = $this->dbh->prepare("SELECT * FROM `appointment` WHERE `a_id` = ?");
             $stmt->execute([$a_id]);
-            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if(!$arr) exit('No rows');
-
-            /*
-            What will be returned: 
-                                    `a_id` 
-                                    `status` 
-                                    `time` 
-                                    `assigned_to` 
-                                    `booked_by` 
-                                    `transaction_id` 
-                                    `service_id`
-            */
-
-            var_export($arr);
-            //The stmt = null is a good coding practice.
-            $stmt = null;
-            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function getAppointmentRequests() {
@@ -79,21 +68,17 @@
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!$arr) exit('No rows');
 
-            var_export($arr);
-            //The stmt = null is a good coding practice.
-            $stmt = null;
+            return $arr;
 
         }
 
         public function manageAppointmentRequests($a_id, $string, $employee_id) {
             if( strcmp($string, "approved") == 0){
-
-                $query = "UPDATE `appointment` SET `status` = 'approved', `assigned_to` = ? WHERE a_id = ?";
+                $query = "UPDATE `appointment` SET `status` = 'approved', `doctor_id` = ? WHERE a_id = ?";
                 $stmt = $this->dbh->prepare($query);
                 $stmt->execute([$employee_id, $a_id]);
 
             }else {
-                // We use 0 as employee_id value for the case of rejected appointment
                 $query = "UPDATE `appointment` SET `status` = 'rejected' WHERE a_id = ?";
                 $stmt = $this->dbh->prepare($query);
                 $stmt->execute([$a_id]);
@@ -102,7 +87,7 @@
             $stmt = null;
         }
 
-        public function setAppointmentToCompleted($a_id) {
+        public function completeAppointment($a_id) {
             $query = "UPDATE `appointment` SET `status` = 'completed' WHERE a_id = ?";
 
             $stmt = $this->dbh->prepare($query);
@@ -110,16 +95,9 @@
             $stmt = null;
         }
 
-        public function  getNextAppointment($doctor_id){ //$time should be the current time in format yyyy-mm-dd hh:mm:ss
-            //Prepare query and fetch result
-            $stmt = $this->dbh->prepare("SELECT * FROM `appointment` WHERE `time` > NOW() AND `assigned_to` = ? AND status = ? ORDER BY `time` asc LIMIT 1");
-            $stmt->execute([$doctor_id, "approved"]);
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        }
-
         public function  getNrAppointment($assigned_to, $time){
             //Prepare query and fetch result
-            $stmt = $this->dbh->prepare("SELECT COUNT(`a_id`) FROM `appointment` WHERE `assigned_to` = ? AND `time` = ?");
+            $stmt = $this->dbh->prepare("SELECT COUNT(`a_id`) FROM `appointment` WHERE `doctor_id` = ? AND `time` = ?");
             $stmt->execute([$assigned_to, $time]);
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!$arr) exit('No rows');
@@ -142,11 +120,11 @@
 
         }
 
-        public function modifyAppointmentDoctor($a_id, $change) {
-            $query = "UPDATE `appointment` SET `assigned_to` = ? WHERE a_id = ?";
+        public function modifyAppointmentDoctor($a_id, $doctor_id) {
+            $query = "UPDATE `appointment` SET `doctor_id` = ? WHERE a_id = ?";
 
             $stmt = $this->dbh->prepare($query);
-            $stmt->execute([$change, $a_id]);
+            $stmt->execute([$doctor_id, $a_id]);
             $stmt = null;
 
         }
