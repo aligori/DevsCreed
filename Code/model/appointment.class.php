@@ -110,16 +110,11 @@
             $stmt = null;
         }
 
-        public function  getNextAppointment($time){ //$time should be the current time in format yyyy-mm-dd hh:mm:ss
+        public function  getNextAppointment($doctor_id){ //$time should be the current time in format yyyy-mm-dd hh:mm:ss
             //Prepare query and fetch result
-            $stmt = $this->dbh->prepare("SELECT * FROM `appointment` WHERE time > STR_TO_DATE(?, '%Y-%m-%d %H:%i:%s');");
-            $stmt->execute([$time]);
-            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if(!$arr) exit('No rows');
-
-            var_export($arr);
-            //The stmt = null is a good coding practice.
-            $stmt = null;
+            $stmt = $this->dbh->prepare("SELECT * FROM `appointment` WHERE `time` > NOW() AND `assigned_to` = ? AND status = ? ORDER BY `time` asc LIMIT 1");
+            $stmt->execute([$doctor_id, "approved"]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
         public function  getNrAppointment($assigned_to, $time){

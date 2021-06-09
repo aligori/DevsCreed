@@ -61,4 +61,10 @@
             $stmt = $this->dbh->prepare($query);
             $stmt->execute([$newPassword, $user_id]);
         }
+
+        public function getAllEmployeeData($user_id) {
+            $stmt = $this->dbh->prepare("SELECT employee_id FROM `user_account` INNER JOIN `staff` ON user_account.user_id = staff.user_id WHERE $user_id = ?");
+            $stmt->execute([$user_id]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
     }

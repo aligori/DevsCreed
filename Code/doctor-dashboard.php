@@ -1,6 +1,14 @@
 <?php
     session_start();
     if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'doctor') {
+        require_once ('model/db_conn.php');
+        include 'model/appointment.class.php';
+        include 'model/user.class.php';
+
+        $dbh = Database::get_connection();
+        $employee = (new Users($dbh))->getAllEmployeeData($_SESSION['user_id']);
+        $app_class = new Appointment($dbh);
+        $nextApp = ($app_class)->getNextAppointment($employee["employee_id"]);
 ?>
 
 <html lang="en">
@@ -20,7 +28,7 @@ include('shared-components/doctor/sidebar.php');
 
     <header>
         <div class="navbar navbar-dark">
-            <a href="index.php" class="logo me-auto"><img src="assets/images/logo.png" alt="Clinic Logo" class="img-fluid"></a>
+            <a href="doctor-dashboard.php" class="logo me-auto"><img src="assets/images/logo.png" alt="Clinic Logo" class="img-fluid"></a>
             <a><?php echo $_SESSION['user']['username'] ?></a>
         </div>
     </header>
@@ -66,12 +74,21 @@ include('shared-components/doctor/sidebar.php');
                     <div>
 <!--                        FIX THIS WITH PHP QUERY-->
                         <h5>Next Appointment</h5>
-                        <h4>Armela Ligori</h4>
-                        <h4>15:15</h4>
+<!--                        <h4 hidden id="app_id">--><?php //echo $employee['employee_id']?><!--</h4>-->
+                        <h4><?php echo $nextApp["full_name"]?></h4>
+                        <h4><?php echo explode(" ", $nextApp["time"])[1];?></h4>
                     </div>
                 </div>
                 <div class="card-footer ">
-                    <a href="doctor-patients.php" class="btn btn-outline-primary">View  <span class="ti-angle-right"> </span></a>
+                    <button
+                            type="submit"
+                            data-toggle="modal"
+                            id="viewButton"
+                            data-target="#viewAppointment"
+                            class="btn btn-outline-primary">
+                        View
+                        <span class="ti-angle-right"></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -107,13 +124,69 @@ include('shared-components/doctor/sidebar.php');
     </main>
 </div>
 
+<div id="viewAppointment" class="modal fade">
+    <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"> <span class="ti-alarm-clock"></span> Next Appointment </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times</button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-2 col-form-label">Client</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" name="name" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="inputPassword3" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-2 col-form-label">Phone</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name"readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-2 col-form-label">Time</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="inputPassword3" readonly >
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-2 col-form-label">Details</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="desc" readonly>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="view" class="btn btn-danger" data-dismiss="modal"> Close</button>
+                </div>
+            </div>
+
+    </div>
+</div>
+
 <!--<script>-->
 <!--    // Basic example-->
 <!--    $(document).ready(function () {-->
-<!--        $('#today_table').DataTable({-->
-<!--            "pagingType": "simple" // "simple" option for 'Previous' and 'Next' buttons only-->
-<!--        });-->
-<!--        $('.dataTables_length').addClass('bs-select');-->
+<!--        $.ajax({-->
+<!--            url: "controller/fetchSingleAppointment.php",-->
+<!--            method: "POST",-->
+<!--            success: function(data) {-->
+<!--                $('#name').val(data['name']);-->
+<!--                $('#email').val(data['email']);-->
+<!--                $('#phone').val(['phone']);-->
+<!--                $('#time').val(['time']);-->
+<!--            }-->
+<!--        })-->
+<!---->
 <!--    });-->
 <!--</script>-->
 </body>

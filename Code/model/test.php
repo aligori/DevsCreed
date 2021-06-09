@@ -5,10 +5,12 @@
  <body>
  <?php
   session_start();
- include 'employee.class.php';
+  require_once ('db_conn.php');
+ include 'user.class.php';
 
- $array = (new Employee())->registerEmployee('Sam Smith', 'anie@gmail.com','34543334','2000-10-10',300000,1,NULL);
-echo $array
+ $array = (new Users(Database::get_connection()))->getAllEmployeeData('2');
+var_dump($array);
+die();
 
  ?> 
  </body>
