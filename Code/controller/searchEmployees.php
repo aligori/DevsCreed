@@ -24,15 +24,14 @@
             $query .= 'ORDER BY employee_id ASC ';
         }
 
-        $emp = new Employee($dbh);
-        $result = $emp->getAllEmployees($query);
-        $data = $result[0];
-        $filtered_rows = $result[1];
-        $table = "";
-        foreach($data as $row) {
-            $edit = '<a href=\"edit.php?a='.$row['employee_id'].'\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\">Edit</a>';
-            $table.='{
-                      "employee_id":"'.$row['employee_id'].'",
+    $emp = new Employee($dbh);
+    $result = $emp->getAllEmployees($query);
+    $data = $result[0];
+    $filtered_rows = $result[1];
+    $table = "";
+    foreach($data as $row) {
+        $edit = '<a href=\"admin-employees-edit.php?a='.$row['employee_id'].'\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\">Edit</a>';
+        $table.='{    "employee_id":"'.$row['employee_id'].'",
                       "full_name":"'.$row['full_name'].'",
                       "position":"'.$row['position'].'",
                       "email":"'.$row['email'].'",
