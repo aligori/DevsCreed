@@ -20,7 +20,7 @@
             //Prepare query and fetch result
             $stmt = $this->dbh->prepare("SELECT * FROM `appointment` WHERE `time` > NOW() AND `doctor_id` = ? AND status = ? ORDER BY `time` asc LIMIT 1");
             $stmt->execute([$doctor_id, "approved"]);
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function getAvailableTimeSlots($date, $doctor_id): array {

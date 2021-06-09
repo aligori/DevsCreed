@@ -75,8 +75,8 @@ include('shared-components/doctor/sidebar.php');
 <!--                        FIX THIS WITH PHP QUERY-->
                         <h5>Next Appointment</h5>
 <!--                        <h4 hidden id="app_id">--><?php //echo $employee['employee_id']?><!--</h4>-->
-                        <h4><?php echo $nextApp["full_name"]?></h4>
-                        <h4><?php echo explode(" ", $nextApp["time"])[1];?></h4>
+                        <h4><?php echo $nextApp? $nextApp["full_name"]: "No more appointments for today!"?></h4>
+                        <h4><?php echo $nextApp? explode(" ", $nextApp["time"])[1]: " ";?></h4>
                     </div>
                 </div>
                 <div class="card-footer ">
