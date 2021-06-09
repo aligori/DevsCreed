@@ -180,7 +180,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
                     {"data": "phone"},
                     {"data": "birthday"},
                     {"data": "address"},
-                    {"data": "status"},
                     {"data": "edit"}
                 ],
                 "oLanguage": {
