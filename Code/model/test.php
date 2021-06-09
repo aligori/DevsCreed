@@ -6,11 +6,12 @@
  <?php
   session_start();
   require_once ('db_conn.php');
- include 'user.class.php';
+ include 'appointment.class.php';
+ $array = (new Appointment(Database::get_connection()))->getAvailableTimeSlots("2021-06-09", "2");
 
- $array = (new Users(Database::get_connection()))->getAllEmployeeData('2');
-var_dump($array);
-die();
+foreach($array as $i) {
+    echo $i." ";
+}
 
  ?> 
  </body>
