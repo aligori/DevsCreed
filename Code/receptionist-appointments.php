@@ -1,13 +1,7 @@
 <?php
-session_start();
-if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
-    include_once('model/db_conn.php');
-    include_once('model/patient.class.php');
-    $dbh = Database::get_connection();
-    $nr_patients = (new Patient($dbh))->getNrPatients();
-
-    ?>
-
+    session_start();
+    if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
+?>
     <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -31,13 +25,14 @@ include('shared-components/receptionist/sidebar.php');
 
     <main>
 
-        <nav aria-label="breadcrumb" style="margin-top: 60px;">
+        <br/>
+        <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <h4 class="text-secondary">
-                    Hello, <?php echo $_SESSION['user']['name']." ";  echo $_SESSION['user']['surname'] ?>
-                </h4>
+                <li class="breadcrumb-item"><a href="receptionist-dashboard.php">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Appointments</li>
             </ol>
         </nav>
+        <br/>
 
         <div class="dash-cards">
 
@@ -45,12 +40,15 @@ include('shared-components/receptionist/sidebar.php');
                 <div class="card-body">
                     <span class="ti-time"></span>
                     <div>
-                        <h5>Schedule Appointment</h5>
-                        <h4>New</h4>
+                        <h5>Manage Requests</h5>
+                        <h4>0 Requests</h4>
+<!--                        TODO: GET From DB-->
+                        <br/>
+                        <br/>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="receptionist-scheduleAppointment.php"> <i class="fa fa-plus-circle fa-2x"></i></a>
+                    <a href="receptionist-manage-requests.php"> <i class="fa fa-arrow-alt-circle-right fa-2x"></i></a>
                 </div>
             </div>
 
@@ -58,8 +56,8 @@ include('shared-components/receptionist/sidebar.php');
                 <div class="card-body">
                     <span class="ti-wheelchair"></span>
                     <div>
-                        <h5>Patients</h5>
-                        <h4><?php echo $nr_patients["cnt"].' Active Patients' ?></h4>
+                        <h5>Upcomming Appointments</h5>
+                        <h4>View</h4>
                         <br/>
                     </div>
                 </div>
@@ -72,8 +70,8 @@ include('shared-components/receptionist/sidebar.php');
                 <div class="card-body">
                     <span class="ti-receipt"></span>
                     <div>
-                        <h5>Process Payment</h5>
-                        <h4>Create invoice</h4>
+                        <h5>All Appointments</h5>
+                        <h4>Check appointment history</h4>
                         <br/>
                     </div>
                 </div>

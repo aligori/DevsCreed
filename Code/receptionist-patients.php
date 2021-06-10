@@ -109,15 +109,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
                                             placeholder="Enter email"
                                             required
                                         /><br/>
-                                        <label>Address</label>
-                                        <input
-                                            type="text"
-                                            name="address"
-                                            id="address"
-                                            class="form-control"
-                                            placeholder="Enter address"
-                                            required
-                                        /><br/>
                                     </div>
                                     <div class="col-6">
                                         <label>Phone</label>
@@ -137,6 +128,15 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
                                             class="form-control"
                                             placeholder="Select birthdate"
                                             required
+                                        /><br/>
+                                        <label>Address</label>
+                                        <input
+                                                type="text"
+                                                name="address"
+                                                id="address"
+                                                class="form-control"
+                                                placeholder="Enter address"
+                                                required
                                         /><br/>
                                     </div>
                                 </div>

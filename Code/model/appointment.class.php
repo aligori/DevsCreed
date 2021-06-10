@@ -82,14 +82,12 @@
         }
 
         public function getAppointmentRequests() {
-
-            //Prepare query and fetch result
             $stmt = $this->dbh->prepare("SELECT * FROM `appointment` WHERE `status` = 'requested'");
             $stmt->execute();
-            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if(!$arr) exit('No rows');
-
-            return $arr;
+            $result = array();
+            array_push($result, $stmt->fetchAll(PDO::FETCH_ASSOC));
+            array_push($result, $stmt->rowCount());
+            return $result;
 
         }
 

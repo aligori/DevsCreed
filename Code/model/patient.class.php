@@ -9,12 +9,6 @@
             $this->dbh = $dbh;
         }
 
-        public function addPatient($full_name, $email, $address, $phone, $birthday, $patient_diagnosis_id){
-            $query = "INSERT INTO `patient` (`full_name`, `email`, `address`, `phone`, `birthday`, `patient_diagnosis_id`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?);";
-            $stmt = $this->dbh->prepare($query);
-            $stmt->execute([$full_name, $email, $address, $phone, $birthday, $patient_diagnosis_id, "active"]);
-        }
-
         public function getPatient($patient_id) {
 
             $stmt = $this->dbh->prepare("SELECT * FROM `patient` WHERE patient_id = ?");
@@ -46,15 +40,11 @@
         }
 
         public function  getNrPatients(){
-            //Prepare query and fetch result
-            $stmt = $this->dbh->prepare("SELECT COUNT(`patient_id`) FROM `patient` WHERE `status` = 'active'");
+            $stmt = $this->dbh->prepare("SELECT COUNT(`patient_id`) as cnt FROM `patient` WHERE `status` = 'active'");
             $stmt->execute([]);
-            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if(!$arr) exit('No rows');
-
-            //The stmt = null is a good coding practice.
+            $count = $stmt->fetch(PDO::FETCH_ASSOC);
             $stmt = null;
-            return $arr;
+            return $count;
         }
 
         public function modifyPatientName($patient_id, $change) {
