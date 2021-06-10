@@ -8,7 +8,9 @@
         $dbh = Database::get_connection();
         $employee = (new Users($dbh))->getAllEmployeeData($_SESSION['user_id']);
         $app_class = new Appointment($dbh);
+        $_SESSION['doctor_id'] = $employee["employee_id"];
         $nextApp = ($app_class)->getNextAppointment($employee["employee_id"]);
+        $today_schedule = ($app_class)->getTodaysSchedule($employee["employee_id"])
 ?>
 
 <html lang="en">
@@ -75,8 +77,8 @@ include('shared-components/doctor/sidebar.php');
 <!--                        FIX THIS WITH PHP QUERY-->
                         <h5>Next Appointment</h5>
 <!--                        <h4 hidden id="app_id">--><?php //echo $employee['employee_id']?><!--</h4>-->
-                        <h4><?php echo $nextApp["full_name"]?></h4>
-                        <h4><?php echo explode(" ", $nextApp["time"])[1];?></h4>
+                        <h4><?php echo $nextApp? $nextApp["full_name"]: "No more appointments for today!"?></h4>
+                        <h4><?php echo $nextApp? explode(" ", $nextApp["time"])[1]: " ";?></h4>
                     </div>
                 </div>
                 <div class="card-footer ">
@@ -113,9 +115,24 @@ include('shared-components/doctor/sidebar.php');
                             <th>Phone</th>
                             <th>Visit time</th>
                             <th>Status</th>
+                            <th colspan="2">Action</th>
                         </tr>
                         </thead>
                         <tbody>
+
+                            <?php foreach($today_schedule as $app) { ?>
+                            <tr>
+                                <td id="full_name"> <?php echo $app['full_name'] ?> </td>
+                                <td id="full_name"> <?php echo $app['email'] ?> </td>
+                                <td id="full_name"> <?php echo $app['phone'] ?> </td>
+                                <td id="full_name"> <?php echo explode(' ', $app['time'])[1] ?> </td>
+                                <td id="full_name"> <?php echo $app['status'] ?> </td>
+                                <form action="" method="post">
+                                    <td>
+                                        <button type="submit" class="btn btn-warning btn-sm" value="">  Cancel <i class='fas fa-times'></i> </button>
+                                    </td> </form>
+                            </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

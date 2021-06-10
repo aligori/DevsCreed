@@ -11,7 +11,7 @@
 
 
         public function addNewAppointment($full_name, $email, $phone, $time, $doctor_id, $service_id, $patient_id, $status, $description) {
-            $query = "INSERT INTO `appointment` (`name`, `email`, `phone`, `time`, `doctor_id`, `service_id`, `patient_id`, `status`, `description`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            $query = "INSERT INTO `appointment` (`full_name`, `email`, `phone`, `time`, `doctor_id`, `service_id`, `patient_id`, `status`, `description`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
             $stmt = $this->dbh->prepare($query);
             return $stmt->execute([$full_name, $email, $phone, $time, $doctor_id, $service_id, $patient_id, $status, $description]);
         }
@@ -38,6 +38,27 @@
             }
 
             return array_diff($timeslots, $busy);
+        }
+
+        public function getTodaysSchedule($doctor_id) {
+            $date = date("Y-m-d");
+            $date .= "%";
+
+            $query = "SELECT * FROM `appointment` WHERE `time` LIKE ? AND `doctor_id` = ? ORDER BY `time` asc";
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute([$date, $doctor_id]);
+            return  $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function getDoctorsAppointments($query, $doctor_id) {
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute([$doctor_id]);
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $rowCount = $stmt->rowCount();
+            $result = array();
+            array_push($result, $data);
+            array_push($result, $rowCount);
+            return $result;
         }
 
         public function addTransaction($transaction, $a_id){
