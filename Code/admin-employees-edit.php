@@ -53,13 +53,10 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                             $dbh = Database::get_connection();
                                             $userClass = new Employee($dbh);
 
-                                            $employee_id = (int)$_GET['a'];
+                                            $employee_id = intval($_GET['a']);
                                             $user = ($userClass)->getEmployee($employee_id);
                                             $data = $user;
                                             $pieces = explode(" ", $data['full_name']);
-
-                                            $date = explode("-", $data['birthday']);
-                                            $birthday = $date[2]."/".$date[1]."/".$date[0]
                                         ?>
 
                                         <div class="modal-body">
@@ -71,7 +68,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                                             name="name"
                                                             id="name"
                                                             class="form-control"
-                                                            placeholder=<?php echo($pieces['0']); ?>
+                                                            value=<?php echo($pieces['0']); ?>
                                                             required
                                                     /><br/>
                                                     <label>Surname</label>
@@ -80,7 +77,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                                             name="surname"
                                                             id="surname"
                                                             class="form-control"
-                                                            placeholder=<?php echo($pieces['1']); ?>
+                                                            value=<?php echo($pieces['1']); ?>
                                                             required
                                                     /><br/>
                                                     <label>Email</label>
@@ -89,9 +86,17 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                                             name="email"
                                                             id="email"
                                                             class="form-control"
-                                                            placeholder=<?php echo($data['email']); ?>
+                                                            value=<?php echo($data['email']); ?>
                                                             required
                                                     /><br/>
+
+                                                    <label>Status</label>
+                                                    <select class="form-control form-select form-select-lg mb-3" id="status">
+                                                        <option value="" selected hidden><?php echo($data['status']);?></option>
+                                                        <option value="1">Active</option>
+                                                        <option value="2">Passive</option>
+                                                    </select>
+
                                                 </div>
                                                 <div class="col-6">
                                                     <label>Phone</label>
@@ -100,7 +105,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                                             name="phone"
                                                             id="phone"
                                                             class="form-control"
-                                                            placeholder=<?php echo("0".$data['phone']); ?>
+                                                            value=<?php echo("0".$data['phone']); ?>
                                                             required
                                                     /><br/>
                                                     <label>Address</label>
@@ -109,12 +114,23 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                                             name="address"
                                                             id="address"
                                                             class="form-control"
-                                                            placeholder=<?php echo($data['address']); ?>
+                                                            value=<?php echo($data['address']); ?>
                                                             required
                                                     /><br/>
+
+                                                    <label>Salary</label>
+                                                    <input
+                                                            type="text"
+                                                            name="salary"
+                                                            id="salary"
+                                                            class="form-control"
+                                                            value=<?php echo($data['salary']); ?>
+                                                            required
+                                                    /><br/>
+
                                                     <label>Position</label>
                                                     <select class="form-control form-select form-select-lg mb-3" id="position">
-                                                        <option value="" disabled selected hidden><?php echo($data['position']);?></option>
+                                                        <option value="" selected hidden><?php echo($data['position']);?></option>
                                                         <option value="1">Doctor</option>
                                                         <option value="2">Receptionist</option>
                                                         <option value="3">Economist</option>
@@ -125,7 +141,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <input type="hidden" name="employee_id" id="employee_id"/>
+                                            <input type="hidden" id="employee_id" name="employee_id" value="<?php $employee_id ?>"/>
                                             <input type="hidden" name="operation"/>
                                             <input type="submit" name="action" id="action" class="btn btn-primary" value="Edit"/>
                                             <button type="button" class="btn btn-danger" onclick="location.href='admin-employees.php';"> Cancel</button>
@@ -152,16 +168,16 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
 
             $('#employee_form').on('submit', function(event) {
 
-                event.preventDefault();
-
                 const data = {
                     name: $('#name').val(),
                     surname: $('#surname').val(),
                     email: $('#email').val(),
+                    status: $('#status option:selected').text(),
                     phone: $('#phone').val(),
-                    birthday: $('#birthday').val(),
                     address: $('#address').val(),
+                    salary: $('#salary').val(),
                     position: $('#position option:selected').text(),
+                    employee_id: $('#employee_id').val(),
                     operation: $('#action').val()
                 };
 

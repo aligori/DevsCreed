@@ -41,11 +41,11 @@
             return $stmt->rowCount();
         }
 
-        public function registerEmployee($full_name, $email, $position, $phone, $birthday, $salary, $address, $status, $user_id) {
-            $query = "INSERT INTO `staff` (`full_name`, `email`, `position`, `phone`, `birthday`, `salary`, `address`, `status`, `user_id`)";
-            $query .= " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        public function registerEmployee($full_name, $email, $position, $phone, $salary, $address, $status, $user_id) {
+            $query = "INSERT INTO `staff` (`full_name`, `email`, `position`, `phone`, `salary`, `address`, `status`, `user_id`)";
+            $query .= " VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
             $stmt = $this->dbh->prepare($query);
-            return $stmt->execute([$full_name, $email, $position, $phone, $birthday, $salary, $address, $status, $user_id]);
+            return $stmt->execute([$full_name, $email, $position, $phone, $salary, $address, $status, $user_id]);
         }
 
         public function getEmployee($employee_id) {
@@ -64,7 +64,7 @@
                    `phone` = ?, 
                    `status` = ?, 
                    `birthday` = ?,
-                    `salary` = ?
+                   `salary` = ?
                     WHERE `employee_id` = ?;";
 
             $stmt = $this->dbh->prepare($query);
