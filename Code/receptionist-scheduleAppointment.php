@@ -3,9 +3,11 @@ session_start();
 if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
     include_once ('model/db_conn.php');
     include_once('model/employee.class.php');
+    include_once('model/service.class.php');
+
     $dbh = Database::get_connection();
-//    (new Employee($dbh))->getDoctors();
-    $doctors = array("Armela Ligori", "Kim Tan");
+    $doctors = (new Employee($dbh))->getDoctors();
+    $services = (new Service($dbh))->getServices();
     ?>
 
     <html lang="en">
@@ -50,29 +52,34 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
                             <div class="form-row" >
                                 <div class="form-group col-md-6">
                                     <label for="name">Full Name</label>
-                                    <input type="password" class="form-control" id="name" placeholder="Password">
+                                    <input type="text" class="form-control" id="name" placeholder="Password" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Email">
+                                    <input type="email" class="form-control" id="email" placeholder="Email" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Service</label>
                                 <select class="form-control form-select form-select-lg mb-3" id="service">
-                                    <option value="1">General</option>
-                                    <option value="2">Eye Strain</option>
+                                    <?php
+                                        foreach ($services as $service) {
+                                            $service_id = $service['service_id'];
+                                            echo '<option value="'.$service_id.'">'.$service['name'].'</option>';
+                                        }
+                                    ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <div class="form-group">
                                     <label>Doctor</label>
                                     <select class="form-control form-select form-select-lg mb-3" id="doctor">
-<!--                                        --><?php
-//                                        foreach ($doctors as $doctor) {
-//                                            $employee_id = $doctor;
-//                                            ?><!-- <option value="--><?php //echo $doctor['employee_id'] ?><!--">--><?// echo $doctor['full_name'] ?><!--</option>' --><?php
-//                                        }
+                                        <option value="0">Select Doctor</option>
+                                        <?php
+                                        foreach ($doctors as $doctor) {
+                                            $employee_id = $doctor['employee_id'];
+                                            echo '<option value="'.$employee_id.'">'.$doctor['full_name'].'</option>';
+                                        }
 //                                        ?>
                                     </select>
                                 </div>
@@ -80,13 +87,12 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="date">Date</label>
-                                    <input type="date" class="form-control" id="date">
+                                    <input type="date" class="form-control" id="date" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="time">Time</label>
                                     <select id="time" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
+                                        <option selected>Choose ...</option>
                                     </select>
                                 </div>
                             </div>
@@ -108,36 +114,57 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
                 event.preventDefault();
 
                 const data = {
-                    name: $('#name').val(),
-                    surname: $('#surname').val(),
+                    full_name: $('#name').val(),
                     email: $('#email').val(),
-                    phone: $('#phone').val(),
-                    birthday: $('#birthday').val(),
-                    address: $('#address').val(),
-                    operation: $('#action').val()
+                    service_id: document.getElementById('service').value,
+                    doctor_id: document.getElementById('doctor').value,
+                    date: $('#date').val(),
+                    time: document.getElementById('time').value,
                 };
 
                 console.log(data);
 
                 $.ajax({
-                    url: "controller/insertPatients.php",
+                    url: "controller/insertAppointment.php",
                     method: "POST",
                     dataType: "json",
                     data: data,
-                    // contentType: false,
-                    // processData: false,
                     success: function(data) {
                         console.log(data);
-                        $('#patient_form')[0].reset();
-                        $('#addPatient').modal('hide');
-                        dataTable.ajax.reload();
                     }
                 });
             });
 
-            $('#position').on('change', function () {
-                console.log('test')
-            })
+            $('#doctor, #date').on('change', function() {
+
+                if(  $('#doctor option:selected').text() !== 'Select Doctor' && $('#date').val() ){
+                    // make request for available dates only when both filled
+                    console.log('Both completed');
+                    const doctor_id = document.getElementById('doctor').value;
+                    const date = $('#date').val();
+                    $('#time').children().remove().end();
+
+                    $.ajax({
+                        type: "GET",
+                        url: 'controller/available-timeslots.php',
+                        data: {doctor_id: doctor_id, date: date},
+                        success: function(data) {
+                            const slots = JSON.parse(data);
+
+                            // get reference to select element
+                            const select = document.getElementById('time');
+                            select.remove(0);
+
+                            for (const [key, value] of Object.entries(slots)) {
+                                const opt = document.createElement('option');
+                                opt.appendChild(document.createTextNode(value + ':00:00'));
+                                opt.value = value;
+                                select.appendChild(opt);
+                            }
+                        }
+                    });
+                }
+            });
         })
     </script>
     </body>

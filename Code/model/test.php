@@ -6,10 +6,11 @@
  <?php
   session_start();
   require_once ('db_conn.php');
- include 'appointment.class.php';
- $array = (new Appointment(Database::get_connection()))->getNextAppointment("2");
-
-echo $array['a_id'];
+ include_once('employee.class.php');
+ $dbh = Database::get_connection();
+ $doctors = (new Employee($dbh))->getDoctors();
+ var_dump($doctors);
+ die();
 
  ?> 
  </body>

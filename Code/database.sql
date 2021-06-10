@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `service` (
                            `price` int unsigned NOT NULL,
                            `service_id` bigint unsigned NOT NULL AUTO_INCREMENT,
                            PRIMARY KEY (`service_id`)
-) ;
+);
 
 
 -- ecms.product definition
