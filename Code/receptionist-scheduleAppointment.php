@@ -46,22 +46,28 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-8">
-                        <form class="border shadow p-3 rounded">
+                        <form method="POST" action="controller/book-appointment.php" class="border shadow p-3 rounded" id="appointment_form">
                             <h4>Appointment's Details</h4>
+                            <?php if (isset($_GET['success'])) { ?>
+                                <div class="alert alert-success" role="alert"><?=$_GET['success']?></div>
+                            <?php } ?>
+                            <?php if (isset($_GET['error'])) { ?>
+                                <div class="alert alert-danger" role="alert"><?=$_GET['error']?></div>
+                            <?php } ?>
                             <hr/>
                             <div class="form-row" >
                                 <div class="form-group col-md-6">
                                     <label for="name">Full Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Password" required>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Password" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Service</label>
-                                <select class="form-control form-select form-select-lg mb-3" id="service">
+                                <select class="form-control form-select form-select-lg mb-3" id="service" name="service_id">
                                     <?php
                                         foreach ($services as $service) {
                                             $service_id = $service['service_id'];
@@ -73,7 +79,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
                             <div class="form-group">
                                 <div class="form-group">
                                     <label>Doctor</label>
-                                    <select class="form-control form-select form-select-lg mb-3" id="doctor">
+                                    <select class="form-control form-select form-select-lg mb-3" id="doctor" name="doctor_id">
                                         <option value="0">Select Doctor</option>
                                         <?php
                                         foreach ($doctors as $doctor) {
@@ -87,16 +93,20 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="date">Date</label>
-                                    <input type="date" class="form-control" id="date" required>
+                                    <input type="date" name="date" class="form-control" id="date" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="time">Time</label>
-                                    <select id="time" class="form-control">
+                                    <select id="time" name="time" class="form-control">
                                         <option selected>Choose ...</option>
                                     </select>
                                 </div>
                             </div>
                             <hr/>
+                            <div class="form-group">
+                                <label for="desc">Optional Details</label>
+                                <textarea class="form-control" id="desc" name="desc" rows="2"></textarea>
+                            </div>
                             <input type="submit" name="action" id="action" class="btn btn-primary" value="Add"/>
                             <button type="button" class="btn btn-danger" data-dismiss="modal"> Clear </button>
                         </form>
@@ -110,30 +120,30 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
 
         $(document).ready(function(){
 
-            $('#appointment_form').on('submit', function(event) {
-                event.preventDefault();
-
-                const data = {
-                    full_name: $('#name').val(),
-                    email: $('#email').val(),
-                    service_id: document.getElementById('service').value,
-                    doctor_id: document.getElementById('doctor').value,
-                    date: $('#date').val(),
-                    time: document.getElementById('time').value,
-                };
-
-                console.log(data);
-
-                $.ajax({
-                    url: "controller/insertAppointment.php",
-                    method: "POST",
-                    dataType: "json",
-                    data: data,
-                    success: function(data) {
-                        console.log(data);
-                    }
-                });
-            });
+            // $('#appointment_form').on('submit', function(event) {
+            //     event.preventDefault();
+            //
+            //     const data = {
+            //         full_name: $('#name').val(),
+            //         email: $('#email').val(),
+            //         service_id: document.getElementById('service').value,
+            //         doctor_id: document.getElementById('doctor').value,
+            //         date: $('#date').val(),
+            //         time: document.getElementById('time').value,
+            //     };
+            //
+            //     console.log(data);
+            //
+            //     $.ajax({
+            //         url: "controller/book-appointment.php",
+            //         method: "POST",
+            //         dataType: "json",
+            //         data: data,
+            //         success: function(data) {
+            //             alert(data);
+            //         }
+            //     });
+            // });
 
             $('#doctor, #date').on('change', function() {
 

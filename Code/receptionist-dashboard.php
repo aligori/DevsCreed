@@ -30,7 +30,7 @@ include('shared-components/receptionist/sidebar.php');
         <nav aria-label="breadcrumb" style="margin-top: 60px;">
             <ol class="breadcrumb">
                 <h4 class="text-secondary">
-                    Hello, <?php echo $_SESSION['user']['name'];  echo $_SESSION['user']['surname'] ?>
+                    Hello, <?php echo $_SESSION['user']['name']." ";  echo $_SESSION['user']['surname'] ?>
                 </h4>
             </ol>
         </nav>

@@ -9,6 +9,7 @@
         $employee = (new Users($dbh))->getAllEmployeeData($_SESSION['user_id']);
         $app_class = new Appointment($dbh);
         $nextApp = ($app_class)->getNextAppointment($employee["employee_id"]);
+        $today_schedule = ($app_class)->getTodaysSchedule($employee["employee_id"])
 ?>
 
 <html lang="en">
@@ -113,9 +114,28 @@ include('shared-components/doctor/sidebar.php');
                             <th>Phone</th>
                             <th>Visit time</th>
                             <th>Status</th>
+                            <th colspan="2">Action</th>
                         </tr>
                         </thead>
                         <tbody>
+
+                            <?php foreach($today_schedule as $app) { ?>
+                            <tr>
+                                <td id="full_name"> <?php echo $app['full_name'] ?> </td>
+                                <td id="full_name"> <?php echo $app['email'] ?> </td>
+                                <td id="full_name"> <?php echo $app['phone'] ?> </td>
+                                <td id="full_name"> <?php echo explode(' ', $app['time'])[1] ?> </td>
+                                <td id="full_name"> <?php echo $app['status'] ?> </td>
+                                <form action="" method="post">
+                                    <td>
+                                        <button type="submit" class="btn btn-primary" value=""> <i class='far fa-edit'></i> Edit </button>
+                                    </td> </form>
+                                <td>
+                                    <button type="button" class="btn btn-warning delBtn" value="">
+                                        <i class='fas fa-trash-alt'></i> Remove </button>
+                                </td>
+                            </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
