@@ -8,6 +8,7 @@
         $dbh = Database::get_connection();
         $employee = (new Users($dbh))->getAllEmployeeData($_SESSION['user_id']);
         $app_class = new Appointment($dbh);
+        $_SESSION['doctor_id'] = $employee["employee_id"];
         $nextApp = ($app_class)->getNextAppointment($employee["employee_id"]);
         $today_schedule = ($app_class)->getTodaysSchedule($employee["employee_id"])
 ?>
@@ -128,12 +129,8 @@ include('shared-components/doctor/sidebar.php');
                                 <td id="full_name"> <?php echo $app['status'] ?> </td>
                                 <form action="" method="post">
                                     <td>
-                                        <button type="submit" class="btn btn-primary" value=""> <i class='far fa-edit'></i> Edit </button>
+                                        <button type="submit" class="btn btn-warning btn-sm" value="">  Cancel <i class='fas fa-times'></i> </button>
                                     </td> </form>
-                                <td>
-                                    <button type="button" class="btn btn-warning delBtn" value="">
-                                        <i class='fas fa-trash-alt'></i> Remove </button>
-                                </td>
                             </tr>
                             <?php } ?>
                         </tbody>

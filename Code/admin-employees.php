@@ -68,18 +68,6 @@
                                    <th>Edit</th>
                                </tr>
                                </thead>
-<!--                               <tfoot>-->
-<!--                               <tr>-->
-<!--                                   <th>Employee id</th>-->
-<!--                                   <th>Full Name</th>-->
-<!--                                   <th>Email</th>-->
-<!--                                   <th>Phone</th>-->
-<!--                                   <th>Birthdate</th>-->
-<!--                               <th>Salary</th>-->
-<!--                                   <th>Status</th>-->
-<!--                                   <th>Edit</th>-->
-<!--                               </tr>-->
-<!--                               </tfoot>-->
                            </table>
                        </div>
                     </div>

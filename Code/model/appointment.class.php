@@ -50,6 +50,17 @@
             return  $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        public function getDoctorsAppointments($query, $doctor_id) {
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute([$doctor_id]);
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $rowCount = $stmt->rowCount();
+            $result = array();
+            array_push($result, $data);
+            array_push($result, $rowCount);
+            return $result;
+        }
+
         public function addTransaction($transaction, $a_id){
             $query = "UPDATE `appointment` SET `transaction_id` = ? WHERE `a_id` = ?";
             $stmt = $this->dbh->prepare($query);

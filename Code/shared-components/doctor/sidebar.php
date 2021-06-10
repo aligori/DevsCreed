@@ -10,7 +10,7 @@
     <div class="sidebar-menu">
         <ul>
 
-            <a href="admin-dashboard.php">
+            <a href="doctor-dashboard.php">
                 <li>
                     <span class="ti-home"></span>
                     <span>Home</span>
@@ -18,7 +18,7 @@
             </a>
 
 
-            <a href="">
+            <a href="doctor-schedule.php">
                 <li>
                     <span class="ti-time"></span>
                     <span>My Schedule</span>
@@ -26,7 +26,7 @@
             </a>
 
 
-            <a href="admin-employees.php">
+            <a href="doctor-profile.php">
                 <li>
                     <span class="ti-user"></span>
                     <span>My Profile</span>

@@ -14,7 +14,7 @@
         if(isset($_POST['search']['value'])) {
             $query .= 'WHERE full_name LIKE "%'.$_POST["search"]["value"].'%"';
             $query .= 'OR email LIKE "%'.$_POST["search"]["value"].'%"';
-            $query .= 'OR email LIKE "%'.$_POST["search"]["value"].'%"';
+            $query .= 'OR phone LIKE "%'.$_POST["search"]["value"].'%"';
             $query .= 'OR position LIKE "%'.$_POST["search"]["value"].'%"';
         }
 
