@@ -46,23 +46,20 @@ include('shared-components/doctor/sidebar.php');
         <button class="btn btn-outline-success" id="tomorrow">Tomorrow</button>
         <br/>
         <br/>
-        <div class="row" id="container">
-            <div id="test">
-                <table id="appointments_table" class="table table-primary" >
-                    <thead>
-                    <tr>
-                        <th>Client</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Visit time</th>
-                        <th>Status</th>
-                        <th>Service</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
+
+        <table id="appointments_table" class="table table-primary" >
+            <thead>
+            <tr>
+                <th>Client</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Visit time</th>
+                <th>Status</th>
+                <th>Service</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+        </table>
     </main>
 </div>
 
@@ -90,16 +87,6 @@ include('shared-components/doctor/sidebar.php');
             "oLanguage": {
                 "sProcessing": "Processing...",
             }
-        })
-
-        $('#today').on('click', function() {
-            const e = document.querySelector("#test");
-            e.parentElement.removeChild(e);
-            var tag = document.createElement("p");
-            var text = document.createTextNode("Tutorix is the best e-learning platform");
-            tag.appendChild(text);
-            var element = document.getElementById("test");
-            element.appendChild(tag);
         })
     } );
 </script>
