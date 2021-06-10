@@ -33,9 +33,10 @@
                                     `description` 
                                     `category_id`
             */
-            var_export($arr);
+
             //The stmt = null is a good coding practice.
             $stmt = null;
+            return $arr;
             
         }
 

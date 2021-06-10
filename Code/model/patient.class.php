@@ -17,30 +17,16 @@
 
         public function getPatient($patient_id) {
 
-            //Prepare query and fetch result
             $stmt = $this->dbh->prepare("SELECT * FROM `patient` WHERE patient_id = ?");
             $stmt->execute([$patient_id]);
             $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!$arr) exit('No rows');
-
-            /*
-            What will be returned:
-                           `patient_id`
-                           `full_name`
-                           `email`
-                           `address`
-                           `phone`
-                           `birthday`
-            */
-
-            //The stmt = null is a good coding practice.
             $stmt = null;
-            var_export($arr);
+            return $arr;
 
         }
 
         public function getAllPatients($query): array {
-
             $stmt = $this->dbh->prepare($query);
             $stmt->execute();
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -115,5 +101,11 @@
             $stmt->execute([$change, $patient_id]);
             $stmt = null;
 
+        }
+
+        public function getPatientByEmail($email) {
+            $stmt = $this->dbh->prepare("SELECT * FROM `patient` WHERE email = ?");
+            $stmt->execute([$email]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         }
     }

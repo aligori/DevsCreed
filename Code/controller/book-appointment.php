@@ -1,38 +1,52 @@
 <?php
     include_once('../model/db_conn.php');
     include_once('../model/appointment.class.php');
+    include_once('../model/patient.class.php');
+    include('../utils/helpers.php');
+
     $dbh = Database::get_connection();
 
-    if ($_POST) {
         $full_name = $_POST['name'];
         $email = $_POST['email'];
-        $phone = $_POST['phone'];
         $date = $_POST['date'];
         $time = $_POST['time'];
-//        $description = $_POST['description'];
+        $patient = null;
+        $phone = null;
         $doctor_id = null;
         $patient_id = null;
         $service_id = null;
         $status = "requested";
-        $description = $_POST['description'];
+        $description = null;
+
+        $date .= ' '.$time.':00:00';
 
         if($_POST['doctor_id']) {
             $doctor_id = $_POST['doctor_id'];
             $status = "approved";
         }
 
-        if($_POST['patient_id']) {
-            $patient_id = $_POST['patient_id'];
+        if($_POST['email']) {
+            $patient = (new Patient($dbh))->getPatientByEmail($_POST['email']);
+            if($patient) {
+                $patient_id = $patient['patient_id'];
+                $phone = $patient['phone'];
+            } else {
+                $phone = $_POST['phone'];
+            }
         }
 
         if($_POST['service_id']) {
             $service_id = $_POST['service_id'];
         }
 
-        $result = (new Appointment($dbh))->addNewAppointment($full_name, $email, $phone, $date, $time, $doctor_id, $service_id, $patient_id, $status, $description);
+        if($_POST['desc']) {
+            $description = $_POST['desc'];
+        }
 
-//        if ($result) {
-//            return
-//        }
+        $result = (new Appointment($dbh))->addNewAppointment($full_name, $email, $phone, $date, $doctor_id, $service_id, $patient_id, $status, $description);
 
-}
+        if ($result) {
+            header("Location: ../receptionist-scheduleAppointment.php?success=Successfully scheduled appointment!");
+        } else {
+            header("Location: ../receptionist-scheduleAppointment.php?error=There was a problem in adding this appointment!");
+        }
