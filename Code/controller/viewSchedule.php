@@ -22,17 +22,6 @@ if(isset($_SESSION['user_id']) && ($_SESSION['role'] === 'doctor')) {
         $query .= 'OR service LIKE "%'.$_POST["search"]["value"].'%"';
     }
 
-//    if(isset($_POST['time'])) {
-//        $time = $_POST['time'];
-//        $date = date("Y-m-d");
-//        if($time == 'today') {
-//            $query .= 'AND time LIKE "'.$date.'%"';
-//        } else {
-//            $tomorrow = date("Y-m-d", strtotime('tomorrow'));
-//            $query .= 'AND time LIKE "'.$tomorrow.'%"';
-//        }
-//    }
-
     if(isset($_POST['order'])) {
         $query .= 'ORDER BY'.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].'';
     } else {

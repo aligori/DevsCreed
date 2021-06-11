@@ -139,20 +139,15 @@
 
         }
 
-        public function modifyAppointmentDoctor($a_id, $doctor_id) {
-            $query = "UPDATE `appointment` SET `doctor_id` = ? WHERE a_id = ?";
-
+        public function assignDoctor($a_id, $doctor_id) {
+            $query = "UPDATE `appointment` SET `doctor_id` = ?, `status` = ?, `service_id` = 1 WHERE a_id = ?";
             $stmt = $this->dbh->prepare($query);
-            $stmt->execute([$doctor_id, $a_id]);
-            $stmt = null;
-
+            return $stmt->execute([$doctor_id,"approved", $a_id]);
         }
 
         public function cancelAppointment($a_id) {
             $query = "UPDATE `appointment` SET `status` = 'cancelled' WHERE a_id = ?";
-
             $stmt = $this->dbh->prepare($query);
-            $stmt->execute([$a_id]);
-            $stmt = null;
+            return $stmt->execute([$a_id]);
         }
     }

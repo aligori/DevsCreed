@@ -40,6 +40,11 @@
                     </ol>
                 </nav>
                 <br/>
+                <?php if (isset($_GET['error'])) { ?>
+                    <div class="alert alert-danger" role="alert"><?=$_GET['error']?></div>
+                <?php } else if (isset($_GET['success'])) { ?>
+                    <div class="alert alert-danger" role="alert"><?=$_GET['success']?></div>
+                <?php } ?>
 
                 <div class="card" style="margin-top: auto">
                     <div class="card-header">
@@ -55,7 +60,7 @@
                             <table id="today_table" class="table table-primary table-hover" >
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th hidden>ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
@@ -73,7 +78,7 @@
                                     <?php } else {
                                         foreach($requests[0] as $request) { ?>
                                             <tr>
-                                                <td id="a_id"> <?php echo $request['a_id'] ?> </td>
+                                                <td id="a_id" hidden> <?php echo $request['a_id'] ?> </td>
                                                 <td id="full_name"> <?php echo $request['full_name'] ?> </td>
                                                 <td id="email"> <?php echo $request['email'] ?> </td>
                                                 <td id="phone"> <?php echo $request['phone'] ?> </td>
@@ -86,7 +91,7 @@
                                                         <button type="button" class="btn btn-primary btn-sm" value="" id="reschedule" data-toggle="modal" data-target="#rescheduleModal">
                                                             <i class='fas fa-clock'></i>
                                                         </button>
-                                                        <button type="button" class="btn btn-danger btn-sm" value="" id="reject" data-toggle="modal" data-target="#cancelModal">
+                                                        <button type="button" class="btn btn-danger btn-sm" value="" id="reject">
                                                             <i class='fas fa-times'></i>
                                                         </button>
                                                     </td>
@@ -111,11 +116,13 @@
                             </div>
                             <div class="modal-body">
                                 Are you sure you want to reject this appointment request?
-                                <input type="text" hidden id="cancel_a_id">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-danger">Reject</button>
+                                <form method="POST" action="controller/manage-requests.php">
+                                    <input type="text" hidden id="cancel_a_id" name="cancel_a_id">
+                                    <button type="submit" class="btn btn-danger" id="modal_reject_button" name="modal_reject_button">Reject</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -132,11 +139,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="controller/book-appointment.php" class="border shadow p-3 rounded" id="appointment_form">
+                                <form method="POST" action="controller/manage-requests.php" class="border shadow p-3 rounded">
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label>Available Doctors</label>
-                                        <select class="form-control form-select form-select-lg mb-3" id="doctor" name="doctor_id">
+                                        <select class="form-control form-select form-select-lg mb-3" id="doctor_id" name="doctor_id">
                                             <?php
                                             foreach ($doctors as $doctor) {
                                                 $employee_id = $doctor['employee_id'];
@@ -145,10 +152,11 @@
                                             ?>
                                         </select>
                                     </div>
+                                    <input type="text" hidden id="approve_a_id" name="approve_a_id">
                                 </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success">Confirm</button>
+                                <button type="submit" class="btn btn-success" id="modal_approve_button" name="modal_approve_button">Confirm</button>
                             </div>
                                 </form>
                         </div>
@@ -208,14 +216,25 @@
         $(document).ready( function() {
 
             $('#reject').on('click', function() {
-                let $tr = $(this).closest('tr');
+                $('#cancelModal').modal('show');
+                $tr = $(this).closest('tr');
 
-                const data = $tr.children('td').map(() => {
+                const data = $tr.children('td').map(function() {
                     return $(this).text();
                 }).get();
 
                 $('#cancel_a_id').val(data[0]);
-                console.log(data[0]);
+            })
+
+            $('#approve').on('click', function() {
+                $('#approveModal').modal('show');
+                $tr = $(this).closest('tr');
+
+                const data = $tr.children('td').map(function() {
+                    return $(this).text();
+                }).get();
+
+                $('#approve_a_id').val(data[0]);
             })
 
             $('#doctor_r, #date_r').on('change', function() {

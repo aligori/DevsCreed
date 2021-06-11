@@ -178,10 +178,10 @@ CREATE TABLE IF NOT EXISTS `appointment` (
                                `service_id` bigint unsigned DEFAULT NULL,
                                `description` varchar(200) DEFAULT NULL,
                                PRIMARY KEY (`a_id`),
-                               CONSTRAINT `appointment_FK` FOREIGN KEY (`doctor_id`) REFERENCES `staff` (`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                               CONSTRAINT `appointment_FK_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                               CONSTRAINT `appointment_FK_2` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`transaction_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-                               CONSTRAINT `appointment_FK_3` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`) ON DELETE SET NULL ON UPDATE CASCADE
+                               CONSTRAINT `appointment_FK` FOREIGN KEY (`doctor_id`) REFERENCES `staff` (`employee_id`) ON DELETE SET NULL,
+                               CONSTRAINT `appointment_FK_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`) ON DELETE SET NULL,
+                               CONSTRAINT `appointment_FK_2` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`transaction_id`) ON DELETE RESTRICT,
+                               CONSTRAINT `appointment_FK_3` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`) ON DELETE SET NULL
 ) ;
 
 -- ecms.`health records` definition
