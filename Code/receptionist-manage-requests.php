@@ -192,19 +192,20 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="date">Date</label>
+                                            <label for="date_r">Date</label>
                                             <input type="date" name="date_r" class="form-control" id="date_r" required>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="time">Time</label>
-                                            <select id="time" name="time" class="form-control">
+                                            <label for="time_r">Time</label>
+                                            <select id="time_r" name="time_r" class="form-control">
                                                 <option selected>Choose ...</option>
                                             </select>
                                         </div>
+                                        <input type="text" hidden id="reschedule_a_id" name="reschedule_a_id">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-success">Reschedule</button>
+                                        <button type="submit" class="btn btn-success" id="modal_reschedule_button" name="modal_reschedule_button">Reschedule</button>
                                     </div>
                                 </form>
                             </div>
@@ -237,13 +238,24 @@
                 $('#approve_a_id').val(data[0]);
             })
 
+            $('#reschedule').on('click', function() {
+                $('#rescheduleModal').modal('show');
+                $tr = $(this).closest('tr');
+
+                const data = $tr.children('td').map(function() {
+                    return $(this).text();
+                }).get();
+
+                $('#reschedule_a_id').val(data[0]);
+            })
+
             $('#doctor_r, #date_r').on('change', function() {
 
                 if(  $('#doctor_r option:selected').text() !== 'Select Doctor' && $('#date_r').val() ){
                     // make request for available dates only when both filled
                     const doctor_id = document.getElementById('doctor_r').value;
                     const date = $('#date_r').val();
-                    $('#time').children().remove().end();
+                    $('#time_r').children().remove().end();
 
                     $.ajax({
                         type: "GET",
@@ -251,9 +263,8 @@
                         data: {doctor_id: doctor_id, date: date},
                         success: function(data) {
                             const slots = JSON.parse(data);
-
                             // get reference to select element
-                            const select = document.getElementById('time');
+                            const select = document.getElementById('time_r');
                             select.remove(0);
 
                             for (const [key, value] of Object.entries(slots)) {

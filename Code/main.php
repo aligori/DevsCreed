@@ -42,7 +42,6 @@
     <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
 
-
 </head>
 
 <body>
@@ -293,33 +292,34 @@
                 <p>Request your appointment now by filling the form.</p>
             </div>
 
-            <form action="controller/book-appointment.php" method="post" role="form" class="php-email-form">
+            <form action="controller/book-appointment.php" method="post" class="php-email-form">
 
                 <div class="row">
                     <div class="col-md-4 form-group">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                         <div class="validate"></div>
                     </div>
                     <div class="col-md-4 form-group mt-3 mt-md-0">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" required>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"  required>
                         <div class="validate"></div>
                     </div>
                     <div class="col-md-4 form-group mt-3 mt-md-0">
-                        <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required>
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" required>
                         <div class="validate"></div>
                     </div>
                 </div>
 
                 <div class="row">
-
                     <div class='col-sm-6 '>
                         <form>
                             <div class="form-group mt-3 mt-md-0">
-                                <div class='input-group date' id='datepicker'>
-                                    <input type='text' class="form-control" placeholder="Select Date" />
+                                <div class='input-group' id='date_group'>
+                                    <div class="form-group">
+                                        <input type="date" name="date" class="form-control" id="date" required>
+                                    </div>
                                     <span class="input-group-addon">
-                              <span class="glyphicon glyphicon-calendar"></span>
-                          </span>
+                                <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
                                 </div>
                             </div>
                         </form>
@@ -328,8 +328,17 @@
                     <div class='col-sm-6 '>
                         <form>
                             <div class="form-group mt-3 mt-md-0">
-                                <div class="input-group bootstrap-timepicker timepicker">
-                                    <input id="timepicker1" type="text" class="form-control input-small">
+                                <div class="input-group">
+                                    <div class="form-group">
+                                        <select id="time" name="time" class="form-control" placeholder="Time">
+                                            <?php
+                                                $timeslots = array('9:00:00','10:00:00','11:00:00','12:00:00','13:00:00','14:00:00', '15:00:00','16:00:00', '17:00:00','18:00:00');
+                                                foreach($timeslots as $time) {
+                                                    echo '<option value="'.$time.'">'.$time.'</option>';
+                                                }
+                                            ?>
+                                        </select>
+                                    </div>
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                                 </div>
                             </div>
@@ -342,10 +351,9 @@
                         $(function () {
                             $('#datepicker').datepicker({
                                 format: "dd/mm/yyyy",
-                                autoclose: true,
                                 todayHighlight: true,
                                 showOtherMonths: true,
-                                selectOtherMonths: true,
+                                selectOtherMonths: false,
                                 autoclose: true,
                                 changeMonth: true,
                                 changeYear: true,
@@ -356,7 +364,7 @@
 
                     <script type="text/javascript">
                         $('#timepicker1').timepicker({
-                            showInputs: false ,
+                            showInputs: false,
                             scrollbar: true
                         });
                     </script>
@@ -364,13 +372,12 @@
                 </div>
 
                 <div class="form-group mt-3">
-                    <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
+                    <textarea class="form-control" name="desc" id="desc" rows="5" placeholder="Message (Optional)"></textarea>
                     <div class="validate"></div>
                 </div>
 
+                <div class="text-center"><button type="submit" class="btn btn-primary">Request Appointment</button></div>
             </form>
-
-            <div class="text-center"><button class="btn btn-primary">Request Appointment</button></div>
 
         </div>
     </section><!-- End Appointment Section -->

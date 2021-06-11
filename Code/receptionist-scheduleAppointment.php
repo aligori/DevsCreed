@@ -65,16 +65,22 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
                                     <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Service</label>
-                                <select class="form-control form-select form-select-lg mb-3" id="service" name="service_id">
-                                    <?php
-                                        foreach ($services as $service) {
-                                            $service_id = $service['service_id'];
-                                            echo '<option value="'.$service_id.'">'.$service['name'].'</option>';
-                                        }
-                                    ?>
-                                </select>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="email">Phone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Service</label>
+                                    <select class="form-control form-select form-select-lg" id="service" name="service_id">
+                                        <?php
+                                            foreach ($services as $service) {
+                                                $service_id = $service['service_id'];
+                                                echo '<option value="'.$service_id.'">'.$service['name'].'</option>';
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-group">

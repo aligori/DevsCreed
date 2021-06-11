@@ -91,19 +91,17 @@
 
         }
 
-        public function manageAppointmentRequests($a_id, $string, $employee_id) {
-            if( strcmp($string, "approved") == 0){
-                $query = "UPDATE `appointment` SET `status` = 'approved', `doctor_id` = ? WHERE a_id = ?";
+        public function manageRequest($a_id, $action, $doctor_id) {
+            if ($action == "approved"){
+                $query = "UPDATE `appointment` SET `doctor_id` = ?, `status` = ?, `service_id` = 1 WHERE a_id = ?";
                 $stmt = $this->dbh->prepare($query);
-                $stmt->execute([$employee_id, $a_id]);
+                return $stmt->execute([$doctor_id,"approved", $a_id]);
 
-            }else {
+            }else if ($action == "rejected") {
                 $query = "UPDATE `appointment` SET `status` = 'rejected' WHERE a_id = ?";
                 $stmt = $this->dbh->prepare($query);
-                $stmt->execute([$a_id]);
-            }            
-            
-            $stmt = null;
+                return $stmt->execute([$a_id]);
+            }
         }
 
         public function completeAppointment($a_id) {
@@ -115,34 +113,15 @@
         }
 
         public function  getNrAppointment($assigned_to, $time){
-            //Prepare query and fetch result
             $stmt = $this->dbh->prepare("SELECT COUNT(`a_id`) FROM `appointment` WHERE `doctor_id` = ? AND `time` = ?");
             $stmt->execute([$assigned_to, $time]);
-            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if(!$arr) exit('No rows');
-
-            var_export($arr);
-            //The stmt = null is a good coding practice.
-            $stmt = null;
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        /*
-        Used in rescheduling
-        */
-
-        public function modifyAppointmentTime($a_id, $change) {
-            $query = "UPDATE `appointment` SET `time` = ? WHERE a_id = ?";
-            
+        public function reschedule($a_id, $doctor_id, $time) {
+            $query = "UPDATE `appointment` SET `time` = ?, `doctor_id` = ?, `status` = 'approved' WHERE a_id = ?";
             $stmt = $this->dbh->prepare($query);
-            $stmt->execute([$change, $a_id]);
-            $stmt = null;
-
-        }
-
-        public function assignDoctor($a_id, $doctor_id) {
-            $query = "UPDATE `appointment` SET `doctor_id` = ?, `status` = ?, `service_id` = 1 WHERE a_id = ?";
-            $stmt = $this->dbh->prepare($query);
-            return $stmt->execute([$doctor_id,"approved", $a_id]);
+            return $stmt->execute([$time, $doctor_id, $a_id]);
         }
 
         public function cancelAppointment($a_id) {
