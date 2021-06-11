@@ -22,7 +22,7 @@ die();
     if(isset($_POST["operation"])) {
 
         if ($_POST["operation"] == "Edit") {
-            $result = $emp->updateEmployee($full_name, $email, $position, $phone, $salary, $address, $status, $employee_id);
+            $result = $emp->updateEmployee($employee_id, $full_name, $email, $position, $address, $phone, $status, $salary);
             if ($result) {
                 echo json_encode(array("statusCode" => 200));
             }

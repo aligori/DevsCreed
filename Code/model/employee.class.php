@@ -55,7 +55,7 @@
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
-        public function updateEmployee($employee_id, $full_name, $email, $position, $address, $phone, $status, $birthday, $salary) {
+        public function updateEmployee($employee_id, $full_name, $email, $position, $address, $phone, $status, $salary) {
             $query = "UPDATE `staff` 
                     SET `full_name` = ?, 
                    `email`= ?, 
@@ -63,12 +63,11 @@
                    `address` = ?, 
                    `phone` = ?, 
                    `status` = ?, 
-                   `birthday` = ?,
                    `salary` = ?
                     WHERE `employee_id` = ?;";
 
             $stmt = $this->dbh->prepare($query);
-            $stmt->execute([$full_name, $email, $position, $address, $phone, $status, $birthday, $salary, $employee_id]);
+            $stmt->execute([$full_name, $email, $position, $address, $phone, $status, $salary, $employee_id]);
             $stmt = null;
         }
 
