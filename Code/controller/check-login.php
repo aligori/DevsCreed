@@ -30,9 +30,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         else if ($_SESSION['role'] == 'receptionist')
             header("Location: ../receptionist-dashboard.php");
         else if ($_SESSION['role'] == 'patient')
-            header("Location: ../patient.php");
+            header("Location: ../patient-dashboard.php");
         else if ($_SESSION['role'] == 'economist')
-            header("Location: ../economist.php");
+            header("Location: ../economist-dashboard.php");
     } else {
         header("Location: ../login.php?error=Incorrect credentials");
     }

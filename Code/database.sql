@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `user_account`(
     PRIMARY KEY(`user_id`)
 );
 
-ALTER TABLE `user_account` ADD `isOnline` ENUM('online', 'offline') DEFAULT `offline`;
+ALTER TABLE `user_account` ADD `isOnline` ENUM('online', 'offline') DEFAULT 'offline';
 
 CREATE TABLE IF NOT EXISTS `diagnosis` (
     `diagnosis_id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -85,6 +85,10 @@ CREATE TABLE IF NOT EXISTS `transaction` (
      `total` int unsigned NOT NULL,
      `transaction_id` bigint unsigned NOT NULL AUTO_INCREMENT,
      `service_id` bigint unsigned DEFAULT NULL,
+     `type` ENUM(
+         'income',
+         'expenditure'
+         ) NOT NULL,
      PRIMARY KEY (`transaction_id`),
      KEY `transaction_FK` (`service_id`),
      CONSTRAINT `transaction_FK` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -107,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
      `position` varchar(40) NOT NULL,
      `phone` varchar(30) NOT NULL,
      `address` varchar(100) DEFAULT NULL,
-     `photo_uri` varchar(100) DEFAULT_NULL,
+     `photo_uri` varchar(100) DEFAULT NULL,
      `birthday` date NOT NULL,
      `salary` int unsigned NOT NULL DEFAULT 25000,
      `status` ENUM('active','passive') NOT NULL,
@@ -194,4 +198,19 @@ INSERT INTO `diagnosis` (`name`) VALUES
 ('Corneal Disease'),
 ('Myopia');
 
-INSERT INTO `patient_diagnosis` (`patient_id`, `patient_diagnosis_id`, `diagnosis_id`, `details`, `isCurrent`) VALUES ('1', NULL, '1', '-1.0 Dioptres', 'current');
+INSERT INTO `user_account` (`name`, `surname`, `password`, `username`, `role`) VALUES ("Denado", "Rabeli", "$2y$10$LFNAi.BqSeLNzJshHeSUCeSPNesayH7ryFF4qDyDJmJcV8yvSay1i","admin", 'admin');
+
+/*
+`date` datetime NOT NULL,
+     `client` varchar(100) NOT NULL,
+     `total` int unsigned NOT NULL,
+     `transaction_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+     `service_id` bigint unsigned DEFAULT NULL,
+     `type` ENUM(
+         'income',
+         'expenditure'
+         ) NOT NULL,
+
+*/
+INSERT INTO `service` (`name`, `description`, `price`) VALUES ("Operation", "...", 400);
+INSERT INTO `transaction` (`date`, `client`, `total`, `service_id`, `type`) VALUES ("2021-06-15", "unknown", 500, 1,"income");

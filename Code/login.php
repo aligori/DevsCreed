@@ -42,7 +42,7 @@
             <div class="mb-3">
                 <label for="username"
                        class="form-label">Username</label>
-                <input type=text"
+                <input type="text"
                        class="form-control"
                        name="username"
                        id="username"
@@ -86,7 +86,7 @@
         else if ($_SESSION['role'] == 'receptionist')
             header("Location: receptionist-dashboard.php");
         else if ($_SESSION['role'] == 'patient')
-            header("Location: patient.php");
+            header("Location: patient-dashboard.php");
         else if ($_SESSION['role'] == 'economist')
-            header("Location: economist.php");
+            header("Location: economist-dashboard.php");
     } ?>

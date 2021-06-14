@@ -11,48 +11,51 @@
             $this->dbh = $dbh;
         }
 
-        public function addTransaction($date, $client, $total, $service_id){
-            $query = "INSERT INTO `transaction` (`date`, `client`, `total`, `service_id`) VALUES (?, ?, ?, ?);";
+        public function addTransaction($date, $client, $total, $service_id, $type){
+            $query = "INSERT INTO `transaction` (`date`, `client`, `total`, `service_id`, `type`) VALUES (?, ?, ?, ?, ?);";
             $stmt = $this->dbh->prepare($query);
-            $stmt->execute([$date, $client, $total, $service_id]);
-        }
-
-        public function getLatestTransactions($date){
-            $stmt = $this->dbh->prepare("SELECT * FROM `transaction` WHERE `date` = ?");
-            $stmt->execute([$date]);
-            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if (!$arr) exit('No rows');
-
-            /*
-            What will be returned:
-                                   `date`
-                                   `client`
-                                   `total`
-                                   `transaction_id`
-                                   `service_id`
-            */
-
-            $stmt = null;
-            var_export($arr);
-
+            $stmt->execute([$date, $client, $total, $service_id, $type]);
         }
 
         public function getTransactionInTimePeriod($date1, $date2){
-            $stmt = $this->dbh->prepare("SELECT * FROM `transaction` WHERE `date` >= ? AND `date` < ?");
+            $stmt = $this->dbh->prepare("SELECT * FROM `transaction` WHERE `date` BETWEEN ? AND ?;");
             $stmt->execute([$date1, $date2]);
-            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if (!$arr) exit('No rows');
 
-            /*
-            What will be returned:
-                                   `date`
-                                   `client`
-                                   `total`
-                                   `transaction_id`
-                                   `service_id`
-            */
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
 
-            $stmt = null;
-            var_export($arr);
+        public function getTransactionsMadeThisMonth(){
+            $stmt = $this->dbh->prepare("SELECT * FROM `transaction` WHERE `date` > date_sub(now(), interval 1 month );");
+            $stmt->execute([]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function getTransactionsMadeToday(){
+            $stmt = $this->dbh->prepare("SELECT * FROM `transaction` WHERE `date` = curdate();");
+            $stmt->execute([]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function get_DailyTransactionValue(){
+            $stmt = $this->dbh->prepare("SELECT SUM(`total`) AS sum FROM `transaction` WHERE `date` = curdate() AND type='income';");
+            $stmt->execute([]);
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public function get_MonthlyTransactionValue(){
+            $stmt = $this->dbh->prepare("SELECT SUM(`total`) AS sum FROM `transaction` WHERE `date` > (CURDATE()-INTERVAL 1 MONTH) AND type='income';");
+            $stmt->execute([]);
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public function get_ValueSpent(){
+            $stmt = $this->dbh->prepare("SELECT SUM(`total`) AS sum FROM `transaction` WHERE `date` = curdate() AND type='expenditure';");
+            $stmt->execute([]);
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         }
     }
