@@ -13,11 +13,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = test_input($_POST['username']);
     $password = test_input($_POST['password']);
     $dbh = Database::get_connection();
-    $user =(new Users($dbh))->verifyLogin($username, $password);
+    $user_instance = new Users($dbh);
+    $user =($user_instance)->verifyLogin($username, $password);
 
     if ($user) {
         session_start();
-
+        $user_instance->setOnline($user['user_id']);
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['user'] = $user;
         $_SESSION['role'] = $user['role'];

@@ -33,7 +33,7 @@
                 </li>
             </a>
 
-            <a href="">
+            <a href="receptionist-patients.php">
                 <li>
                     <span class="ti-support"></span>
                     <span>Patients</span>

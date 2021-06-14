@@ -76,7 +76,7 @@ include('shared-components/receptionist/sidebar.php');
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="#"> <i class="fa fa-plus-circle fa-2x"></i></a>
+                    <a href="receptionist-all-appointments.php"> <i class="fa fa-plus-circle fa-2x"></i></a>
                 </div>
             </div>
 

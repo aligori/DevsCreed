@@ -9,15 +9,10 @@
             $this->dbh = $dbh;
         }
 
-        public function getPatient($patient_id) {
-
+        public function getPatientById($patient_id) {
             $stmt = $this->dbh->prepare("SELECT * FROM `patient` WHERE patient_id = ?");
             $stmt->execute([$patient_id]);
-            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if(!$arr) exit('No rows');
-            $stmt = null;
-            return $arr;
-
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
         public function getAllPatients($query): array {
@@ -96,6 +91,13 @@
         public function getPatientByEmail($email) {
             $stmt = $this->dbh->prepare("SELECT * FROM `patient` WHERE email = ?");
             $stmt->execute([$email]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public function getDiagnosis($patient_id) {
+            $query = "SELECT * FROM `patient_diagnosis` as PD INNER JOIN `diagnosis` as D on PD.diagnosis_id = D.diagnosis_id  WHERE patient_id = ? and isCurrent = 'current'";
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute([$patient_id]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
     }
