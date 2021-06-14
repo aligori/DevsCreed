@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
+if (isset($_SESSION['user_id']) && ($_SESSION['role'] === 'receptionist' || $_SESSION['role'] === 'doctor' || $_SESSION['role'] === 'admin')) {
     ?>
 
     <html lang="en">
@@ -15,7 +15,14 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
     </head>
     <body>
     <?php
-    include('shared-components/receptionist/sidebar.php');
+
+    if($_SESSION['role'] == 'receptionist') {
+        include('shared-components/receptionist/sidebar.php');
+    } else if ($_SESSION['role'] == 'doctor'){
+        include('shared-components/doctor/sidebar.php');
+    } else if (($_SESSION['role'] == 'admin')){
+        include('shared-components/admin/sidebar1.php');
+    }
     ?>
     <div class="main-content">
         <!--    Topbar       -->
@@ -35,11 +42,16 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
                 </ol>
             </nav>
             <br/>
+            <?php if (isset($_GET['error'])) { ?>
+                <div class="alert alert-danger" role="alert"><?=$_GET['error']?></div>
+            <?php } ?>
             <div class="card" style="margin-top: auto">
                 <div class="card-header">
                     <div class = "row">
                         <div class = "col-sm-9" >Patients </div>
                         <div class = "col-sm-3"  align="right">
+                            <?php if($_SESSION['role'] == 'receptionist') {
+                                ?>
                             <button type="submit"
                                     class="btn btn-success"
                                     data-toggle="modal"
@@ -47,6 +59,15 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
                             > <i class="fas fa-plus-circle"></i>
                                 New Patient
                             </button>
+                            <?php } else if($_SESSION['role'] == 'doctor') { ?>
+                            <button type="button"
+                                    class="btn btn-secondary"
+                                    data-toggle="modal"
+                                    data-target="#chooseModal"
+                            > <i class="fas fa-book"></i>
+                                 Health Records
+                            </button>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -149,6 +170,34 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'receptionist') {
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <!--  Health records Modal -->
+            <div class="modal fade" id="chooseModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Choose Patient</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="doctor-healthrecords.php" class="border shadow p-3 rounded">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label>Enter Patient ID</label>
+                                        <input type="text" class="form-control mb-3" id="patient_id" name="patient_id" />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success" id="modal_approve_button" name="modal_approve_button">View</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>

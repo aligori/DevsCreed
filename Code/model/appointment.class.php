@@ -61,6 +61,17 @@
             return $result;
         }
 
+        public function getAllAppointments($query): array {
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute();
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $rowCount = $stmt->rowCount();
+            $result = array();
+            array_push($result, $data);
+            array_push($result, $rowCount);
+            return $result;
+        }
+
         public function addTransaction($transaction, $a_id){
             $query = "UPDATE `appointment` SET `transaction_id` = ? WHERE `a_id` = ?";
             $stmt = $this->dbh->prepare($query);

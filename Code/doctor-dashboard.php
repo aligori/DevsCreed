@@ -4,13 +4,15 @@
         require_once ('model/db_conn.php');
         include 'model/appointment.class.php';
         include 'model/user.class.php';
+        include_once('model/patient.class.php');
 
         $dbh = Database::get_connection();
         $employee = (new Users($dbh))->getAllEmployeeData($_SESSION['user_id']);
         $app_class = new Appointment($dbh);
         $_SESSION['doctor_id'] = $employee["employee_id"];
         $nextApp = ($app_class)->getNextAppointment($employee["employee_id"]);
-        $today_schedule = ($app_class)->getTodaysSchedule($employee["employee_id"])
+        $today_schedule = ($app_class)->getTodaysSchedule($employee["employee_id"]);
+        $nr_patients = (new Patient($dbh))->getNrPatients();
 ?>
 
 <html lang="en">
@@ -46,23 +48,23 @@ include('shared-components/doctor/sidebar.php');
         <div class="dash-cards">
             <div class="card-single">
                 <div class="card-body">
-                    <span class="ti-wheelchair"></span>
+                    <span class="ti-wheelchair" style="color: #FFA7A7"></span>
                     <div>
                         <h5>Active Patients</h5>
-                        <h4>Get from database</h4>
+                        <h4><?php echo $nr_patients["cnt"].' Active Patients' ?></h4>
                         <br/>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="doctor-patients.php" class="btn btn-outline-primary">View All <span class="ti-angle-right"> </span></a>
+                    <a href="receptionist-patients.php" class="btn btn-outline-primary">View All <span class="ti-angle-right"> </span></a>
                 </div>
             </div>
             <div class="card-single">
                 <div class="card-body">
-                    <span class="ti-write"></span>
+                    <span class="ti-write" style="color: #3EC5AD"></span>
                     <div>
                         <h5>New Health Record</h5>
-                        <h4>Get from database</h4>
+                        <h4>Written Today</h4>
                         <br/>
                     </div>
                 </div>
@@ -72,12 +74,17 @@ include('shared-components/doctor/sidebar.php');
             </div>
             <div class="card-single">
                 <div class="card-body">
-                    <span class="ti-alarm-clock"></span>
+                    <span class="ti-alarm-clock" style="color: #0a53be"></span>
                     <div>
                         <h5>Next Appointment</h5>
 <!--                        <h4 hidden id="app_id">--><?php //echo $employee['employee_id']?><!--</h4>-->
-                        <h4><?php echo $nextApp? $nextApp["full_name"]: "No more appointments for today!"?></h4>
+                        <h4><?php echo $nextApp? $nextApp["full_name"]: "No more appointments!"?></h4>
                         <h4><?php echo $nextApp? explode(" ", $nextApp["time"])[1]: " ";?></h4>
+                        <input type="text" hidden  id="next_full_name" value="<?php echo $nextApp['full_name'] ?>" />
+                        <input type="text" hidden id="next_email" value="<?php echo $nextApp['email'] ?>" />
+                        <input type="text" hidden id="next_phone" value="<?php echo $nextApp['phone'] ?>" />
+                        <input type="text" hidden  id="next_time" value="<?php echo $nextApp['time'] ?>" />
+                        <input type="text" hidden  id="next_desc" value="<?php echo $nextApp['description'] ?>" />
                     </div>
                 </div>
                 <div class="card-footer ">
@@ -85,7 +92,7 @@ include('shared-components/doctor/sidebar.php');
                             type="submit"
                             data-toggle="modal"
                             id="viewButton"
-                            data-target="#viewAppointment"
+                            data-target="#viewModal"
                             class="btn btn-outline-primary">
                         View
                         <span class="ti-angle-right"></span>
@@ -99,7 +106,7 @@ include('shared-components/doctor/sidebar.php');
                 <div class = "row">
                     <div class = "col-sm-9" >Your schedule for today </div>
                     <div class = "col-sm-3"  align="right">
-                        <a> <i class="fas fa-print"></i></a>
+                        <a href="controller/generate_pdf.php?doctor_id=<?php echo $employee['employee_id']?>"> <i class="fas fa-print"></i></a>
                     </div>
                 </div>
             </div>
@@ -140,7 +147,7 @@ include('shared-components/doctor/sidebar.php');
     </main>
 </div>
 
-<div id="viewAppointment" class="modal fade">
+<div id="viewModal" class="modal fade">
     <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -158,23 +165,23 @@ include('shared-components/doctor/sidebar.php');
                         <div class="form-group row">
                             <label for="email" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" id="inputPassword3" readonly>
+                                <input type="text" class="form-control" id="email" name="email" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="name" class="col-sm-2 col-form-label">Phone</label>
+                            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name"readonly>
+                                <input type="text" class="form-control" id="phone" name="phone" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="email" class="col-sm-2 col-form-label">Time</label>
+                            <label for="time" class="col-sm-2 col-form-label">Time</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" id="inputPassword3" readonly >
+                                <input type="text" class="form-control" id="time" readonly >
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="email" class="col-sm-2 col-form-label">Details</label>
+                            <label for="desc" class="col-sm-2 col-form-label">Details</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="desc" readonly>
                             </div>
@@ -188,25 +195,21 @@ include('shared-components/doctor/sidebar.php');
 
     </div>
 </div>
+<script>
+    // Basic example
+    $(document).ready(function () {
+        $('#viewButton').on('click', function () {
+            document.getElementById('name').value = document.getElementById('next_full_name').value;
+            document.getElementById('email').value = document.getElementById('next_email').value;
+            document.getElementById('phone').value = document.getElementById('next_phone').value;
+            document.getElementById('time').value = document.getElementById('next_time').value;
+            document.getElementById('desc').value = document.getElementById('next_desc').value;
+        });
+    });
+</script>
 
-<!--<script>-->
-<!--    // Basic example-->
-<!--    $(document).ready(function () {-->
-<!--        $.ajax({-->
-<!--            url: "controller/fetchSingleAppointment.php",-->
-<!--            method: "POST",-->
-<!--            success: function(data) {-->
-<!--                $('#name').val(data['name']);-->
-<!--                $('#email').val(data['email']);-->
-<!--                $('#phone').val(['phone']);-->
-<!--                $('#time').val(['time']);-->
-<!--            }-->
-<!--        })-->
-<!---->
-<!--    });-->
-<!--</script>-->
 </body>
-
+</html>
 <?php } else{
     //Access Forbidden
     header("Location: ./login.php?error=Access Forbidden");

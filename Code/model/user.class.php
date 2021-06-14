@@ -36,8 +36,6 @@
         }
 
         public function getAllUsers() {
-
-            //Prepare query and fetch result
             $stmt = $this->dbh->prepare("SELECT * FROM `user_account`");
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -66,5 +64,23 @@
             $stmt = $this->dbh->prepare("SELECT employee_id FROM `user_account` INNER JOIN `staff` ON user_account.user_id = staff.user_id WHERE $user_id = ?");
             $stmt->execute([$user_id]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public function setOnline($user_id) {
+            $stmt = $this->dbh->prepare('UPDATE `user_account` set isOnline = "online" WHERE `user_id` = ?');
+            return $stmt->execute([$user_id]);
+        }
+
+        public function setOffline($user_id) {
+            $stmt = $this->dbh->prepare('UPDATE `user_account` set isOnline = "offline" WHERE `user_id` = ?');
+            return $stmt->execute([$user_id]);
+
+        }
+
+        public function getNrOnline() {
+            $stmt = $this->dbh->prepare("SELECT * FROM `user_account` where isOnline = 'online' and `role` not in ('patient')");
+            $stmt->execute();
+            $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->rowCount() - 1;
         }
     }
