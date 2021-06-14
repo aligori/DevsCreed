@@ -55,8 +55,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
 
                                             $employee_id = intval($_GET['a']);
                                             $user = ($userClass)->getEmployee($employee_id);
-                                            $data = $user;
-                                            $pieces = explode(" ", $data['full_name']);
+                                            $pieces = explode(" ", $user['full_name']);
                                         ?>
 
                                         <div class="modal-body">
@@ -86,13 +85,13 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                                             name="email"
                                                             id="email"
                                                             class="form-control"
-                                                            value=<?php echo($data['email']); ?>
+                                                            value=<?php echo($user['email']); ?>
                                                             required
                                                     /><br/>
 
                                                     <label>Status</label>
                                                     <select class="form-control form-select form-select-lg mb-3" id="status">
-                                                        <option value="" selected hidden><?php echo($data['status']);?></option>
+                                                        <option value="" selected hidden><?php echo($user['status']);?></option>
                                                         <option value="1">Active</option>
                                                         <option value="2">Passive</option>
                                                     </select>
@@ -105,7 +104,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                                             name="phone"
                                                             id="phone"
                                                             class="form-control"
-                                                            value=<?php echo("0".$data['phone']); ?>
+                                                            value=<?php echo("0".$user['phone']); ?>
                                                             required
                                                     /><br/>
                                                     <label>Address</label>
@@ -114,7 +113,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                                             name="address"
                                                             id="address"
                                                             class="form-control"
-                                                            value=<?php echo($data['address']); ?>
+                                                            value=<?php echo($user['address']); ?>
                                                             required
                                                     /><br/>
 
@@ -124,13 +123,13 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                                                             name="salary"
                                                             id="salary"
                                                             class="form-control"
-                                                            value=<?php echo($data['salary']); ?>
+                                                            value=<?php echo($user['salary']); ?>
                                                             required
                                                     /><br/>
 
                                                     <label>Position</label>
                                                     <select class="form-control form-select form-select-lg mb-3" id="position">
-                                                        <option value="" selected hidden><?php echo($data['position']);?></option>
+                                                        <option value="" selected hidden><?php echo($user['position']);?></option>
                                                         <option value="1">Doctor</option>
                                                         <option value="2">Receptionist</option>
                                                         <option value="3">Economist</option>
@@ -161,7 +160,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
         $(document).ready(function(){
 
             $('#editEmployee').click(function(){
-                // $('#employee_form')[0].reset();
                 $('#action').val("Edit");
                 $('#operation').val("Edit");
             });
@@ -178,7 +176,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                     salary: $('#salary').val(),
                     position: $('#position option:selected').text(),
                     employee_id: $('#employee_id').val(),
-                    operation: $('#action').val()
+                    operation: $('#operation').val()
                 };
 
                 console.log(data);
@@ -191,8 +189,9 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin') {
                     // contentType: false,
                     // processData: false,
                     success: function(data) {
-                        location.href='admin-employees.php';
-                    }
+                        $('#employee_form')[0].reset();
+                        $('#editEmployee').modal('hide');
+                        dataTable.ajax.reload();                    }
                 });
             });
         })
