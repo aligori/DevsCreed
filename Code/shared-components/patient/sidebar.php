@@ -2,7 +2,7 @@
 <div class="sidebar">
     <div class="sidebar-header">
         <h3 class="brand">
-            <span>ADMIN</span>
+            <span>PATIENT</span>
         </h3>
         <label for="sidebar-toggle" class="ti-menu-alt"></label>
     </div>
@@ -10,7 +10,7 @@
     <div class="sidebar-menu">
         <ul>
 
-            <a href="admin-dashboard.php">
+            <a href="patient-dashboard.php">
                 <li>
                     <span class="ti-home"></span>
                     <span>Home</span>
@@ -18,40 +18,26 @@
             </a>
 
 
-            <a href="admin-users.php">
-                <li>
-                    <span class="ti-user"></span>
-                    <span>System Users</span>
-                </li>
-            </a>
-
-
-            <a href="admin-employees.php">
-                <li>
-                    <span class="ti-folder"></span>
-                    <span>Employees</span>
-                </li>
-            </a>
-
-            <a href="">
-                <li>
-                    <span class="ti-folder"></span>
-                    <span>Projects</span>
-                </li>
-            </a>
-
-
-            <a href="">
+            <a href="patient-appointment.php">
                 <li>
                     <span class="ti-time"></span>
-                    <span>Timesheet</span>
+                    <span>Appointments</span>
                 </li>
             </a>
 
 
-            <a href="">
-                <li><span class="ti-book"></span>
-                    <span>Contacts</span></li>
+            <a href="patient-profile.php">
+                <li>
+                    <span class="ti-user"></span>
+                    <span>My Profile</span>
+                </li>
+            </a>
+
+            <a href="patient-healthRecords.php">
+                <li>
+                    <span class="ti-support"></span>
+                    <span>Health Records</span>
+                </li>
             </a>
 
             <hr style="border: 1px solid #5599ff ">

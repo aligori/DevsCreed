@@ -59,7 +59,7 @@
             <a href="change_password.php">
                 <li style="margin-top: 10px">
                     <span class="ti-settings"></span>
-                    <span>Settings</span>
+                    <span>Change Password</span>
                 </li>
             </a>
 

@@ -6,11 +6,8 @@
  <?php
   session_start();
   require_once ('db_conn.php');
- include_once('employee.class.php');
- $dbh = Database::get_connection();
- $employee = (new Employee($dbh))->updateEmployee(13, "Oltjon Rabeli", "orabeli@gmail.com", "economist", "Durres", "0696822989", "active", 5000);
-
-
+ include_once('user.class.php');
+print(password_hash("admin", PASSWORD_DEFAULT))
  ?> 
  </body>
 </html>
