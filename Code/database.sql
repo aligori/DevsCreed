@@ -25,8 +25,8 @@ CREATE TABLE IF NOT EXISTS `diagnosis` (
 ) ;
 
 CREATE TABLE IF NOT EXISTS `patient` (
-                                         `patient_id` bigint unsigned NOT NULL AUTO_INCREMENT,
-                                         `full_name` varchar(100) NOT NULL,
+     `patient_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+     `full_name` varchar(100) NOT NULL,
     `email` varchar(100)  NOT NULL,
     `address` varchar(100) DEFAULT NULL,
     `phone` varchar(60) NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `transaction` (
      CONSTRAINT `transaction_FK` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ;
 
-CREATE TABLE IF NOT EXISTS `sold_product` (
+CREATE TABLE IF NOT EXISTS `product_instance` (
      `product_id` bigint unsigned NOT NULL,
      `transaction_id` bigint unsigned NOT NULL,
      PRIMARY KEY (`product_id`,`transaction_id`),
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
      `position` varchar(40) NOT NULL,
      `phone` varchar(30) NOT NULL,
      `address` varchar(100) DEFAULT NULL,
-     `photo_uri` varchar(100) DEFAULT NULL,
+     `photo` varchar(100) DEFAULT NULL,
      `birthday` date NOT NULL,
      `salary` int unsigned NOT NULL DEFAULT 25000,
      `status` ENUM('active','passive') NOT NULL,
@@ -189,6 +189,19 @@ DELIMITER ;
 
 -- Inserting values for testing purposes
 
+INSERT INTO `user_account` (`name`, `surname`, `password`, `username`, `role`) VALUES
+("Mr", "Admin", "$2y$10$LFNAi.BqSeLNzJshHeSUCeSPNesayH7ryFF4qDyDJmJcV8yvSay1i","admin", 'admin'),
+("Mr", "Doctor", "$2y$10$09Mz7MMjlAjq6uWZCg3NReDKaay99mcKl0NOOxuQQ0ky93oyIFxjm","mrdoctor", 'doctor'),
+("Mr", "Receptionist", "$2y$10$09Mz7MMjlAjq6uWZCg3NReDKaay99mcKl0NOOxuQQ0ky93oyIFxjm","mrsreceptionist", 'receptionist'),
+("Armela", "Ligori", "$2y$10$09Mz7MMjlAjq6uWZCg3NReDKaay99mcKl0NOOxuQQ0ky93oyIFxjm","armelaligori", 'patient'),
+("Denado", "Rabeli", "$2y$10$09Mz7MMjlAjq6uWZCg3NReDKaay99mcKl0NOOxuQQ0ky93oyIFxjm","denadorabeli", 'patient'),
+("Mr", "Economist", "$2y$10$09Mz7MMjlAjq6uWZCg3NReDKaay99mcKl0NOOxuQQ0ky93oyIFxjm","mreconomist", 'economist');
+
+INSERT INTO `staff` (`full_name`, `email`, `position`, `phone`, `address`, `photo`, `birthday`, `salary`, `status`, `user_id`) VALUES
+('Mr Doctor', 'doctor@gmail.com', 'doctor', '355699328966', 'Durres', NULL, '1995-10-28', '100000', 'active', '2'),
+('Mr Receptionist', 'receptionist@gmail.com', 'receptionist', '355699328941', 'Rr.Dibres, Tirane', NULL, '1990-10-28', '50000', 'active', '3'),
+('Mr Economist', 'economist@gmail.com', 'economist', '355699328777', 'Durres', NULL, '1990-10-28', '75000', 'active', '6');
+
 INSERT INTO `diagnosis` (`name`) VALUES
 ('Refractive Errors'),
 ('Cataract'),
@@ -197,8 +210,6 @@ INSERT INTO `diagnosis` (`name`) VALUES
 ('Night Blindness'),
 ('Corneal Disease'),
 ('Myopia');
-
-INSERT INTO `user_account` (`name`, `surname`, `password`, `username`, `role`) VALUES ("Denado", "Rabeli", "$2y$10$LFNAi.BqSeLNzJshHeSUCeSPNesayH7ryFF4qDyDJmJcV8yvSay1i","admin", 'admin');
 
 /*
 `date` datetime NOT NULL,
@@ -212,5 +223,12 @@ INSERT INTO `user_account` (`name`, `surname`, `password`, `username`, `role`) V
          ) NOT NULL,
 
 */
-INSERT INTO `service` (`name`, `description`, `price`) VALUES ("Operation", "...", 400);
+INSERT INTO `appointment` (`full_name`, `email`, `phone`, `status`, `time`, `doctor_id`, `patient_id`, `transaction_id`, `service_id`, `description`) VALUES
+('Edmond Topi', 'etopi@gmail.com', '355699328942', 'requested', '2021-06-17 07:55:37', NULL, NULL, NULL, NULL, NULL),
+('Annie Smith', 'asmith@gmail.com', '355699328942', 'requested', '2021-06-18 07:55:37', NULL, NULL, NULL, NULL, NULL),
+('John Smith', 'jsmith@gmail.com', '355699328942', 'requested', '2021-06-19 07:55:37', NULL, NULL, NULL, NULL, NULL);
+
+INSERT INTO `service` (`name`, `description`, `price`) VALUES
+("General Appointment", "...", 400);
+
 INSERT INTO `transaction` (`date`, `client`, `total`, `service_id`, `type`) VALUES ("2021-06-15", "unknown", 500, 1,"income");

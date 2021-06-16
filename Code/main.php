@@ -546,7 +546,7 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <h3>Medilab</h3>
+                    <h3>Klinika Troplini</h3>
                     <p>
                         Klinika Troplini, <br>
                         mbrapa bashkise,<br>

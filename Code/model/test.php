@@ -7,7 +7,7 @@
   session_start();
   require_once ('db_conn.php');
  include_once('user.class.php');
-print(password_hash("admin", PASSWORD_DEFAULT))
+print(password_hash("clinic123", PASSWORD_DEFAULT))
  ?> 
  </body>
 </html>
